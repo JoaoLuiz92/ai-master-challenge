@@ -102,6 +102,7 @@ describe("VendedorStation", () => {
       "false",
     );
     expect(screen.getByText("Avançar proposta")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Passar para colega" })).toBeNull();
     expect(screen.queryByText("Nutrir")).toBeNull();
     expect(screen.getByRole("button", { name: "Exportar CSV" })).toBeTruthy();
   });
@@ -122,6 +123,7 @@ describe("VendedorStation", () => {
       "true",
     );
     expect(screen.getByText("Qualificar conta/dados")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Passar para colega" })).toBeNull();
   });
 
   it("shows the ghost empty state and the only-Revisar empty Focar state", () => {

@@ -1,4 +1,7 @@
-import type { RollupRow } from "../api/client";
+import { useEffect, useState } from "react";
+
+import { queuePath, type QueueItem, type QueueResponse, type RollupRow } from "../api/client";
+import { HandoffDialog } from "../components/HandoffDialog";
 import { EmptyState } from "../components/EmptyState";
 import { ExportButton } from "../components/ExportButton";
 import { RollupTable } from "../components/RollupTable";
@@ -119,8 +122,25 @@ function DrillView({
   route: ViewRoute;
   navigate: (next: ViewRoute) => void;
 }) {
-  const queue = snapshot.queue ?? { view: null, items: [], revisar: [], empty_message: null };
+  const incoming = snapshot.queue ?? { view: null, items: [], revisar: [], empty_message: null };
+  const [queueOverride, setQueueOverride] = useState<QueueResponse | null>(null);
+  const [passing, setPassing] = useState<QueueItem | null>(null);
+  const queue = queueOverride ?? incoming;
   const kpis = deriveSellerKpis(queue);
+
+  useEffect(() => {
+    setQueueOverride(null);
+    setPassing(null);
+  }, [route.agente]);
+
+  async function confirmed() {
+    const response = await fetch(queuePath("seller", { agent: route.agente }));
+    if (!response.ok) {
+      return;
+    }
+    setQueueOverride((await response.json()) as QueueResponse);
+    setPassing(null);
+  }
   return (
     <>
       <button
@@ -144,7 +164,15 @@ function DrillView({
           { label: "Revisar", value: String(kpis.revisar) },
         ]}
       />
-      <DealBands items={queue.items} revisar={queue.revisar} />
+      {passing ? (
+        <HandoffDialog
+          opportunityId={passing.opportunity_id}
+          ageDays={passing.age_days}
+          onConfirmed={() => void confirmed()}
+          onCancel={() => setPassing(null)}
+        />
+      ) : null}
+      <DealBands items={queue.items} revisar={queue.revisar} onPass={setPassing} />
     </>
   );
 }

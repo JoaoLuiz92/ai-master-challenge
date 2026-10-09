@@ -99,11 +99,13 @@ export function DealBands({
   revisar,
   revisarKey = 0,
   openRevisar = false,
+  onPass,
 }: {
   items: QueueItem[];
   revisar: ReviewItem[];
   revisarKey?: number;
   openRevisar?: boolean;
+  onPass?: (item: QueueItem) => void;
 }) {
   const focar = items.filter((item) => item.estado === "Focar");
   const acompanhar = items.filter((item) => item.estado === "Acompanhar");
@@ -118,7 +120,11 @@ export function DealBands({
             <ol>
               {focar.map((item) => (
                 <li key={item.opportunity_id}>
-                  <DealCard item={item} variant="focar" />
+                  <DealCard
+                    item={item}
+                    variant="focar"
+                    onPass={onPass ? () => onPass(item) : undefined}
+                  />
                 </li>
               ))}
             </ol>
@@ -129,9 +135,13 @@ export function DealBands({
         <CollapsibleBand title="Acompanhar" count={acompanhar.length} defaultOpen={false}>
           <ol>
             {acompanhar.map((item) => (
-              <li key={item.opportunity_id}>
-                <DealCard item={item} variant="acompanhar" />
-              </li>
+                <li key={item.opportunity_id}>
+                  <DealCard
+                    item={item}
+                    variant="acompanhar"
+                    onPass={onPass ? () => onPass(item) : undefined}
+                  />
+                </li>
             ))}
           </ol>
         </CollapsibleBand>

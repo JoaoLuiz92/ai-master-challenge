@@ -8,7 +8,7 @@ afterEach(() => {
 
 describe("handoff client", () => {
   it("posts opportunity_id and to_agent and returns the new owner", async () => {
-    const fetchMock = vi.fn(async () =>
+    const fetchMock = vi.fn(async (_input: RequestInfo | URL, _init?: RequestInit) =>
       new Response(
         JSON.stringify({
           opportunity_id: "OPP-1",
@@ -27,10 +27,10 @@ describe("handoff client", () => {
       sales_agent: "Bruno",
       from_agent: "Ana",
     });
-    const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    const [url, init] = fetchMock.mock.calls[0] ?? [];
     expect(url).toBe("/api/handoff");
-    expect(init.method).toBe("POST");
-    expect(JSON.parse(String(init.body))).toEqual({
+    expect(init?.method).toBe("POST");
+    expect(JSON.parse(String(init?.body))).toEqual({
       opportunity_id: "OPP-1",
       to_agent: "Bruno",
     });
@@ -53,7 +53,7 @@ describe("handoff client", () => {
   });
 
   it("gets the candidate names for the opportunity", async () => {
-    const fetchMock = vi.fn(async () =>
+    const fetchMock = vi.fn(async (_input: RequestInfo | URL) =>
       new Response(JSON.stringify({ candidates: ["Bruno", "Otto"] }), {
         status: 200,
         headers: { "Content-Type": "application/json" },

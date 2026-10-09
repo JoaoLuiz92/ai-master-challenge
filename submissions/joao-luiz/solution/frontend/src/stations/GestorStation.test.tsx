@@ -1,6 +1,6 @@
 /** @vitest-environment jsdom */
 
-import { act, cleanup, render, screen } from "@testing-library/react";
+import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import type { DataSnapshot } from "../routing/useViewData";
@@ -61,7 +61,17 @@ function drillSnapshot(): DataSnapshot {
   };
 }
 
-afterEach(cleanup);
+function json(body: unknown): Response {
+  return new Response(JSON.stringify(body), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+afterEach(() => {
+  cleanup();
+  vi.unstubAllGlobals();
+});
 
 describe("GestorStation", () => {
   it("shows team strip and rollup on home, without the team queue or export", () => {
@@ -81,6 +91,7 @@ describe("GestorStation", () => {
     expect(screen.getAllByText("Bons esfriando").length).toBeGreaterThan(0);
     expect(screen.getByRole("button", { name: "Anna Snelling" })).toBeTruthy();
     expect(screen.queryByRole("button", { name: "Exportar CSV" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Passar para colega" })).toBeNull();
     expect(screen.queryByRole("button", { name: "Focar (1)" })).toBeNull();
   });
 
@@ -144,5 +155,134 @@ describe("GestorStation", () => {
       "nenhum vendedor neste gestor/escritório",
     );
     expect(screen.queryByRole("button", { name: "Exportar CSV" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Passar para colega" })).toBeNull();
+  });
+
+  it("offers Passar para colega on the drill only, including Acompanhar and not Revisar", () => {
+    render(
+      <GestorStation
+        snapshot={{
+          ...drillSnapshot(),
+          queue: {
+            view: "mine",
+            items: [
+              drillSnapshot().queue!.items[0]!,
+              {
+                ...drillSnapshot().queue!.items[0]!,
+                opportunity_id: "OPP-2",
+                estado: "Acompanhar",
+                action: "Nutrir",
+              },
+            ],
+            revisar: [
+              {
+                opportunity_id: "OPP-R",
+                product: "GTK 500",
+                account: null,
+                deal_stage: "Engaging",
+                value: 500,
+                age_days: null,
+                estado: "Revisar",
+                reason: "sujeira",
+                action: "Qualificar conta/dados",
+              },
+            ],
+            empty_message: null,
+          },
+        }}
+        route={{ station: "gestor", agente: "Anna Snelling" }}
+        navigate={() => undefined}
+      />,
+    );
+
+    expect(screen.getAllByRole("button", { name: "Passar para colega" })).toHaveLength(1);
+    act(() => {
+      screen.getByRole("button", { name: "Acompanhar (1)" }).click();
+    });
+    expect(screen.getAllByRole("button", { name: "Passar para colega" })).toHaveLength(2);
+    act(() => {
+      screen.getByRole("button", { name: "Revisar (1)" }).click();
+    });
+    expect(screen.getByText("Qualificar conta/dados")).toBeTruthy();
+    expect(screen.getAllByRole("button", { name: "Passar para colega" })).toHaveLength(2);
+  });
+
+  it("cancel leaves the deal and does not post", async () => {
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      void init;
+      const url = String(input);
+      if (url.startsWith("/api/handoff/candidates")) {
+        return json({ candidates: ["Bruno"] });
+      }
+      throw new Error(url);
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(
+      <GestorStation
+        snapshot={drillSnapshot()}
+        route={{ station: "gestor", agente: "Anna Snelling" }}
+        navigate={() => undefined}
+      />,
+    );
+
+    screen.getByRole("button", { name: "Passar para colega" }).click();
+    expect(await screen.findByRole("radio", { name: "Bruno" })).toBeTruthy();
+    act(() => {
+      screen.getByRole("button", { name: "Cancelar" }).click();
+    });
+
+    expect(screen.getByText("Avançar proposta")).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog")).toBeNull();
+    });
+    expect(fetchMock.mock.calls.some((call) => (call[1] as RequestInit | undefined)?.method === "POST")).toBe(
+      false,
+    );
+  });
+
+  it("confirm refetches the origin queue and the deal leaves", async () => {
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.startsWith("/api/handoff/candidates")) {
+        return json({ candidates: ["Bruno"] });
+      }
+      if (url === "/api/handoff" && init?.method === "POST") {
+        return json({
+          opportunity_id: "OPP-1",
+          sales_agent: "Bruno",
+          from_agent: "Anna Snelling",
+        });
+      }
+      if (url.startsWith("/api/queue")) {
+        return json({ view: "mine", items: [], revisar: [], empty_message: "sem deals nesta visão" });
+      }
+      throw new Error(url);
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(
+      <GestorStation
+        snapshot={drillSnapshot()}
+        route={{ station: "gestor", agente: "Anna Snelling" }}
+        navigate={() => undefined}
+      />,
+    );
+
+    screen.getByRole("button", { name: "Passar para colega" }).click();
+    (await screen.findByRole("radio", { name: "Bruno" })).click();
+    screen.getByRole("button", { name: "Confirmar" }).click();
+
+    await waitFor(() => {
+      expect(screen.queryByText("Avançar proposta")).toBeNull();
+    });
+    const posted = fetchMock.mock.calls.find((call) => (call[1] as RequestInit | undefined)?.method === "POST");
+    expect(JSON.parse(String(posted?.[1] && (posted[1] as RequestInit).body))).toEqual({
+      opportunity_id: "OPP-1",
+      to_agent: "Bruno",
+    });
+    expect(
+      fetchMock.mock.calls.some((call) => String(call[0]).includes("/api/queue") && String(call[0]).includes("Anna")),
+    ).toBe(true);
   });
 });

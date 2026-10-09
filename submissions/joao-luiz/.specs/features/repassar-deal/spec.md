@@ -166,7 +166,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 19 total, 19 implementing (T1–T9). REPA-08 fecha na estação na T10.
+**Coverage:** 19 total, 19 implementing (T1–T10). Verificação na faixa.
 
 ---
 
