@@ -342,11 +342,11 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Workable = Engaging WITH account; no account and/or no engage_date → Revisar
-- [ ] Won/Lost/Prospecting never in the workable queue
-- [ ] Filters by agent/manager/office applied correctly
-- [ ] Unit tests cover queue vs Revisar routing + each filter (LEAD-16/17/18/24)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] Workable = Engaging WITH account; no account and/or no engage_date → Revisar
+- [x] Won/Lost/Prospecting never in the workable queue
+- [x] Filters by agent/manager/office applied correctly
+- [x] Unit tests cover queue vs Revisar routing + each filter (LEAD-16/17/18/24)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
