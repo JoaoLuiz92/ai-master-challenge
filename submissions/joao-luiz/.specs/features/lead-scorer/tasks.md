@@ -569,9 +569,9 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] CSV rows == queue items of the same filtered view, in the same order and columns
-- [ ] E2E test compares CSV payload to the `/api/queue` payload for the same filter (LEAD-25)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
+- [x] CSV rows == queue items of the same filtered view, in the same order and columns
+- [x] E2E test compares CSV payload to the `/api/queue` payload for the same filter (LEAD-25)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
 
 **Tests**: e2e
 **Gate**: full

@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app.api.agents import router as agents_router
+from app.api.export import router as export_router
 from app.api.queue import router as queue_router
 from app.api.rollup import router as rollup_router
 from app.ingestion.loader import load_dataset
@@ -29,4 +30,5 @@ def create_app() -> FastAPI:
     app.include_router(agents_router)
     app.include_router(queue_router)
     app.include_router(rollup_router)
+    app.include_router(export_router)
     return app
