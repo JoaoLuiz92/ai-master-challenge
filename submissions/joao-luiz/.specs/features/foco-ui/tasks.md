@@ -160,10 +160,10 @@ T16 → T18
 
 **Done when**:
 
-- [ ] `deriveSellerKpis` returns valorEmFocar, nFocar, esfriando (`age_days > 106`), revisar
-- [ ] `deriveTeamKpis` sums valorTime, naFila, esfriando, bonsEsfriando from rollup rows
-- [ ] Unit tests cover the 106/107 boundary, Focar-only sums, and empty inputs (1:1 with FOCO-06)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] `deriveSellerKpis` returns valorEmFocar, nFocar, esfriando (`age_days > 106`), revisar
+- [x] `deriveTeamKpis` sums valorTime, naFila, esfriando, bonsEsfriando from rollup rows
+- [x] Unit tests cover the 106/107 boundary, Focar-only sums, and empty inputs (1:1 with FOCO-06)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

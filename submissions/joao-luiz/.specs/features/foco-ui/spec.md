@@ -229,7 +229,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-22 | P1: Estados vazios | ADR-009 | Design | Pending |
 | FOCO-23 | P1: Estados vazios | ADR-011 (failure) | Design | Pending |
 | FOCO-24 | P2: Gestor rollup | ADR-011 | Design | Pending |
-| FOCO-25 | P2: Gestor rollup | ADR-011 | Design | Pending |
+| FOCO-25 | P2: Gestor rollup | ADR-011 | Execute | Implementing |
 | FOCO-26 | P2: Gestor rollup | ADR-011 | Design | Pending |
 | FOCO-27 | P2: Gestor rollup | ADR-011 | Design | Pending |
 | FOCO-28 | P2: Drill do gestor | ADR-011 | Design | Pending |

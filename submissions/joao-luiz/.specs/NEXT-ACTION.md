@@ -4,14 +4,13 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-Feature `foco-ui` Execute: **T3** (`deriveSellerKpis` / `deriveTeamKpis`). T1–T2 fechados.
+Feature `foco-ui` Execute: **T4** (`useViewData`). T1–T3 fechados.
 
-**Próximo:** T3. Sem dependência. Gate: `npm --prefix frontend test -- --run`.
+**Próximo:** T4. Depende de T1 e T2. Gate: `npm --prefix frontend test -- --run`.
 
 ## Fila
 
-1. T3 KPI derivation
-2. T4 `useViewData`
-3. T5 `formatValue`
-4. T6–T18 (resto do Execute)
-5. Faixa de validação `foco-ui` (Playwright MCP) + verifier
+1. T4 `useViewData`
+2. T5 `formatValue`
+3. T6–T18 (resto do Execute)
+4. Faixa de validação `foco-ui` (Playwright MCP) + verifier
