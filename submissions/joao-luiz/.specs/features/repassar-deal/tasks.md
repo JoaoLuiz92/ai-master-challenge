@@ -9,7 +9,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 ---
 
 **Design**: `.specs/features/repassar-deal/design.md`
-**Status**: Execute (T3)
+**Status**: Execute (T4)
 
 > Repasse **só em memória** (ADR-013 / AD-013). Sem `handoffs.jsonl`. Sem AD extra antes da Phase 1: a decisão já está em `docs/adr/013-repasse-so-na-sessao.md` e no README § Limitações.
 
@@ -169,10 +169,10 @@ T9 → T10
 
 **Done when**:
 
-- [ ] Success moves the deal between queues (same id/product/account/value/age)
-- [ ] Unknown→404, same owner→409, other office→422, not workable→422
-- [ ] E2E TestClient covers success + each rejection
-- [ ] Gate check passes: `.venv\Scripts\python.exe -m pytest backend/tests/e2e -q`
+- [x] Success moves the deal between queues (same id/product/account/value/age)
+- [x] Unknown→404, same owner→409, other office→422, not workable→422
+- [x] E2E TestClient covers success + each rejection
+- [x] Gate check passes: `.venv\Scripts\python.exe -m pytest backend/tests/e2e -q`
 
 **Tests**: e2e
 **Gate**: full (backend)

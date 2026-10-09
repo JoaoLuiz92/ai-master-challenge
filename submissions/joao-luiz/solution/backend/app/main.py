@@ -7,6 +7,7 @@ from fastapi import FastAPI
 
 from app.api.agents import router as agents_router
 from app.api.export import router as export_router
+from app.api.handoff import router as handoff_router
 from app.api.quality_log import router as quality_log_router
 from app.api.queue import router as queue_router
 from app.api.rollup import router as rollup_router
@@ -34,4 +35,5 @@ def create_app() -> FastAPI:
     app.include_router(rollup_router)
     app.include_router(export_router)
     app.include_router(quality_log_router)
+    app.include_router(handoff_router)
     return app
