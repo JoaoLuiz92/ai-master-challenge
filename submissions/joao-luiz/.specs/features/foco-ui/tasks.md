@@ -511,10 +511,10 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Hierarchy supports Focar-as-hero vs compact Acompanhar; no decorative gradient/glass; strip is text+number
-- [ ] `npm --prefix frontend run build` succeeds (no CSS/TS errors); existing component tests still pass
-- [ ] Visual constraints (FOCO-35) are left for the UI lane to assert on the running UI
-- [ ] Gate check passes: `npm --prefix frontend run build && npm --prefix frontend test -- --run`
+- [x] Hierarchy supports Focar-as-hero vs compact Acompanhar; no decorative gradient/glass; strip is text+number
+- [x] `npm --prefix frontend run build` succeeds (no CSS/TS errors); existing component tests still pass
+- [x] Visual constraints (FOCO-35) are left for the UI lane to assert on the running UI
+- [x] Gate check passes: `npm --prefix frontend run build && npm --prefix frontend test -- --run`
 
 **Tests**: none
 **Gate**: build
