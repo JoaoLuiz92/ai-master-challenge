@@ -6,19 +6,6 @@ import { describe, expect, it } from "vitest";
 import type { QueueItem } from "../api/client";
 import { QueueList } from "./QueueList";
 
-const LABELS = [
-  "Produto",
-  "Conta",
-  "Valor",
-  "Estágio",
-  "Dias no funil",
-  "SCORE",
-  "Estado",
-  "Confiança",
-  "Motivo",
-  "Ação",
-];
-
 function deal(overrides: Partial<QueueItem> = {}): QueueItem {
   return {
     opportunity_id: "OPP-1",
@@ -37,25 +24,14 @@ function deal(overrides: Partial<QueueItem> = {}): QueueItem {
 }
 
 describe("QueueList", () => {
-  it("shows the deal fields with Portuguese labels, reason, and action", () => {
+  it("renders each deal as a card without stage jargon", () => {
     render(<QueueList items={[deal()]} />);
 
-    for (const label of LABELS) {
-      expect(screen.getByText(label)).toBeTruthy();
-    }
-    expect(screen.getByText("GTX Pro")).toBeTruthy();
-    expect(screen.getByText("Acme")).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Avançar proposta" })).toBeTruthy();
+    expect(screen.getByText("GTX Pro · US$ 1.000 · 40 dias no funil · dentro do ciclo")).toBeTruthy();
     expect(screen.getByText("US$ 1.000")).toBeTruthy();
-    expect(screen.getByText("Engaging")).toBeTruthy();
-    expect(screen.getByText("40")).toBeTruthy();
-    expect(screen.getByText("90")).toBeTruthy();
-    expect(screen.getByText("Focar")).toBeTruthy();
-    expect(screen.getByText("Alta")).toBeTruthy();
-    expect(
-      screen.getByText("GTX Pro · US$ 1.000 · 40 dias no funil · dentro do ciclo"),
-    ).toBeTruthy();
-    expect(screen.getByText("Avançar proposta")).toBeTruthy();
-    expect(screen.queryByText("Esfriando")).toBeNull();
+    expect(screen.queryByText("Engaging")).toBeNull();
+    expect(screen.queryByText("Estágio")).toBeNull();
   });
 
   it("shows the Esfriando badge only when age is above 106 days", () => {

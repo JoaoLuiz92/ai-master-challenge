@@ -52,7 +52,7 @@ describe("QueueLayout", () => {
 
     const queue = document.querySelector("ol");
     expect(queue).not.toBeNull();
-    expect(within(queue as HTMLOListElement).getByText("GTX Pro")).toBeTruthy();
+    expect(within(queue as HTMLOListElement).getByText(/GTX Pro/)).toBeTruthy();
     expect(within(queue as HTMLOListElement).getByText("Avançar proposta")).toBeTruthy();
     expect(within(queue as HTMLOListElement).queryByText("GTK 500")).toBeNull();
     expect(within(queue as HTMLOListElement).queryByText("Qualificar conta/dados")).toBeNull();

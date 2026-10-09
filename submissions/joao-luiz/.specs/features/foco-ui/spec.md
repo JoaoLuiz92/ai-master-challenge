@@ -218,12 +218,12 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-11 | P1: Vendedor Focar herói | ADR-009 | Execute | Implementing |
 | FOCO-12 | P1: Vendedor Focar herói | ADR-011 | Design | Pending |
 | FOCO-13 | P1: Vendedor Focar herói | ADR-011 | Design | Pending |
-| FOCO-14 | P1: Hierarquia do card | ADR-009, ADR-010 | Design | Pending |
-| FOCO-15 | P1: Hierarquia do card | ADR-010 | Design | Pending |
+| FOCO-14 | P1: Hierarquia do card | ADR-009, ADR-010 | Execute | Implementing |
+| FOCO-15 | P1: Hierarquia do card | ADR-010 | Execute | Implementing |
 | FOCO-16 | P1: Hierarquia do card | ADR-010, ADR-003 | Design | Pending |
-| FOCO-17 | P1: Hierarquia do card | ADR-010 | Design | Pending |
-| FOCO-18 | P1: Hierarquia do card | ADR-010 | Design | Pending |
-| FOCO-19 | P1: Hierarquia do card | ADR-010 | Design | Pending |
+| FOCO-17 | P1: Hierarquia do card | ADR-010 | Execute | Implementing |
+| FOCO-18 | P1: Hierarquia do card | ADR-010 | Execute | Implementing |
+| FOCO-19 | P1: Hierarquia do card | ADR-010 | Execute | Implementing |
 | FOCO-20 | P1: Estados vazios | ADR-009 | Design | Pending |
 | FOCO-21 | P1: Estados vazios | ADR-009 | Design | Pending |
 | FOCO-22 | P1: Estados vazios | ADR-009 | Design | Pending |

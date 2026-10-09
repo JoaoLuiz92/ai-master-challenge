@@ -284,12 +284,12 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Focar variant renders in order action → reason → value/age → Estado/Esfriando
-- [ ] SCORE is secondary with the tooltip text; the word "percentil" appears nowhere; stage not rendered; no second money figure
-- [ ] Esfriando badge rendered as a distinct element when `age_days > 106`
-- [ ] Acompanhar variant is a compact row with SCORE in the corner
-- [ ] Unit tests cover both variants, SCORE tooltip, absence of stage/percentil, badge at 107 and none at 106 (FOCO-11/12/13/14/15/17)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Focar variant renders in order action → reason → value/age → Estado/Esfriando
+- [x] SCORE is secondary with the tooltip text; the word "percentil" appears nowhere; stage not rendered; no second money figure
+- [x] Esfriando badge rendered as a distinct element when `age_days > 106`
+- [x] Acompanhar variant is a compact row with SCORE in the corner
+- [x] Unit tests cover both variants, SCORE tooltip, absence of stage/percentil, badge at 107 and none at 106 (FOCO-11/12/13/14/15/17)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
