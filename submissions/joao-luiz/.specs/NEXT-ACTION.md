@@ -4,13 +4,13 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-Feature `foco-ui` Execute: **T13** (`AppShell` + trilho + âncora). T1–T12 fechados.
+Feature `foco-ui` Execute: **T14** (`VendedorStation`). T1–T13 fechados.
 
-**Próximo:** T13. Depende de T2. Skill `frontend-design`. Gate: `npm --prefix frontend test -- --run`.
+**Próximo:** T14. Depende de T3, T4, T6–T10. Gate: `npm --prefix frontend test -- --run`.
 
 ## Fila
 
-1. T13 AppShell
-2. T14 VendedorStation
-3. T15–T18 (resto do Execute)
+1. T14 VendedorStation
+2. T15 GestorStation
+3. T16–T18 (resto do Execute)
 4. Faixa de validação `foco-ui` (Playwright MCP) + verifier

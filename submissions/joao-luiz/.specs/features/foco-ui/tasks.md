@@ -409,10 +409,10 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Rail navigates between `/vendedor` and `/gestor`; active station marked
-- [ ] Anchor "Visão em 31/12/2017" present; no "Visão" select anywhere (FOCO-05/34)
-- [ ] Unit tests cover rail navigation and the anchor/no-select invariants (FOCO-02/05/34)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Rail navigates between `/vendedor` and `/gestor`; active station marked
+- [x] Anchor "Visão em 31/12/2017" present; no "Visão" select anywhere (FOCO-05/34)
+- [x] Unit tests cover rail navigation and the anchor/no-select invariants (FOCO-02/05/34)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

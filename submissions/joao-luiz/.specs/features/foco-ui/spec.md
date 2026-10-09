@@ -209,7 +209,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-02 | P1: Estações + trilho | ADR-008 | Execute | Implementing |
 | FOCO-03 | P1: Estações + trilho | ADR-008 | Execute | Implementing |
 | FOCO-04 | P1: Estações + trilho | ADR-008, ADR-007 | Execute | Implementing |
-| FOCO-05 | P1: Estações + trilho | ADR-008 | Design | Pending |
+| FOCO-05 | P1: Estações + trilho | ADR-008 | Execute | Implementing |
 | FOCO-06 | P1: Estações + trilho | ADR-008 | Design | Pending |
 | FOCO-07 | P1: Estações + trilho | ADR-008 | Execute | Implementing |
 | FOCO-08 | P1: Vendedor Focar herói | ADR-011 | Execute | Implementing |
@@ -238,7 +238,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-31 | P2: Export contextual | ADR-011, CA9 | Design | Pending |
 | FOCO-32 | P2: Export contextual | ADR-011 | Design | Pending |
 | FOCO-33 | P2: Export contextual | ADR-011, CA9/LEAD-25 | Execute | Implementing |
-| FOCO-34 | P2: Mesa operacional | ADR-011, ADR-005 | Design | Pending |
+| FOCO-34 | P2: Mesa operacional | ADR-011, ADR-005 | Execute | Implementing |
 | FOCO-35 | P2: Mesa operacional | ADR-012 | Execute | Implementing |
 | FOCO-36 | P2: Mesa operacional | ADR-004 | Execute | Implementing |
 
