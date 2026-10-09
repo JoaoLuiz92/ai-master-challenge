@@ -142,7 +142,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| REPA-01 | P1: Passar para colega | Specify | Pending |
+| REPA-01 | P1: Passar para colega | Execute | Implementing |
 | REPA-02 | P1: Passar para colega | Specify | Pending |
 | REPA-03 | P1: Passar para colega | Execute | Implementing |
 | REPA-04 | P1: Passar para colega | Execute | Implementing |
@@ -153,7 +153,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | REPA-09 | P1: Passar para colega | Specify | Pending |
 | REPA-10 | P1: Recusa não apaga | Specify | Pending |
 | REPA-11 | P1: Recusa não apaga | Specify | Pending |
-| REPA-12 | P1: Recusa não apaga | Specify | Pending |
+| REPA-12 | P1: Recusa não apaga | Execute | Implementing |
 | REPA-13 | P1: Recusa não apaga | Specify | Pending |
 | REPA-14 | P1: Recusa não apaga | Specify | Pending |
 | REPA-15 | P1: Restart = snapshot | Specify | Pending |
@@ -166,7 +166,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 19 total, 4 implementing (T1: REPA-03, REPA-04, REPA-06, REPA-16), 15 pending.
+**Coverage:** 19 total, 6 implementing (T1–T2), 13 pending.
 
 ---
 
