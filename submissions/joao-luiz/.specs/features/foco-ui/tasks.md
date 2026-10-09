@@ -384,10 +384,10 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Download uses the active filter; the CSV reflects the current filtered view (FOCO-33, preserves CA9/LEAD-25)
-- [ ] A failed request shows an error message (role `alert`) instead of throwing uncaught (FOCO-23)
-- [ ] Unit tests cover the request filter and the error path
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Download uses the active filter; the CSV reflects the current filtered view (FOCO-33, preserves CA9/LEAD-25)
+- [x] A failed request shows an error message (role `alert`) instead of throwing uncaught (FOCO-23)
+- [x] Unit tests cover the request filter and the error path
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

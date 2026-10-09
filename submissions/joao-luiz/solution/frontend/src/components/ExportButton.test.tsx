@@ -66,5 +66,20 @@ describe("ExportButton", () => {
     expect(clicks[0]?.download).toBe("export.csv");
     expect(clicks[0]?.href).toContain("blob:export");
     expect(await downloaded.blob?.text()).toBe(CSV);
+    expect(screen.queryByRole("alert")).toBeNull();
+  });
+
+  it("shows an error instead of throwing when the export request fails", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => new Response("nope", { status: 500 })),
+    );
+
+    render(<ExportButton filter={{ agent: "Anna Snelling" }} />);
+    screen.getByRole("button", { name: "Exportar CSV" }).click();
+
+    expect((await screen.findByRole("alert")).textContent).toBe(
+      "Não foi possível exportar o CSV",
+    );
   });
 });

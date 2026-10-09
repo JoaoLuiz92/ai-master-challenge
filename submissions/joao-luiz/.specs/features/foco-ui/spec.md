@@ -237,7 +237,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-30 | P2: Drill do gestor | ADR-011, ADR-008 | Design | Pending |
 | FOCO-31 | P2: Export contextual | ADR-011, CA9 | Design | Pending |
 | FOCO-32 | P2: Export contextual | ADR-011 | Design | Pending |
-| FOCO-33 | P2: Export contextual | ADR-011, CA9/LEAD-25 | Design | Pending |
+| FOCO-33 | P2: Export contextual | ADR-011, CA9/LEAD-25 | Execute | Implementing |
 | FOCO-34 | P2: Mesa operacional | ADR-011, ADR-005 | Design | Pending |
 | FOCO-35 | P2: Mesa operacional | ADR-012 | Execute | Implementing |
 | FOCO-36 | P2: Mesa operacional | ADR-004 | Execute | Implementing |
