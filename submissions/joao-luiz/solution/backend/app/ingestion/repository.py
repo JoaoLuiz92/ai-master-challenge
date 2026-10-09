@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date, datetime
 from typing import Literal
 
@@ -27,6 +27,36 @@ class Deal:
     confidence: CatalogConfidence | None
     manager: str | None
     regional_office: str | None
+    from_agent: str | None = None
+
+
+def reassign_deal(
+    deals: tuple[Deal, ...],
+    opportunity_id: str,
+    to_agent: str,
+    from_agent: str,
+    manager: str | None,
+    office: str | None,
+) -> tuple[Deal, ...]:
+    """Return a new tuple with that opportunity owned by `to_agent`.
+
+    Unknown id returns the same tuple. A later call for the same id replaces
+    that deal; it does not append another one.
+    """
+    if not any(deal.opportunity_id == opportunity_id for deal in deals):
+        return deals
+    return tuple(
+        replace(
+            deal,
+            sales_agent=to_agent,
+            manager=manager,
+            regional_office=office,
+            from_agent=from_agent,
+        )
+        if deal.opportunity_id == opportunity_id
+        else deal
+        for deal in deals
+    )
 
 
 def build_deals(dataset: RawDataset) -> tuple[Deal, ...]:
