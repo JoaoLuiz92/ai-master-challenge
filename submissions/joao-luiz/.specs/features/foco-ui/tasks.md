@@ -23,7 +23,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 | React hooks (`useViewRoute`, `useViewData`) | unit | State transitions on navigate/popstate; route→fetch mapping + loading/error, with mocked fetch/history | `frontend/src/routing/**/*.test.tsx` | `npm --prefix frontend test -- --run` |
 | React components (strip, band, card variants, review row, rollup, export, empty, shell, stations) | unit | Render + behavior per AC (hierarchy, collapse, SCORE tooltip, no stage, badge, empty copy, clickable rows, contextual export) | `frontend/src/{components,stations}/**/*.test.tsx` | `npm --prefix frontend test -- --run` |
 | CSS / visual system (`index.css`) | none | build gate only; visual constraints (FOCO-35) verified in the UI lane | - | build gate only |
-| User-facing flows (rotas, drill, export contextual, estados vazios, âncora, mesa operacional, rótulos PT) | UI e2e (Playwright MCP) | Independent Tests + FOCO cross-cutting against the running UI — not mocked | validation-lane `ui-tester` (no committed Playwright suite) | Playwright MCP: scenarios in `.specs/features/foco-ui/validation-lane.md` |
+| User-facing flows (rotas, drill, export contextual, estados vazios, âncora, mesa operacional, rótulos PT) | UI e2e (Playwright MCP) | Independent Tests + FOCO cross-cutting against the running UI — not mocked | validation-lane `ui-tester` (no committed Playwright suite) | Playwright MCP, one scenario per UI Independent Test in `spec.md` |
 
 ## Gate Check Commands
 
@@ -33,7 +33,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 | ---------- | ----------- | ------- |
 | Quick | After tasks with unit tests only | `npm --prefix frontend test -- --run` |
 | Build | After assembly/CSS/doc tasks | `npm --prefix frontend run build && npm --prefix frontend test -- --run` |
-| Validation lane | After the last task (or on "validate") | Orchestrator `submissions/joao-luiz/.cursor/agents/validation-lane.md`: ui-tester (Playwright MCP) → spec-verifier. See `.specs/features/foco-ui/validation-lane.md`. |
+| Validation lane | After the last task (or on "validate") | Harness orchestrator `.cursor/agents/validation-lane.md`: ui-tester (Playwright MCP) → spec-verifier. Rule: `.cursor/rules/validation-lane.mdc`. |
 
 ---
 
@@ -235,10 +235,10 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Renders each `{ label, value }`; items with `onActivate` are buttons, others are static
-- [ ] No icon per KPI; text + number only (FOCO-35)
-- [ ] Unit tests cover activatable vs static items and the labels (FOCO-06/10)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Renders each `{ label, value }`; items with `onActivate` are buttons, others are static
+- [x] No icon per KPI; text + number only (FOCO-35)
+- [x] Unit tests cover activatable vs static items and the labels (FOCO-06/10)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
@@ -521,12 +521,12 @@ T16 → T18
 
 ---
 
-### T18: foco-ui validation-lane doc + NEXT-ACTION
+### T18: handoff para a faixa do harness + NEXT-ACTION
 
-**What**: Author `.specs/features/foco-ui/validation-lane.md` (UI scenarios + AC→lane map for the new UX) and update `NEXT-ACTION.md`.
-**Where**: `.specs/features/foco-ui/validation-lane.md`
+**What**: Point `NEXT-ACTION.md` at the harness validation lane for `foco-ui`. Do not author a per-feature `validation-lane.md`. The lane contract is `.cursor/rules/validation-lane.mdc`; UI scenarios are the Independent Tests already in `spec.md`.
+**Where**: `.specs/NEXT-ACTION.md`
 **Depends on**: T16
-**Reuses**: `lead-scorer/validation-lane.md` structure + ui-evidence convention.
+**Reuses**: harness rule `.cursor/rules/validation-lane.mdc` and the ui-evidence folder convention.
 **Requirement**: FOCO-30, FOCO-35, FOCO-36
 
 **Tools**:
@@ -536,8 +536,8 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Lane doc lists UI scenarios (rotas/trilho, Focar herói, card hierarchy, empty states, rollup+drill, export contextual, âncora, PT) with ui-evidence paths under `.specs/features/foco-ui/ui-evidence/`
-- [ ] `NEXT-ACTION.md` points to Execute/validation of `foco-ui`
+- [ ] `NEXT-ACTION.md` points the next window at the harness validation lane for `foco-ui` (`.cursor/rules/validation-lane.mdc`), not at a feature-local `validation-lane.md`
+- [ ] No `.specs/features/foco-ui/validation-lane.md` is created; UI scenarios stay the Independent Tests in `spec.md`
 - [ ] Gate check passes: `npm --prefix frontend run build && npm --prefix frontend test -- --run`
 
 **Tests**: none
@@ -644,6 +644,6 @@ No violations: every code task co-locates its Vitest tests; T17 (CSS) and T18 (d
 Execute tasks use the `filesystem` MCP and `npm` for gates. The product critical path stays offline and the backend is untouched (no new endpoint — ADR-011).
 
 - **Skill `frontend-design`**: recommended for T8 (card densities), T13 (rail/chrome) and T17 (visual system) to hit the "mesa operacional" tone without AI-slop tells (ADR-012).
-- **Validation lane (after T18 / on "validate")**: Playwright MCP for the UI Independent Tests. Enable the Cursor Playwright plugin or approve `submissions/joao-luiz/.cursor/mcp.json`. See `.specs/features/foco-ui/validation-lane.md`.
+- **Validation lane (after T18 / on "validate")**: Playwright MCP for the UI Independent Tests. Enable the Cursor Playwright plugin or approve `submissions/joao-luiz/.cursor/mcp.json`. Lane contract: `.cursor/rules/validation-lane.mdc`.
 
 > **ASK before Execute:** confirm these tool choices (filesystem + npm gates; `frontend-design` on T8/T13/T17; Playwright MCP only in the lane), and confirm the Test Coverage Matrix + Gate Check Commands above.

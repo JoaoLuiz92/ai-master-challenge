@@ -212,7 +212,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-05 | P1: Estações + trilho | ADR-008 | Design | Pending |
 | FOCO-06 | P1: Estações + trilho | ADR-008 | Design | Pending |
 | FOCO-07 | P1: Estações + trilho | ADR-008 | Execute | Implementing |
-| FOCO-08 | P1: Vendedor Focar herói | ADR-011 | Design | Pending |
+| FOCO-08 | P1: Vendedor Focar herói | ADR-011 | Execute | Implementing |
 | FOCO-09 | P1: Vendedor Focar herói | ADR-009 | Design | Pending |
 | FOCO-10 | P1: Vendedor Focar herói | ADR-009 | Design | Pending |
 | FOCO-11 | P1: Vendedor Focar herói | ADR-009 | Design | Pending |
@@ -239,7 +239,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-32 | P2: Export contextual | ADR-011 | Design | Pending |
 | FOCO-33 | P2: Export contextual | ADR-011, CA9/LEAD-25 | Design | Pending |
 | FOCO-34 | P2: Mesa operacional | ADR-011, ADR-005 | Design | Pending |
-| FOCO-35 | P2: Mesa operacional | ADR-012 | Design | Pending |
+| FOCO-35 | P2: Mesa operacional | ADR-012 | Execute | Implementing |
 | FOCO-36 | P2: Mesa operacional | ADR-004 | Execute | Implementing |
 
 **ID format:** `[CATEGORY]-[NUMBER]` (e.g., `FOCO-01`).
