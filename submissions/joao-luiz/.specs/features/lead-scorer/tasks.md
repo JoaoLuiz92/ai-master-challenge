@@ -739,10 +739,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `docker compose up` starts API + frontend; UI lists real deals from the CSVs
-- [ ] Two documented local commands start the stack without Docker
-- [ ] Build gate passes (backend tests + frontend build)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests -q && npm --prefix frontend run build && npm --prefix frontend test -- --run`
+- [x] `docker compose up` starts API + frontend; UI lists real deals from the CSVs
+- [x] Two documented local commands start the stack without Docker
+- [x] Build gate passes (backend tests + frontend build)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests -q && npm --prefix frontend run build && npm --prefix frontend test -- --run`
 
 **Tests**: none
 **Gate**: build

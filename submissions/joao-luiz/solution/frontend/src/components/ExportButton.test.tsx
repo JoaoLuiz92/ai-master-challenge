@@ -15,20 +15,19 @@ afterEach(() => {
 
 describe("ExportButton", () => {
   it("downloads the csv of the active agent, manager, and office filter", async () => {
-    const fetchMock = vi.fn(
-      async () =>
-        new Response(CSV, {
-          status: 200,
-          headers: { "Content-Type": "text/csv" },
-        }),
-    );
+    const fetchMock = vi.fn(async (_input: RequestInfo | URL) => {
+      return new Response(CSV, {
+        status: 200,
+        headers: { "Content-Type": "text/csv" },
+      });
+    });
     vi.stubGlobal("fetch", fetchMock);
 
-    let downloaded: Blob | null = null;
+    const downloaded: { blob: Blob | null } = { blob: null };
     Object.defineProperty(URL, "createObjectURL", {
       configurable: true,
       value: (blob: Blob) => {
-        downloaded = blob;
+        downloaded.blob = blob;
         return "blob:export";
       },
     });
@@ -66,6 +65,6 @@ describe("ExportButton", () => {
     );
     expect(clicks[0]?.download).toBe("export.csv");
     expect(clicks[0]?.href).toContain("blob:export");
-    expect(await downloaded?.text()).toBe(CSV);
+    expect(await downloaded.blob?.text()).toBe(CSV);
   });
 });
