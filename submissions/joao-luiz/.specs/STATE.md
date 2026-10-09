@@ -61,10 +61,10 @@
 ## Handoff
 
 - **Feature**: lead-scorer (`.specs/features/lead-scorer/`)
-- **Phase / Task**: Specify + Design + Tasks concluídos; Execute NÃO iniciado (parada deliberada antes da implementação)
-- **Completed**: spec.md, design.md, tasks.md (validadores exit 0), DELIVERY.md (obrigatório ao fechar a spec), AGENTS.md
+- **Phase / Task**: Execute Phase 1 / T1 concluída
+- **Completed**: T1 (scaffold FastAPI + constantes congeladas)
 - **In-progress** (file:line): none
-- **Next step**: Iniciar Execute (Phase 1) somente após aprovação. Ao terminar a última tarefa, disparar o subagente `validation-lane` (não validar no chat). Janela de contexto no Execute: limite 45%; se estourar no meio da tarefa, fechar essa tarefa e abrir a próxima em subagente. Dúvida → spec.md + design.md. Nenhum código de produção foi escrito nesta sessão.
-- **Blockers**: none
-- **Uncommitted files**: `.specs/` da submissão (spec.md, design.md, tasks.md, STATE.md) — não comitados por instrução
-- **Branch**: (verificar no Execute)
+- **Next step**: T2 CSV loader (`backend/app/ingestion/loader.py`). Nova janela via subagente se o contexto desta já passou de 45%. Gate T2: pytest integration nos CSVs reais. Dúvida → spec.md + design.md.
+- **Blockers**: Windows WDAC bloqueia `pydantic-core` (Rust); backend pinado em FastAPI 0.112.4 + Pydantic 1.10.22. Frontend ainda não existe — metade npm do gate Build só vale a partir de T21/T26.
+- **Uncommitted files**: none (após o commit da T1)
+- **Branch**: submission/joao-luiz

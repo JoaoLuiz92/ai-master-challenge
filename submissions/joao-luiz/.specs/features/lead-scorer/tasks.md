@@ -118,9 +118,9 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] FastAPI app factory created with a startup hook placeholder for data load
-- [ ] Frozen constants module holds TODAY=2017-12-31, WON_MEDIAN=57, WON_P90=106
-- [ ] App imports cleanly; build gate passes
+- [x] FastAPI app factory created with a startup hook placeholder for data load
+- [x] Frozen constants module holds TODAY=2017-12-31, WON_MEDIAN=57, WON_P90=106
+- [x] App imports cleanly; build gate passes
 
 **Tests**: none
 **Gate**: build

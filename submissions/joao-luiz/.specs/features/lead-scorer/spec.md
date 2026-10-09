@@ -234,7 +234,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | LEAD-29 | P2: Setup reprodutível | CA8, RNF1 | Tasks | Pending |
 | LEAD-30 | P2: Setup reprodutível | RNF2 | Tasks | Pending |
 | LEAD-31 | Transversal (UI/idioma) | RNF3 | Tasks | Pending |
-| LEAD-32 | Transversal (sem persistência) | RNF4 | Tasks | Pending |
+| LEAD-32 | Transversal (sem persistência) | RNF4 | Execute | Implementing |
 | LEAD-33 | P2: Setup reprodutível | RNF1 (fallback local) | Tasks | Pending |
 
 **ID format:** `[CATEGORY]-[NUMBER]` (e.g., `LEAD-01`).
