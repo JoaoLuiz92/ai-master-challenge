@@ -213,9 +213,9 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-06 | P1: Estações + trilho | ADR-008 | Design | Pending |
 | FOCO-07 | P1: Estações + trilho | ADR-008 | Execute | Implementing |
 | FOCO-08 | P1: Vendedor Focar herói | ADR-011 | Execute | Implementing |
-| FOCO-09 | P1: Vendedor Focar herói | ADR-009 | Design | Pending |
-| FOCO-10 | P1: Vendedor Focar herói | ADR-009 | Design | Pending |
-| FOCO-11 | P1: Vendedor Focar herói | ADR-009 | Design | Pending |
+| FOCO-09 | P1: Vendedor Focar herói | ADR-009 | Execute | Implementing |
+| FOCO-10 | P1: Vendedor Focar herói | ADR-009 | Execute | Implementing |
+| FOCO-11 | P1: Vendedor Focar herói | ADR-009 | Execute | Implementing |
 | FOCO-12 | P1: Vendedor Focar herói | ADR-011 | Design | Pending |
 | FOCO-13 | P1: Vendedor Focar herói | ADR-011 | Design | Pending |
 | FOCO-14 | P1: Hierarquia do card | ADR-009, ADR-010 | Design | Pending |

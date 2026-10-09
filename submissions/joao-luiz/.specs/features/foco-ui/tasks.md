@@ -260,9 +260,9 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Title shows `count`; `defaultOpen` controls initial state; activating the title toggles it (`aria-expanded`)
-- [ ] Unit tests cover default-open Focar, default-collapsed with count, and toggle (FOCO-08/09)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Title shows `count`; `defaultOpen` controls initial state; activating the title toggles it (`aria-expanded`)
+- [x] Unit tests cover default-open Focar, default-collapsed with count, and toggle (FOCO-08/09)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
@@ -521,7 +521,7 @@ T16 → T18
 
 ---
 
-### T18: handoff para a faixa do harness + NEXT-ACTION
+### T18: hand off to the harness validation lane + NEXT-ACTION
 
 **What**: Point `NEXT-ACTION.md` at the harness validation lane for `foco-ui`. Do not author a per-feature `validation-lane.md`. The lane contract is `.cursor/rules/validation-lane.mdc`; UI scenarios are the Independent Tests already in `spec.md`.
 **Where**: `.specs/NEXT-ACTION.md`
