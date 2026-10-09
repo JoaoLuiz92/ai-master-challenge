@@ -80,7 +80,9 @@ describe("QueueLayout", () => {
       />,
     );
 
-    expect(screen.getByRole("status").textContent).toBe("sem deals nesta visão");
+    expect(screen.getByRole("status").textContent).toBe(
+      "Este nome não tem carteira. Escolha outro vendedor.",
+    );
     expect(screen.queryByRole("list")).toBeNull();
     expect(screen.queryByRole("alert")).toBeNull();
     expect(screen.queryByRole("region", { name: "Revisar" })).toBeNull();
@@ -95,7 +97,7 @@ describe("QueueLayout", () => {
       />,
     );
 
-    expect(screen.getByRole("status").textContent).toBe("sem deals nesta visão");
+    expect(screen.getByRole("status").textContent).toBe("Nada trabalhável. 1 em Revisar.");
     expect(screen.queryByRole("alert")).toBeNull();
     expect(document.querySelector("ol")).toBeNull();
 

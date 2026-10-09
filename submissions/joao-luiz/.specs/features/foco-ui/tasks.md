@@ -335,9 +335,9 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Each variant renders its specific teaching copy (role `status`), never a generic alert
-- [ ] Unit tests cover the three variants (FOCO-20/21/22)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Each variant renders its specific teaching copy (role `status`), never a generic alert
+- [x] Unit tests cover the three variants (FOCO-20/21/22)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

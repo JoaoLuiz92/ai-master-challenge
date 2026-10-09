@@ -1,16 +1,6 @@
 import type { QueueItem, ReviewItem } from "../api/client";
+import { EmptyState } from "./EmptyState";
 import { QueueList } from "./QueueList";
-
-const EMPTY_VIEW_MESSAGE = "sem deals nesta visão";
-
-const LABELS = {
-  estado: "Estado",
-  action: "Ação",
-} as const;
-
-export function EmptyState({ message }: { message: string }) {
-  return <p role="status">{message}</p>;
-}
 
 export function ReviewSection({ items }: { items: ReviewItem[] }) {
   if (items.length === 0) {
@@ -27,11 +17,11 @@ export function ReviewSection({ items }: { items: ReviewItem[] }) {
               <h3>{item.product}</h3>
               <dl>
                 <div>
-                  <dt>{LABELS.estado}</dt>
+                  <dt>Estado</dt>
                   <dd>{item.estado}</dd>
                 </div>
                 <div>
-                  <dt>{LABELS.action}</dt>
+                  <dt>Ação</dt>
                   <dd>{item.action}</dd>
                 </div>
               </dl>
@@ -51,15 +41,17 @@ export function QueueLayout({
 }: {
   items: QueueItem[];
   revisar: ReviewItem[];
-  emptyMessage: string | null;
+  emptyMessage?: string | null;
   ghostAgent?: boolean;
 }) {
   const showEmpty = ghostAgent || items.length === 0;
 
   return (
     <div>
-      {showEmpty ? (
-        <EmptyState message={emptyMessage ?? EMPTY_VIEW_MESSAGE} />
+      {ghostAgent ? (
+        <EmptyState kind="ghost-agent" />
+      ) : showEmpty ? (
+        <EmptyState kind="only-revisar" count={revisar.length} />
       ) : (
         <QueueList items={items} />
       )}

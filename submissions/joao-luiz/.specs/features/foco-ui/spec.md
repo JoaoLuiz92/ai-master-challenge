@@ -224,9 +224,9 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-17 | P1: Hierarquia do card | ADR-010 | Execute | Implementing |
 | FOCO-18 | P1: Hierarquia do card | ADR-010 | Execute | Implementing |
 | FOCO-19 | P1: Hierarquia do card | ADR-010 | Execute | Implementing |
-| FOCO-20 | P1: Estados vazios | ADR-009 | Design | Pending |
-| FOCO-21 | P1: Estados vazios | ADR-009 | Design | Pending |
-| FOCO-22 | P1: Estados vazios | ADR-009 | Design | Pending |
+| FOCO-20 | P1: Estados vazios | ADR-009 | Execute | Implementing |
+| FOCO-21 | P1: Estados vazios | ADR-009 | Execute | Implementing |
+| FOCO-22 | P1: Estados vazios | ADR-009 | Execute | Implementing |
 | FOCO-23 | P1: Estados vazios | ADR-011 (failure) | Execute | Implementing |
 | FOCO-24 | P2: Gestor rollup | ADR-011 | Design | Pending |
 | FOCO-25 | P2: Gestor rollup | ADR-011 | Execute | Implementing |
