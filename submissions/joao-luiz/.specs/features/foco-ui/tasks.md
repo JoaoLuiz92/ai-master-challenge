@@ -9,7 +9,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 ---
 
 **Design**: `.specs/features/foco-ui/design.md`
-**Status**: Draft
+**Status**: Execute complete (T1–T18)
 
 ---
 
@@ -536,9 +536,9 @@ T16 → T18
 
 **Done when**:
 
-- [ ] `NEXT-ACTION.md` points the next window at the harness validation lane for `foco-ui` (`.cursor/rules/validation-lane.mdc`), not at a feature-local `validation-lane.md`
-- [ ] No `.specs/features/foco-ui/validation-lane.md` is created; UI scenarios stay the Independent Tests in `spec.md`
-- [ ] Gate check passes: `npm --prefix frontend run build && npm --prefix frontend test -- --run`
+- [x] `NEXT-ACTION.md` points the next window at the harness validation lane for `foco-ui` (`.cursor/rules/validation-lane.mdc`), not at a feature-local `validation-lane.md`
+- [x] No `.specs/features/foco-ui/validation-lane.md` is created; UI scenarios stay the Independent Tests in `spec.md`
+- [x] Gate check passes: `npm --prefix frontend run build && npm --prefix frontend test -- --run`
 
 **Tests**: none
 **Gate**: build

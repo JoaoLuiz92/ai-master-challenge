@@ -4,11 +4,11 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-Feature `foco-ui` Execute: **T18** (validation-lane.md). T1–T17 fechados.
+Feature `foco-ui`: Execute T1–T18 fechado. **Próximo:** faixa de validação do harness.
 
-**Próximo:** T18. Depende de T16. Gate: `npm --prefix frontend run build && npm --prefix frontend test -- --run`.
+Disparar o subagente `validation-lane`. Contrato: `.cursor/rules/validation-lane.mdc`. Cenários de UI = Independent Tests da `spec.md`. Evidência em `.specs/features/foco-ui/ui-evidence/`. Motor 001–007 intocado; sem endpoint novo.
 
 ## Fila
 
-1. T18 validation-lane
-2. Faixa de validação `foco-ui` (Playwright MCP) + verifier
+1. Faixa de validação `foco-ui` (ui-tester Playwright MCP → spec-verifier)
+2. `validation.md` com evidence-or-zero
