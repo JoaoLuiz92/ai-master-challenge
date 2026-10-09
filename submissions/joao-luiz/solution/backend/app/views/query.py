@@ -37,6 +37,7 @@ class QueueItem:
     reason: str
     action: str
     cooling: bool
+    from_agent: str | None = None
 
 
 @dataclass(frozen=True)
@@ -107,6 +108,7 @@ def build_queue(
                 reason=text.reason,
                 action=text.action,
                 cooling=cooling(age),
+                from_agent=deal.from_agent,
             )
         )
 

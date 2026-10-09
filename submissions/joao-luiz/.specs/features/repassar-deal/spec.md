@@ -156,17 +156,17 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | REPA-12 | P1: Recusa não apaga | Execute | Implementing |
 | REPA-13 | P1: Recusa não apaga | Execute | Implementing |
 | REPA-14 | P1: Recusa não apaga | Execute | Implementing |
-| REPA-15 | P1: Restart = snapshot | Specify | Pending |
+| REPA-15 | P1: Restart = snapshot | Execute | Implementing |
 | REPA-16 | P1: Restart = snapshot | Execute | Implementing |
 | REPA-17 | P1: Restart = snapshot | Execute | Implementing |
-| REPA-18 | P2: Rastro na fila | Specify | Pending |
-| REPA-19 | P2: Rastro na fila | Specify | Pending |
+| REPA-18 | P2: Rastro na fila | Execute | Implementing |
+| REPA-19 | P2: Rastro na fila | Execute | Implementing |
 
 **ID format:** `REPA-NN`.
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 19 total, 13 implementing (T1–T3), 6 pending.
+**Coverage:** 19 total, 16 implementing (T1–T6), 3 pending (REPA-07, REPA-08, REPA-09).
 
 ---
 

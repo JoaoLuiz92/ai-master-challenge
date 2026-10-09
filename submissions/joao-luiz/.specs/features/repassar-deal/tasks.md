@@ -9,7 +9,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 ---
 
 **Design**: `.specs/features/repassar-deal/design.md`
-**Status**: Execute (T5)
+**Status**: Execute (T6)
 
 > Repasse **só em memória** (ADR-013 / AD-013). Sem `handoffs.jsonl`. Sem AD extra antes da Phase 1: a decisão já está em `docs/adr/013-repasse-so-na-sessao.md` e no README § Limitações.
 
@@ -218,9 +218,9 @@ T9 → T10
 
 **Done when**:
 
-- [ ] `QueueItem.from_agent` is the previous owner after a handoff, null otherwise
-- [ ] Integration: handoff in client A; new `TestClient(create_app())` has CSV owner again (REPA-15)
-- [ ] Gate check passes: `.venv\Scripts\python.exe -m pytest backend/tests -q`
+- [x] `QueueItem.from_agent` is the previous owner after a handoff, null otherwise
+- [x] Integration: handoff in client A; new `TestClient(create_app())` has CSV owner again (REPA-15)
+- [x] Gate check passes: `.venv\Scripts\python.exe -m pytest backend/tests -q`
 
 **Tests**: integration
 **Gate**: full (backend)
