@@ -4,13 +4,13 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-Feature `foco-ui` Execute: **T5** (`formatValue`). T1–T4 fechados.
+Feature `foco-ui` Execute: **T6** (`SituationStrip`). T1–T5 fechados (Phase 1).
 
-**Próximo:** T5. Sem dependência. Gate: `npm --prefix frontend test -- --run`.
+**Próximo:** T6. Depende de T5. Gate: `npm --prefix frontend test -- --run`.
 
 ## Fila
 
-1. T5 `formatValue`
-2. T6 SituationStrip
-3. T7–T18 (resto do Execute)
+1. T6 SituationStrip
+2. T7 CollapsibleBand
+3. T8–T18 (resto do Execute)
 4. Faixa de validação `foco-ui` (Playwright MCP) + verifier

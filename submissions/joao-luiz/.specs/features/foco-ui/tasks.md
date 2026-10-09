@@ -211,9 +211,9 @@ T16 → T18
 
 **Done when**:
 
-- [ ] `formatValue(n)` returns `US$ ` + `toLocaleString("pt-BR")`
-- [ ] Unit test covers thousands separator and zero
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] `formatValue(n)` returns `US$ ` + `toLocaleString("pt-BR")`
+- [x] Unit test covers thousands separator and zero
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

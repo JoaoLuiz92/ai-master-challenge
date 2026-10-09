@@ -240,7 +240,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-33 | P2: Export contextual | ADR-011, CA9/LEAD-25 | Design | Pending |
 | FOCO-34 | P2: Mesa operacional | ADR-011, ADR-005 | Design | Pending |
 | FOCO-35 | P2: Mesa operacional | ADR-012 | Design | Pending |
-| FOCO-36 | P2: Mesa operacional | ADR-004 | Design | Pending |
+| FOCO-36 | P2: Mesa operacional | ADR-004 | Execute | Implementing |
 
 **ID format:** `[CATEGORY]-[NUMBER]` (e.g., `FOCO-01`).
 
