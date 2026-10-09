@@ -443,11 +443,11 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `build_queue(repo, view_filter)` returns QueueItems ordered by SCORE desc
-- [ ] Highest PRIORIDADE in view is first; each item exposes the LEAD-04 fields
-- [ ] Empty view → empty-state result, not error
-- [ ] Unit tests cover ordering, field completeness, and empty view (LEAD-01/02/03/04)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `build_queue(repo, view_filter)` returns QueueItems ordered by SCORE desc
+- [x] Highest PRIORIDADE in view is first; each item exposes the LEAD-04 fields
+- [x] Empty view → empty-state result, not error
+- [x] Unit tests cover ordering, field completeness, and empty view (LEAD-01/02/03/04)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
