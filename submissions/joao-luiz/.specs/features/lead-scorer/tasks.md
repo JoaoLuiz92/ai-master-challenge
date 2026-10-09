@@ -292,10 +292,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Baixa if missing account/engage_date; Média if complete but product support < 100 closed; Alta otherwise
-- [ ] Low support lowers confidence but NOT value (asserted for GTK 500)
-- [ ] Unit tests cover each level (1:1 with LEAD-22 + edge case)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] Baixa if missing account/engage_date; Média if complete but product support < 100 closed; Alta otherwise
+- [x] Low support lowers confidence but NOT value (asserted for GTK 500)
+- [x] Unit tests cover each level (1:1 with LEAD-22 + edge case)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
