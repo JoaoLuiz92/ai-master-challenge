@@ -268,9 +268,9 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `priority(value, urgency) = value * urgency` (deterministic, no probability input)
-- [ ] Unit tests confirm ordering by priority and absence of any p̂ term (LEAD-06/10)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `priority(value, urgency) = value * urgency` (deterministic, no probability input)
+- [x] Unit tests confirm ordering by priority and absence of any p̂ term (LEAD-06/10)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
