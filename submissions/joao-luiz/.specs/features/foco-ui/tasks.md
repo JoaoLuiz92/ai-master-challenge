@@ -185,11 +185,11 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Vendedor/drill route → `GET /api/queue?view=mine&agent=`; gestor-home route → `GET /api/rollup` + `/api/agents`
-- [ ] Reload/route carrying a slice reproduces the same request (asserted) → supports FOCO-04
-- [ ] `status: "error"` on failed fetch instead of a thrown uncaught error
-- [ ] Unit tests (mocked fetch) cover both route kinds + error path (FOCO-04/23)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Vendedor/drill route → `GET /api/queue?view=mine&agent=`; gestor-home route → `GET /api/rollup` + `/api/agents`
+- [x] Reload/route carrying a slice reproduces the same request (asserted) → supports FOCO-04
+- [x] `status: "error"` on failed fetch instead of a thrown uncaught error
+- [x] Unit tests (mocked fetch) cover both route kinds + error path (FOCO-04/23)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
