@@ -691,9 +691,9 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Per-agent rows (count, expected value, cooling) with good-deals-cooling highlighted
-- [ ] Component unit tests cover rendering + highlight (LEAD-26/27)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Per-agent rows (count, expected value, cooling) with good-deals-cooling highlighted
+- [x] Component unit tests cover rendering + highlight (LEAD-26/27)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
