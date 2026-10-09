@@ -149,7 +149,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | REPA-05 | P1: Passar para colega | Execute | Implementing |
 | REPA-06 | P1: Passar para colega | Execute | Implementing |
 | REPA-07 | P1: Passar para colega | Execute | Implementing |
-| REPA-08 | P1: Passar para colega | Specify | Pending |
+| REPA-08 | P1: Passar para colega | Execute | Implementing |
 | REPA-09 | P1: Passar para colega | Execute | Implementing |
 | REPA-10 | P1: Recusa não apaga | Execute | Implementing |
 | REPA-11 | P1: Recusa não apaga | Execute | Implementing |
@@ -166,7 +166,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 19 total, 18 implementing (T1–T8), 1 pending (REPA-08).
+**Coverage:** 19 total, 19 implementing (T1–T9). REPA-08 fecha na estação na T10.
 
 ---
 

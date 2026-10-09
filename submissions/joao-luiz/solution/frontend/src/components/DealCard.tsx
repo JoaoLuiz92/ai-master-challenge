@@ -18,10 +18,21 @@ const LABELS = {
 export function DealCard({
   item,
   variant,
+  onPass,
 }: {
   item: QueueItem;
   variant: "focar" | "acompanhar";
+  onPass?: () => void;
 }) {
+  const trace = item.from_agent ? (
+    <p className="deal-card__trace">Veio de {item.from_agent}</p>
+  ) : null;
+  const pass = onPass ? (
+    <button type="button" onClick={onPass}>
+      Passar para colega
+    </button>
+  ) : null;
+
   if (variant === "acompanhar") {
     return (
       <article className="deal-card deal-card--acompanhar">
@@ -33,6 +44,8 @@ export function DealCard({
         {item.age_days > COOLING_AFTER_DAYS ? (
           <span className="badge-cooling">{LABELS.cooling}</span>
         ) : null}
+        {trace}
+        {pass}
       </article>
     );
   }
@@ -58,6 +71,8 @@ export function DealCard({
       {item.age_days > COOLING_AFTER_DAYS ? (
         <span className="badge-cooling">{LABELS.cooling}</span>
       ) : null}
+      {trace}
+      {pass}
       <Score score={item.score} />
     </article>
   );

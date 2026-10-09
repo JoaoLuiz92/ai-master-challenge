@@ -230,6 +230,13 @@ select,
   grid-row: auto;
 }
 
+.deal-card__trace {
+  grid-column: 1 / -1;
+  margin: 0.2rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
 .badge-cooling {
   display: inline-block;
   padding: 0.1rem 0.4rem;

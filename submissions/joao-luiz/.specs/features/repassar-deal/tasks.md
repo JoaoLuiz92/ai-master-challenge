@@ -9,7 +9,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 ---
 
 **Design**: `.specs/features/repassar-deal/design.md`
-**Status**: Execute (T8)
+**Status**: Execute (T9)
 
 > Repasse **só em memória** (ADR-013 / AD-013). Sem `handoffs.jsonl`. Sem AD extra antes da Phase 1: a decisão já está em `docs/adr/013-repasse-so-na-sessao.md` e no README § Limitações.
 
@@ -290,10 +290,10 @@ T9 → T10
 
 **Done when**:
 
-- [ ] Action on drill Focar/Acompanhar; never vendedor or Revisar
-- [ ] Trace is text only
-- [ ] Unit tests cover visibility and trace
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Action on drill Focar/Acompanhar; never vendedor or Revisar
+- [x] Trace is text only
+- [x] Unit tests cover visibility and trace
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick (frontend)

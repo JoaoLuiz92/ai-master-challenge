@@ -70,6 +70,35 @@ describe("DealCard focar", () => {
   });
 });
 
+describe("DealCard handoff", () => {
+  it("shows Passar para colega only when the drill asks for it", () => {
+    const onPass = () => undefined;
+    const { unmount } = render(<DealCard item={deal()} variant="focar" onPass={onPass} />);
+    expect(screen.getByRole("button", { name: "Passar para colega" })).toBeTruthy();
+    unmount();
+
+    render(<DealCard item={deal({ estado: "Acompanhar" })} variant="acompanhar" onPass={onPass} />);
+    expect(screen.getByRole("button", { name: "Passar para colega" })).toBeTruthy();
+    cleanup();
+
+    render(<DealCard item={deal()} variant="focar" />);
+    expect(screen.queryByRole("button", { name: "Passar para colega" })).toBeNull();
+  });
+
+  it("prints Veio de as text and omits it when the deal was not passed", () => {
+    const { unmount } = render(
+      <DealCard item={deal({ from_agent: "Ana" })} variant="focar" />,
+    );
+    const trace = screen.getByText("Veio de Ana");
+    expect(trace.tagName).toBe("P");
+    expect(trace.querySelector("button")).toBeNull();
+    unmount();
+
+    render(<DealCard item={deal()} variant="focar" />);
+    expect(screen.queryByText(/Veio de/)).toBeNull();
+  });
+});
+
 describe("DealCard acompanhar", () => {
   it("renders a compact row with product, account, value, action, and SCORE in the corner", () => {
     render(
