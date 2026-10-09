@@ -4,13 +4,12 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-Feature `foco-ui` Execute: **T16** (ligar `App.tsx` ao shell). T1–T15 fechados.
+Feature `foco-ui` Execute: **T17** (`index.css` mesa operacional). T1–T16 fechados.
 
-**Próximo:** T16. Depende de T13–T15. Gate: `npm --prefix frontend run build && npm --prefix frontend test -- --run`.
+**Próximo:** T17. Depende de T16. Skill `frontend-design`. Gate: `npm --prefix frontend run build && npm --prefix frontend test -- --run`.
 
 ## Fila
 
-1. T16 App.tsx
-2. T17 CSS
-3. T18 validation-lane
-4. Faixa de validação `foco-ui` (Playwright MCP) + verifier
+1. T17 CSS
+2. T18 validation-lane
+3. Faixa de validação `foco-ui` (Playwright MCP) + verifier

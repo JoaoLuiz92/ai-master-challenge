@@ -486,10 +486,10 @@ T16 → T18
 
 **Done when**:
 
-- [ ] `/` redirects to `/vendedor?agente=Anna+Snelling`; stations render from the route
-- [ ] Old `<select>`-based form and `createViewClient` removed from the render path; `App.test.tsx` updated
-- [ ] Unit/integration render tests cover the redirect and station switch by route (FOCO-01/04/05)
-- [ ] Gate check passes: `npm --prefix frontend run build && npm --prefix frontend test -- --run`
+- [x] `/` redirects to `/vendedor?agente=Anna+Snelling`; stations render from the route
+- [x] Old `<select>`-based form and `createViewClient` removed from the render path; `App.test.tsx` updated
+- [x] Unit/integration render tests cover the redirect and station switch by route (FOCO-01/04/05)
+- [x] Gate check passes: `npm --prefix frontend run build && npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: build
