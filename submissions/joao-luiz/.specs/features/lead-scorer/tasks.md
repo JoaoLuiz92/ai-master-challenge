@@ -317,10 +317,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `cooling(age) == True` iff age > 106; exactly 106 → False
-- [ ] Flag never removes a deal from downstream queues (contract documented + asserted)
-- [ ] Unit tests cover 106 boundary and >106 (1:1 with LEAD-19/20)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `cooling(age) == True` iff age > 106; exactly 106 → False
+- [x] Flag never removes a deal from downstream queues (contract documented + asserted)
+- [x] Unit tests cover 106 boundary and >106 (1:1 with LEAD-19/20)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
