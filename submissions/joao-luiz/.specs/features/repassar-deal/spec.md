@@ -6,10 +6,10 @@ O gestor já vê, no drill, um negócio bom esfriando na carteira de alguém. Ho
 
 ## Goals
 
-- [ ] No drill do gestor, um deal da fila trabalhável passa para um colega do mesmo escritório em uma confirmação.
-- [ ] O `opportunity_id` continua existindo uma única vez: sai da fila de origem e entra na fila de destino, com o mesmo produto, conta, valor de lista e idade.
-- [ ] Recusa ou cancelamento deixam o dono original intacto.
-- [ ] Reiniciar o processo recarrega os donos dos CSVs. Os CSVs de origem não são alterados.
+- [x] No drill do gestor, um deal da fila trabalhável passa para um colega do mesmo escritório em uma confirmação.
+- [x] O `opportunity_id` continua existindo uma única vez: sai da fila de origem e entra na fila de destino, com o mesmo produto, conta, valor de lista e idade.
+- [x] Recusa ou cancelamento deixam o dono original intacto.
+- [x] Reiniciar o processo recarrega os donos dos CSVs. Os CSVs de origem não são alterados.
 
 ## Out of Scope
 
@@ -142,31 +142,31 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| REPA-01 | P1: Passar para colega | Execute | Implementing |
-| REPA-02 | P1: Passar para colega | Execute | Implementing |
-| REPA-03 | P1: Passar para colega | Execute | Implementing |
-| REPA-04 | P1: Passar para colega | Execute | Implementing |
-| REPA-05 | P1: Passar para colega | Execute | Implementing |
-| REPA-06 | P1: Passar para colega | Execute | Implementing |
-| REPA-07 | P1: Passar para colega | Execute | Implementing |
-| REPA-08 | P1: Passar para colega | Execute | Implementing |
-| REPA-09 | P1: Passar para colega | Execute | Implementing |
-| REPA-10 | P1: Recusa não apaga | Execute | Implementing |
-| REPA-11 | P1: Recusa não apaga | Execute | Implementing |
-| REPA-12 | P1: Recusa não apaga | Execute | Implementing |
-| REPA-13 | P1: Recusa não apaga | Execute | Implementing |
-| REPA-14 | P1: Recusa não apaga | Execute | Implementing |
-| REPA-15 | P1: Restart = snapshot | Execute | Implementing |
-| REPA-16 | P1: Restart = snapshot | Execute | Implementing |
-| REPA-17 | P1: Restart = snapshot | Execute | Implementing |
-| REPA-18 | P2: Rastro na fila | Execute | Implementing |
-| REPA-19 | P2: Rastro na fila | Execute | Implementing |
+| REPA-01 | P1: Passar para colega | Execute | Verified |
+| REPA-02 | P1: Passar para colega | Execute | Verified |
+| REPA-03 | P1: Passar para colega | Execute | Verified |
+| REPA-04 | P1: Passar para colega | Execute | Verified |
+| REPA-05 | P1: Passar para colega | Execute | Verified |
+| REPA-06 | P1: Passar para colega | Execute | Verified |
+| REPA-07 | P1: Passar para colega | Execute | Verified |
+| REPA-08 | P1: Passar para colega | Execute | Verified |
+| REPA-09 | P1: Passar para colega | Execute | Verified |
+| REPA-10 | P1: Recusa não apaga | Execute | Verified |
+| REPA-11 | P1: Recusa não apaga | Execute | Verified |
+| REPA-12 | P1: Recusa não apaga | Execute | Verified |
+| REPA-13 | P1: Recusa não apaga | Execute | Verified |
+| REPA-14 | P1: Recusa não apaga | Execute | Verified |
+| REPA-15 | P1: Restart = snapshot | Execute | Verified |
+| REPA-16 | P1: Restart = snapshot | Execute | Verified |
+| REPA-17 | P1: Restart = snapshot | Execute | Verified |
+| REPA-18 | P2: Rastro na fila | Execute | Verified |
+| REPA-19 | P2: Rastro na fila | Execute | Verified |
 
 **ID format:** `REPA-NN`.
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 19 total, 19 implementing (T1–T10). Verificação na faixa.
+**Coverage:** 19 total, 19 verified (T1–T10, faixa PASS).
 
 ---
 
@@ -174,8 +174,8 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 How we know the feature is successful:
 
-- [ ] No drill do gestor, um deal de Focar ou Acompanhar passa para um colega do mesmo escritório e continua com o mesmo `opportunity_id`, produto, conta, valor e idade.
-- [ ] A contagem global de deals não muda. O deal sai da fila de origem e entra na de destino.
-- [ ] Alvo inválido ou cancelamento deixam o dono original e mostram a mensagem da spec.
-- [ ] Reiniciar a API devolve os donos do CSV. Os quatro CSVs de origem ficam intactos. Nenhum overlay em disco.
-- [ ] O card do destino mostra "Veio de {dono anterior}" nesta sessão.
+- [x] No drill do gestor, um deal de Focar ou Acompanhar passa para um colega do mesmo escritório e continua com o mesmo `opportunity_id`, produto, conta, valor e idade.
+- [x] A contagem global de deals não muda. O deal sai da fila de origem e entra na de destino.
+- [x] Alvo inválido ou cancelamento deixam o dono original e mostram a mensagem da spec.
+- [x] Reiniciar a API devolve os donos do CSV. Os quatro CSVs de origem ficam intactos. Nenhum overlay em disco.
+- [x] O card do destino mostra "Veio de {dono anterior}" nesta sessão.

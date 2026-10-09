@@ -58,13 +58,61 @@
 - **Date**: 2026-10-08
 - **Status**: active
 
+### AD-008
+- **Decision**: Duas estações endereçáveis — path `/vendedor` e `/gestor`, recorte na query, trilho à esquerda troca o papel; `/` redireciona para `/vendedor?agente=Anna+Snelling`. Papel não é filtro.
+- **Reason**: O `<select>` Visão misturava identidade e recorte; sem login a visão tem de sobreviver ao F5 (SCORE é da visão, ADR-007). Ver `docs/adr/008-duas-estacoes-enderecaveis.md`.
+- **Trade-off**: O front passa a ter router; nomes do CSV na query.
+- **Scope**: Chrome da UI (feature `foco-ui`). Motor intocado.
+- **Date**: 2026-10-09
+- **Status**: active
+
+### AD-009
+- **Decision**: Focar é o herói (faixa aberta); Acompanhar e Revisar colapsam com a conta no título; três densidades de linha; empty ensina o próximo gesto.
+- **Reason**: O job são os ~8 da semana; lista única de cards iguais esconde o top 20% (ADR-007). Ver `docs/adr/009-focar-como-heroi-da-atencao.md`.
+- **Trade-off**: LEAD-04/18 deixam de exigir a fila inteira expandida na primeira pintura; testes precisam do estado aberto/fechado.
+- **Scope**: Estação vendedor e drill do gestor (`foco-ui`).
+- **Date**: 2026-10-09
+- **Status**: active
+
+### AD-010
+- **Decision**: Hierarquia do card: ação → motivo → valor/idade → Estado/Esfriando; SCORE e Confiança no canto (tooltip “posição nesta visão, 0–100”, sem a palavra percentil); estágio omitido na fila trabalhável; Revisar explica a sujeira; PRIORIDADE não aparece no card.
+- **Reason**: SCORE grande + `Engaging` em inglês são jargão; dois US$ (lista e PRIORIDADE) confundem. Ver `docs/adr/010-hierarquia-do-card-score-rebaixado.md`.
+- **Trade-off**: RF2/LEAD-04: estágio e SCORE continuam no payload/CSV; o chrome não os trata como herói.
+- **Scope**: DealCard / Revisar / copy (`foco-ui`).
+- **Date**: 2026-10-09
+- **Status**: active
+
+### AD-011
+- **Decision**: Faixa de situação só com números do payload; gestor home = rollup (gente); drill `?agente=` substitui o herói pela fila; export só onde há deals na tela; KPI clicável só Focar/Revisar; chrome “Visão em 31/12/2017”.
+- **Reason**: Sem endpoint novo, sem verbo de aprovação; export fantasma fura CA9. Ver `docs/adr/011-faixa-de-situacao-export-drill.md`.
+- **Trade-off**: Home do gestor não exporta; Esfriando é derivado no cliente (`age_days > 106`).
+- **Scope**: KPIs, rollup, export, drill (`foco-ui`).
+- **Date**: 2026-10-09
+- **Status**: active
+
+### AD-012
+- **Decision**: Tom visual de mesa operacional — claro, denso, faixa como texto+número, sem vidro/gradiente/ícone-por-KPI, sem clonar a print de aprovação.
+- **Reason**: Organizado ≠ dashboard de pitch; a print é outro produto. Ver `docs/adr/012-tom-visual-mesa-operacional.md`.
+- **Trade-off**: `index.css` vira trabalho desta feature, não um reskin de cor.
+- **Scope**: Visual da UI (`foco-ui`).
+- **Date**: 2026-10-09
+- **Status**: active
+
+### AD-013
+- **Decision**: O gestor passa um deal da fila trabalhável para um colega do mesmo escritório **só em memória**. Reiniciar a API devolve os donos dos CSVs. Sem `handoffs.jsonl`, sem banco. Os quatro CSVs de origem não são escritos.
+- **Reason**: “Não perder o deal” é o negócio continuar um só na tela (mesmo `opportunity_id`, sai de um e entra no outro). Gravar overlay ou banco contradiz AD-002, quebra a reprodução do snapshot e infla o desafio. Ver `docs/adr/013-repasse-so-na-sessao.md`.
+- **Trade-off**: Quem mata o processo perde o repasse; está escrito no README como limitação, não como bug.
+- **Scope**: Feature `repassar-deal`. Não altera o motor (AD-001..007). AD-002 permanece active.
+- **Date**: 2026-10-09
+- **Status**: active
+
 ## Handoff
 
-- **Feature**: lead-scorer (`.specs/features/lead-scorer/`)
-- **Phase / Task**: Execute Phase 1 / T1 concluída
-- **Completed**: T1 (scaffold FastAPI + constantes congeladas)
-- **In-progress** (file:line): none
-- **Next step**: T2 CSV loader (`backend/app/ingestion/loader.py`). Nova janela via subagente se o contexto desta já passou de 45%. Gate T2: pytest integration nos CSVs reais. Dúvida → spec.md + design.md.
-- **Blockers**: Windows WDAC bloqueia `pydantic-core` (Rust); backend pinado em FastAPI 0.112.4 + Pydantic 1.10.22. Frontend ainda não existe — metade npm do gate Build só vale a partir de T21/T26.
-- **Uncommitted files**: none (após o commit da T1)
+- **Feature**: `repassar-deal`
+- **Phase / Task**: Execute T1–T10 e faixa PASS. **Agora:** faixa de `foco-ui`.
+- **Completed**: `repassar-deal` T1–T10 e validation.md PASS (19/19, sensor 3/3). Commits `2689e83`..`5385bb5`. ADR-013 / AD-013. `foco-ui` Execute T1–T18 fechado (sem `validation.md`). `lead-scorer` Execute + faixa PASS.
+- **In-progress** (file:line): none.
+- **Next step**: `validation-lane` de `foco-ui`. Ver `.specs/NEXT-ACTION.md`.
+- **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. UI Docker em http://127.0.0.1:8080. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
+- **Uncommitted files**: `NEXT-ACTION.md`, `STATE.md` (handoff). `design.md` de `repassar-deal` ainda fora do git. Diffs locais anteriores (harness, README, ADRs, PRD) continuam fora destes commits.
 - **Branch**: submission/joao-luiz
