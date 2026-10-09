@@ -715,9 +715,9 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Button requests `/api/export.csv` with the current filter and downloads it
-- [ ] Component unit test asserts the request uses the active filter (LEAD-25)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Button requests `/api/export.csv` with the current filter and downloads it
+- [x] Component unit test asserts the request uses the active filter (LEAD-25)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
