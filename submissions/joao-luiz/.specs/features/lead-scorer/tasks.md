@@ -192,11 +192,11 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Every open deal carries product, account(nullable), stage, engage/close dates, value
-- [ ] Product without catalog match after alias → value 0 and low-confidence flag
-- [ ] After ingestion, 0 deals lack a price due to the GTXPro alias (asserted)
-- [ ] Unit tests cover matched/unmatched value paths
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] Every open deal carries product, account(nullable), stage, engage/close dates, value
+- [x] Product without catalog match after alias → value 0 and low-confidence flag
+- [x] After ingestion, 0 deals lack a price due to the GTXPro alias (asserted)
+- [x] Unit tests cover matched/unmatched value paths
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
