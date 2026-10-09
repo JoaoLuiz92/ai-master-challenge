@@ -641,10 +641,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Each card shows product, account, value, stage, days, SCORE, estado, confiança, reason, action
-- [ ] Esfriando badge rendered when cooling; labels in Portuguese (code/API in English)
-- [ ] Component unit tests cover fields, badge, and PT labels (LEAD-04/05/19/31)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Each card shows product, account, value, stage, days, SCORE, estado, confiança, reason, action
+- [x] Esfriando badge rendered when cooling; labels in Portuguese (code/API in English)
+- [x] Component unit tests cover fields, badge, and PT labels (LEAD-04/05/19/31)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
