@@ -469,10 +469,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Per agent: queuedCount, expectedValueSum, coolingCount, goodDealsCooling (high SCORE + cooling)
-- [ ] Rollup recomputed over the filtered view (LEAD-28)
-- [ ] Unit tests cover aggregation + good-deals-cooling highlight (LEAD-26/27/28)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] Per agent: queuedCount, expectedValueSum, coolingCount, goodDealsCooling (high SCORE + cooling)
+- [x] Rollup recomputed over the filtered view (LEAD-28)
+- [x] Unit tests cover aggregation + good-deals-cooling highlight (LEAD-26/27/28)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
