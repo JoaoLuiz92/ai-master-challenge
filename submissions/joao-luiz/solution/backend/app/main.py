@@ -7,6 +7,7 @@ from fastapi import FastAPI
 
 from app.api.agents import router as agents_router
 from app.api.export import router as export_router
+from app.api.quality_log import router as quality_log_router
 from app.api.queue import router as queue_router
 from app.api.rollup import router as rollup_router
 from app.ingestion.loader import load_dataset
@@ -20,7 +21,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     settings = get_settings()
     app.state.settings = settings
     app.state.raw_dataset = load_dataset(settings.data_dir)
-    normalized, _quality_log = normalize(app.state.raw_dataset)
+    normalized, quality_log = normalize(app.state.raw_dataset)
+    app.state.quality_log = quality_log
     app.state.deals = build_deals(normalized)
     yield
 
@@ -31,4 +33,5 @@ def create_app() -> FastAPI:
     app.include_router(queue_router)
     app.include_router(rollup_router)
     app.include_router(export_router)
+    app.include_router(quality_log_router)
     return app

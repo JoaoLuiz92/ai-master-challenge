@@ -593,9 +593,9 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `GET /api/quality-log` returns each correction with type and affected row count
-- [ ] E2E test asserts the GTXPro alias entry is present (LEAD-13)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
+- [x] `GET /api/quality-log` returns each correction with type and affected row count
+- [x] E2E test asserts the GTXPro alias entry is present (LEAD-13)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
 
 **Tests**: e2e
 **Gate**: full
