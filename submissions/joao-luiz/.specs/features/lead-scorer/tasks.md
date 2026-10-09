@@ -544,10 +544,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `GET /api/rollup?manager=&office=` returns per-agent rows
-- [ ] Filter recomputes rollup + percentile (LEAD-28)
-- [ ] E2E tests cover rollup happy path + filtered recompute (LEAD-26/28)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
+- [x] `GET /api/rollup?manager=&office=` returns per-agent rows
+- [x] Filter recomputes rollup + percentile (LEAD-28)
+- [x] E2E tests cover rollup happy path + filtered recompute (LEAD-26/28)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
 
 **Tests**: e2e
 **Gate**: full
