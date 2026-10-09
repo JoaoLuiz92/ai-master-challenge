@@ -1,0 +1,14 @@
+graph TD
+    CSV[4 CSVs em data/] --> ING[Ingestion & Quality Gate]
+    ING --> LOG[Quality Log]
+    ING --> REPO[(In-memory DealRepository)]
+    REPO --> SCORE[Scoring Engine<br/>priority = value x urgency]
+    SCORE --> REPO
+    REPO --> QUERY[View/Query Service<br/>filter + percentil + estado]
+    QUERY --> API[FastAPI Routers]
+    API --> UI[React App]
+    UI --> ROLE[RoleSelector / FilterBar]
+    UI --> QUEUE[QueueList + DealCard + badge]
+    UI --> REVIEW[ReviewSection]
+    UI --> ROLLUP[ManagerRollup]
+    UI --> EXPORT[Export CSV da visão]
