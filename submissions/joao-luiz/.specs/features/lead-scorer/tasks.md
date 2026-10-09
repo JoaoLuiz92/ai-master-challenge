@@ -36,7 +36,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 | Quick | After tasks with unit tests only | backend: `.venv\Scripts\python -m pytest backend/tests/unit -q` ; frontend: `npm --prefix frontend test -- --run` |
 | Full | After tasks with e2e/integration tests | `.venv\Scripts\python -m pytest backend/tests -q` |
 | Build | After phase completion or config/packaging tasks | `.venv\Scripts\python -m pytest backend/tests -q && npm --prefix frontend run build && npm --prefix frontend test -- --run` |
-| Validation lane | After the last task (or on "validate") | Orchestrator `.cursor/agents/validation-lane.md`: backend-tester ∥ ui-tester (Playwright MCP) → spec-verifier. See `validation-lane.md`. |
+| Validation lane | After the last task (or on "validate") | Orchestrator `submissions/joao-luiz/.cursor/agents/validation-lane.md`: backend-tester ∥ ui-tester (Playwright MCP) → spec-verifier. See `validation-lane.md`. |
 
 ---
 
@@ -886,4 +886,4 @@ The Playwright MCP row is a **feature-level** gate (validation-lane `ui-tester`)
 
 Execute tasks use the `filesystem` MCP and the project venv / `npm` for gates. Product critical path stays offline (RNF2).
 
-**Validation lane (after last task):** Playwright MCP for UI Independent Tests (`ui-tester`). Enable the Cursor Playwright plugin or approve `.cursor/mcp.json` (`npx -y @playwright/mcp@latest`). Backend gates stay pytest. See `.specs/features/lead-scorer/validation-lane.md`.
+**Validation lane (after last task):** Playwright MCP for UI Independent Tests (`ui-tester`). Enable the Cursor Playwright plugin or approve `submissions/joao-luiz/.cursor/mcp.json` (`npx -y @playwright/mcp@latest`). Backend gates stay pytest. See `.specs/features/lead-scorer/validation-lane.md`.
