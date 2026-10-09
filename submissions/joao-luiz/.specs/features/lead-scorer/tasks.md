@@ -243,10 +243,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Urgency peaks at 57d, stays 1.0 through 106d, decays after, floored at 0.35
-- [ ] `age_days is None` → documented sentinel (deal routed to Revisar, no urgency inferred)
-- [ ] Unit tests assert values at 0/57/106/>106 knots and the floor (1:1 with LEAD-07)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] Urgency peaks at 57d, stays 1.0 through 106d, decays after, floored at 0.35
+- [x] `age_days is None` → documented sentinel (deal routed to Revisar, no urgency inferred)
+- [x] Unit tests assert values at 0/57/106/>106 knots and the floor (1:1 with LEAD-07)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
