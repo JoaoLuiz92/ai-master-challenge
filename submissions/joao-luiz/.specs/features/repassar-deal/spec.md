@@ -143,22 +143,22 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
 | REPA-01 | P1: Passar para colega | Execute | Implementing |
-| REPA-02 | P1: Passar para colega | Specify | Pending |
+| REPA-02 | P1: Passar para colega | Execute | Implementing |
 | REPA-03 | P1: Passar para colega | Execute | Implementing |
 | REPA-04 | P1: Passar para colega | Execute | Implementing |
-| REPA-05 | P1: Passar para colega | Specify | Pending |
+| REPA-05 | P1: Passar para colega | Execute | Implementing |
 | REPA-06 | P1: Passar para colega | Execute | Implementing |
 | REPA-07 | P1: Passar para colega | Specify | Pending |
 | REPA-08 | P1: Passar para colega | Specify | Pending |
 | REPA-09 | P1: Passar para colega | Specify | Pending |
-| REPA-10 | P1: Recusa não apaga | Specify | Pending |
-| REPA-11 | P1: Recusa não apaga | Specify | Pending |
+| REPA-10 | P1: Recusa não apaga | Execute | Implementing |
+| REPA-11 | P1: Recusa não apaga | Execute | Implementing |
 | REPA-12 | P1: Recusa não apaga | Execute | Implementing |
-| REPA-13 | P1: Recusa não apaga | Specify | Pending |
-| REPA-14 | P1: Recusa não apaga | Specify | Pending |
+| REPA-13 | P1: Recusa não apaga | Execute | Implementing |
+| REPA-14 | P1: Recusa não apaga | Execute | Implementing |
 | REPA-15 | P1: Restart = snapshot | Specify | Pending |
 | REPA-16 | P1: Restart = snapshot | Execute | Implementing |
-| REPA-17 | P1: Restart = snapshot | Specify | Pending |
+| REPA-17 | P1: Restart = snapshot | Execute | Implementing |
 | REPA-18 | P2: Rastro na fila | Specify | Pending |
 | REPA-19 | P2: Rastro na fila | Specify | Pending |
 
@@ -166,7 +166,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 19 total, 6 implementing (T1–T2), 13 pending.
+**Coverage:** 19 total, 13 implementing (T1–T3), 6 pending.
 
 ---
 

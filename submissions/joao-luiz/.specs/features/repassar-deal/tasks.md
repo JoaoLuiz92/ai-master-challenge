@@ -9,7 +9,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 ---
 
 **Design**: `.specs/features/repassar-deal/design.md`
-**Status**: Execute (T2)
+**Status**: Execute (T3)
 
 > Repasse **só em memória** (ADR-013 / AD-013). Sem `handoffs.jsonl`. Sem AD extra antes da Phase 1: a decisão já está em `docs/adr/013-repasse-so-na-sessao.md` e no README § Limitações.
 
@@ -144,10 +144,10 @@ T9 → T10
 
 **Done when**:
 
-- [ ] Success: new owner, `from_agent` set, list value and age unchanged
-- [ ] Each invalid case keeps the owner and returns the spec message
-- [ ] Integration: after `assign`, source CSV bytes unchanged and `data/` has no overlay file (REPA-14, REPA-17)
-- [ ] Gate check passes: `.venv\Scripts\python.exe -m pytest backend/tests -q`
+- [x] Success: new owner, `from_agent` set, list value and age unchanged
+- [x] Each invalid case keeps the owner and returns the spec message
+- [x] Integration: after `assign`, source CSV bytes unchanged and `data/` has no overlay file (REPA-14, REPA-17)
+- [x] Gate check passes: `.venv\Scripts\python.exe -m pytest backend/tests -q`
 
 **Tests**: integration
 **Gate**: full (backend)
