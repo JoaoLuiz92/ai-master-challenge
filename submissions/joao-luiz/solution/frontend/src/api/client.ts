@@ -20,6 +20,7 @@ export type QueueItem = {
   confidence: string;
   reason: string;
   action: string;
+  from_agent?: string | null;
 };
 
 export type ReviewItem = {
@@ -62,6 +63,52 @@ export type AgentsResponse = {
   managers: string[];
   offices: string[];
 };
+
+export type HandoffResponse = {
+  opportunity_id: string;
+  sales_agent: string;
+  from_agent: string;
+};
+
+export async function postHandoff(input: {
+  opportunity_id: string;
+  to_agent: string;
+}): Promise<HandoffResponse> {
+  const response = await fetch("/api/handoff", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      opportunity_id: input.opportunity_id,
+      to_agent: input.to_agent,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(await errorDetail(response));
+  }
+  return response.json() as Promise<HandoffResponse>;
+}
+
+export async function fetchHandoffCandidates(opportunityId: string): Promise<string[]> {
+  const path = withParams("/api/handoff/candidates", { opportunity_id: opportunityId });
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(await errorDetail(response));
+  }
+  const body = (await response.json()) as { candidates: string[] };
+  return body.candidates;
+}
+
+async function errorDetail(response: Response): Promise<string> {
+  try {
+    const body = (await response.json()) as { detail?: unknown };
+    if (typeof body.detail === "string" && body.detail) {
+      return body.detail;
+    }
+  } catch {
+    // The status is the fallback when the body is not the spec detail.
+  }
+  return `request failed: ${response.status}`;
+}
 
 export type ViewSnapshot = {
   role: Role;

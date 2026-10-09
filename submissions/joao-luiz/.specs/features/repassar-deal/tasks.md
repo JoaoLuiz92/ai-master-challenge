@@ -9,7 +9,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 ---
 
 **Design**: `.specs/features/repassar-deal/design.md`
-**Status**: Execute (T6)
+**Status**: Execute (T7)
 
 > Repasse **só em memória** (ADR-013 / AD-013). Sem `handoffs.jsonl`. Sem AD extra antes da Phase 1: a decisão já está em `docs/adr/013-repasse-so-na-sessao.md` e no README § Limitações.
 
@@ -242,9 +242,9 @@ T9 → T10
 
 **Done when**:
 
-- [ ] POST `{opportunity_id, to_agent}`; GET candidates; non-ok throws `detail`
-- [ ] Unit tests (mocked fetch) cover success and error
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] POST `{opportunity_id, to_agent}`; GET candidates; non-ok throws `detail`
+- [x] Unit tests (mocked fetch) cover success and error
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick (frontend)
