@@ -434,11 +434,11 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Renders only the "quem sou eu" selector; strip from `deriveSellerKpis`; Focar open, Acompanhar/Revisar collapsed with counts
-- [ ] KPI Focar/Revisar activation opens/scrolls the matching band
-- [ ] Ghost agent and only-Revisar empty states shown; Export present (FOCO-31)
-- [ ] Unit tests cover the composed layout, band defaults, KPI activation, and empty states (FOCO-06/07/08/09/10/20/21)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Renders only the "quem sou eu" selector; strip from `deriveSellerKpis`; Focar open, Acompanhar/Revisar collapsed with counts
+- [x] KPI Focar/Revisar activation opens/scrolls the matching band
+- [x] Ghost agent and only-Revisar empty states shown; Export present (FOCO-31)
+- [x] Unit tests cover the composed layout, band defaults, KPI activation, and empty states (FOCO-06/07/08/09/10/20/21)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
