@@ -218,10 +218,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `age_days(engage_date)` returns int for valid dates and `None` when engage_date is missing
-- [ ] TODAY anchored to 2017-12-31 (asserted)
-- [ ] Unit tests cover valid, missing, and boundary (0 days) cases
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `age_days(engage_date)` returns int for valid dates and `None` when engage_date is missing
+- [x] TODAY anchored to 2017-12-31 (asserted)
+- [x] Unit tests cover valid, missing, and boundary (0 days) cases
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
