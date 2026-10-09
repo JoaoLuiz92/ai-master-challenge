@@ -393,10 +393,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `ceil(0.20 * N)` deals (≥1 when non-empty) marked Focar; others Acompanhar
-- [ ] Single-deal view → that deal is Focar
-- [ ] Unit tests cover the 20% cut + single-deal edge case (LEAD-21)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `ceil(0.20 * N)` deals (≥1 when non-empty) marked Focar; others Acompanhar
+- [x] Single-deal view → that deal is Focar
+- [x] Unit tests cover the 20% cut + single-deal edge case (LEAD-21)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
