@@ -206,9 +206,9 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | Requirement ID | Story | Source (ADR/CA) | Phase | Status |
 | -------------- | ----- | --------------- | ----- | ------ |
 | FOCO-01 | P1: Estações + trilho | ADR-008 | Execute | Implementing |
-| FOCO-02 | P1: Estações + trilho | ADR-008 | Design | Pending |
+| FOCO-02 | P1: Estações + trilho | ADR-008 | Execute | Implementing |
 | FOCO-03 | P1: Estações + trilho | ADR-008 | Execute | Implementing |
-| FOCO-04 | P1: Estações + trilho | ADR-008, ADR-007 | Design | Pending |
+| FOCO-04 | P1: Estações + trilho | ADR-008, ADR-007 | Execute | Implementing |
 | FOCO-05 | P1: Estações + trilho | ADR-008 | Design | Pending |
 | FOCO-06 | P1: Estações + trilho | ADR-008 | Design | Pending |
 | FOCO-07 | P1: Estações + trilho | ADR-008 | Execute | Implementing |

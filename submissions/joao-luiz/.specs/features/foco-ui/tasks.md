@@ -135,10 +135,10 @@ T16 → T18
 
 **Done when**:
 
-- [ ] `navigate(next)` pushes `toUrl(next)` without a full reload; reading returns the parsed current route
-- [ ] `popstate` (back/forward) updates the route (asserted in jsdom)
-- [ ] Unit tests cover navigate, popstate, and initial parse (1:1 with FOCO-02/04)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] `navigate(next)` pushes `toUrl(next)` without a full reload; reading returns the parsed current route
+- [x] `popstate` (back/forward) updates the route (asserted in jsdom)
+- [x] Unit tests cover navigate, popstate, and initial parse (1:1 with FOCO-02/04)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
