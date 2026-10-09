@@ -418,10 +418,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Reason format "Produto · US$ valor · N dias no funil · dentro do ciclo|esfriando"
-- [ ] Action: ≤106d → "Avançar proposta"; >106d → "Reengajar antes de esfriar"; Revisar → "Qualificar conta/dados"
-- [ ] Unit tests cover within-cycle, cooling, and Revisar texts (LEAD-05)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] Reason format "Produto · US$ valor · N dias no funil · dentro do ciclo|esfriando"
+- [x] Action: ≤106d → "Avançar proposta"; >106d → "Reengajar antes de esfriar"; Revisar → "Qualificar conta/dados"
+- [x] Unit tests cover within-cycle, cooling, and Revisar texts (LEAD-05)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
