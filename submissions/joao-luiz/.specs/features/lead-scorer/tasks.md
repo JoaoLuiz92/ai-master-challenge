@@ -368,10 +368,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `percentile_scores(priorities)` returns 0–100; N=1 → 100; ties share the same percentile
-- [ ] Recomputed over the passed-in view set (no cached global percentile)
-- [ ] Unit tests cover N=1, ties, and view-change recompute (LEAD-09/23)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `percentile_scores(priorities)` returns 0–100; N=1 → 100; ties share the same percentile
+- [x] Recomputed over the passed-in view set (no cached global percentile)
+- [x] Unit tests cover N=1, ties, and view-change recompute (LEAD-09/23)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
