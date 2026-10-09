@@ -8,81 +8,96 @@
 
 ---
 
-## Resumo executivo
+## Visão geral
 
-Vendedores priorizam no feeling; o snapshot mostra win rate plano (~63%) e valor variando 400×. Um score de conversão (AUC 0,478) mandaria o time para MG Special. A fila do v1 ordena por **preço de lista × urgência**; o SCORE na UI é o **percentil dessa prioridade na visão** (meus deals / time / filtros).
+Vendedores priorizam no feeling; o snapshot mostra win rate plano (~63%) e valor variando 400×. Um score de conversão (AUC 0,478) mandaria o time para MG Special. A fila ordena por **preço de lista × urgência**; o SCORE na UI é o **percentil dessa prioridade na visão** (meus deals / time / filtros).
 
-Este commit é só o **harness** da submissão (`AGENTS.md`, `DELIVERY.md`, este README). EDA, ADRs, spec e o app entram nos commits seguintes — não neste.
+| Camada | Papel |
+|--------|--------|
+| Backend | FastAPI. Quatro CSVs em memória no startup. Score aritmético, sem LLM no caminho crítico. |
+| Frontend | React. Papel vendedor/gestor, fila, Revisar, badge, rollup, export. Textos em português. |
+| Dados | CSVs em `solution/data/`. O durável é o CSV exportado da visão atual. |
 
----
-
-## Harness (este commit)
-
-| Artefato | Para que serve |
-|----------|----------------|
-| [`AGENTS.md`](AGENTS.md) | Regras para qualquer agente nesta pasta: fonte da verdade, Execute um T por vez, validation-lane, git (`add -f`), produto congelado |
-| [`DELIVERY.md`](.specs/features/lead-scorer/DELIVERY.md) | Contrato Specify → Execute / avaliador: o que entregar, fórmula, papéis, explainability |
-| Este README | Identidade, tese do produto e cadeia de commits visível |
-
-O PR **só** altera `submissions/joao-luiz/`. Prosa e commits em português; código/API em inglês (ADR-004).
+Fórmula e o porquê de cada versão: [`docs/evolucao-do-score.md`](docs/evolucao-do-score.md). O registro do que foi entregue (`delivery.md`) entra só no fechamento da spec.
 
 ---
 
-## Solução
+## Processo
 
-Ainda não há código de produção neste commit. A cadeia prevista:
+O como o agente trabalha (spec, uma tarefa por janela, validação) vive em [`AGENTS.md`](AGENTS.md) e em [`.specs/`](.specs/NEXT-ACTION.md). Esta seção não copia esse fluxo.
 
-1. Harness (AGENTS + DELIVERY + README) — **aqui**
-2. EDA + CSVs + `process-log/eda-*`
-3. ADRs + `docs/evolucao-do-score.md`
-4. `.specs` (spec / design / tasks / validation-lane)
-5. Execute T1–T27, um commit atômico por tarefa
+Foco atual: [`.specs/NEXT-ACTION.md`](.specs/NEXT-ACTION.md).
 
-Fórmula congelada (detalhe no DELIVERY e, depois, em `docs/evolucao-do-score.md`): `PRIORIDADE = sales_price × urgência`; SCORE = percentil da visão; `p̂` fora; idade não exclui; `TODAY = 2017-12-31`.
+---
 
-### Como o avaliador reproduz (quando o app existir)
+## Como rodar
 
-A partir de `solution/` — comandos de `docker compose` e setup local entram no Execute (T26). Até lá, nada para subir.
+A partir de `solution/`.
+
+Com Docker, a API fica em http://127.0.0.1:8000 e a UI em http://127.0.0.1:8080:
+
+```text
+docker compose up --build
+```
+
+Sem Docker, dois comandos. A UI fica em http://127.0.0.1:5173 e chama a API em `/api`:
+
+```text
+.venv\Scripts\python.exe -m uvicorn app.main:create_app --factory --app-dir backend --host 127.0.0.1 --port 8000
+npm --prefix frontend run dev
+```
+
+Para repetir a EDA:
+
+```text
+.venv\Scripts\python.exe -m pip install -r requirements-eda.txt
+.venv\Scripts\python.exe eda.py
+```
 
 ---
 
 ## Registro de processo — Como usei IA
 
-> **Este bloco é obrigatório.** Sem ele, a submissão é desclassificada.
+> **Este bloco é obrigatório.** Sem ele, a submissão é desclassificada. Narrativa longa da EDA: [`process-log/eda-2026-10-08.md`](process-log/eda-2026-10-08.md).
 
 ### Ferramentas usadas
 
 | Ferramenta | Para que usou |
 |------------|--------------|
-| Cursor | Spec TLC, harness (`AGENTS.md` / `DELIVERY.md`), EDA e ADRs nas sessões seguintes |
+| Cursor | EDA, spec, ADRs, harness do agente e o Execute |
 
 ### Fluxo de trabalho
 
-1. Spec fechada → `DELIVERY.md` obrigatório antes do Execute.
-2. `AGENTS.md` como ponto de entrada de qualquer agente (pasta, idioma, lane, git).
-3. Execute ainda não começou; um commit por tarefa a partir de T1.
+1. EDA nos CSVs antes de congelar a fórmula. O dado derrubou corte por idade e classificador.
+2. Spec fechada, com contrato de entrega, antes de escrever o app.
+3. Execute uma tarefa por vez, com a cadeia de commits visível (harness → evidência → spec → tarefas), em vez de um dump único.
 
 ### Onde a IA errou e como corrigi
 
-O primeiro commit desta branch foi desfeito de propósito: faltava o harness. Sem `AGENTS.md`, o próximo agente reabria spec ou empilhava tudo num único commit.
+O primeiro commit desta branch foi desfeito de propósito: faltava o harness. Sem `AGENTS.md`, o próximo agente reabria a spec ou empilhava tudo num único commit.
+
+Na EDA, três hipóteses da IA não sobreviveram ao dado: cortar deal velho da fila (esvaziaria 89% do funil), rankear por `p̂` (AUC 0,478) e juntar produto sem o alias `GTXPro` (1.480 linhas, o produto que mais fatura, ficariam sem preço). Números: `process-log/eda-2026-10-08.md`.
 
 ### O que eu adicionei que a IA sozinha não faria
 
-Cadeia de commits visível para o avaliador (harness → evidência → spec → T1–T27), em vez de um dump único.
+- Cadeia de commits visível, em vez de um único commit com o app pronto.
+- Teto de contexto no Execute: fechar a tarefa atual; a próxima abre em janela nova.
+- Quem testa não é quem escreveu: faixa de validação com subagentes separados.
+- Fila da tarefa corrente e memória de erro já corrigido fora deste README, para o processo do agente não se misturar com o relato do MVP.
 
 ---
 
 ## Evidências
 
-- [x] Harness de agentes (`AGENTS.md`, `DELIVERY.md`)
-- [ ] Narrativa da EDA (`process-log/eda-*.md`) — commit 2
-- [ ] Evolução da fórmula (`docs/evolucao-do-score.md`) — commit 3
-- [ ] ADRs (`docs/adr/`) — commit 3
-- [ ] Spec / design / tasks — commit 4
+- [x] Harness de agentes (`AGENTS.md` + `.specs/`)
+- [x] Narrativa da EDA (`process-log/eda-2026-10-08.md`)
+- [x] Evolução da fórmula (`docs/evolucao-do-score.md`)
+- [x] ADRs (`docs/adr/`)
+- [x] Spec / design / tasks
 - [ ] Capturas da UI (vendedor / gestor) — depois do Execute
 - [ ] Exportações de chat — depois do Execute
-- [x] Histórico git — este commit abre a cadeia
+- [x] Histórico git — cadeia aberta
 
 ---
 
-_Submissão em andamento. Primeiro commit: harness, não o app._
+_Submissão em andamento. O que está sendo feito agora: [`.specs/NEXT-ACTION.md`](.specs/NEXT-ACTION.md)._

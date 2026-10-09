@@ -764,10 +764,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Running the pipeline twice on identical input yields byte-identical queue output
-- [ ] No external calls on the critical path; data only in memory (asserted)
-- [ ] README documents Docker + local setup
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests -q`
+- [x] Running the pipeline twice on identical input yields byte-identical queue output
+- [x] No external calls on the critical path; data only in memory (asserted)
+- [x] README documents Docker + local setup
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests -q`
 
 **Tests**: integration
 **Gate**: full
