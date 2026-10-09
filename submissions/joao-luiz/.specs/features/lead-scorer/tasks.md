@@ -167,10 +167,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `GTXPro`→`GTX Pro`, `technolgy`→`technology`, `Philipines`→`Philippines` applied
-- [ ] Each correction logged with type and affected row count (1.480 GTXPro rows logged)
-- [ ] Unit tests assert aliases and the log entries (1:1 with ACs LEAD-11/12/13)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `GTXPro`→`GTX Pro`, `technolgy`→`technology`, `Philipines`→`Philippines` applied
+- [x] Each correction logged with type and affected row count (1.480 GTXPro rows logged)
+- [x] Unit tests assert aliases and the log entries (1:1 with ACs LEAD-11/12/13)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
