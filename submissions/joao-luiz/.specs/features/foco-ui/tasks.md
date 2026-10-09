@@ -460,11 +460,11 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Home (no `agente`) shows team strip + rollup hero, no full team queue, no export (FOCO-24/26/32)
-- [ ] Selecting a seller sets `?agente=` and replaces the hero with that seller's bands; strip reflects that seller (FOCO-28/29)
-- [ ] Leaving the drill clears `agente` and restores the rollup, staying on `/gestor` (FOCO-30)
-- [ ] Unit tests cover home, drill, strip switch, export visibility, and back (FOCO-24/25/26/28/29/30/32)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Home (no `agente`) shows team strip + rollup hero, no full team queue, no export (FOCO-24/26/32)
+- [x] Selecting a seller sets `?agente=` and replaces the hero with that seller's bands; strip reflects that seller (FOCO-28/29)
+- [x] Leaving the drill clears `agente` and restores the rollup, staying on `/gestor` (FOCO-30)
+- [x] Unit tests cover home, drill, strip switch, export visibility, and back (FOCO-24/25/26/28/29/30/32)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

@@ -230,13 +230,13 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FOCO-23 | P1: Estados vazios | ADR-011 (failure) | Execute | Implementing |
 | FOCO-24 | P2: Gestor rollup | ADR-011 | Execute | Implementing |
 | FOCO-25 | P2: Gestor rollup | ADR-011 | Execute | Implementing |
-| FOCO-26 | P2: Gestor rollup | ADR-011 | Design | Pending |
+| FOCO-26 | P2: Gestor rollup | ADR-011 | Execute | Implementing |
 | FOCO-27 | P2: Gestor rollup | ADR-011 | Execute | Implementing |
-| FOCO-28 | P2: Drill do gestor | ADR-011 | Design | Pending |
-| FOCO-29 | P2: Drill do gestor | ADR-011 | Design | Pending |
-| FOCO-30 | P2: Drill do gestor | ADR-011, ADR-008 | Design | Pending |
+| FOCO-28 | P2: Drill do gestor | ADR-011 | Execute | Implementing |
+| FOCO-29 | P2: Drill do gestor | ADR-011 | Execute | Implementing |
+| FOCO-30 | P2: Drill do gestor | ADR-011, ADR-008 | Execute | Implementing |
 | FOCO-31 | P2: Export contextual | ADR-011, CA9 | Execute | Implementing |
-| FOCO-32 | P2: Export contextual | ADR-011 | Design | Pending |
+| FOCO-32 | P2: Export contextual | ADR-011 | Execute | Implementing |
 | FOCO-33 | P2: Export contextual | ADR-011, CA9/LEAD-25 | Execute | Implementing |
 | FOCO-34 | P2: Mesa operacional | ADR-011, ADR-005 | Execute | Implementing |
 | FOCO-35 | P2: Mesa operacional | ADR-012 | Execute | Implementing |
