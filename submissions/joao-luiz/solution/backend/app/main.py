@@ -1,16 +1,19 @@
-"""FastAPI application factory. CSV load is a startup hook placeholder."""
+"""FastAPI application factory. CRM CSVs load into memory on startup."""
 
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from app.ingestion.loader import load_dataset
 from app.settings import get_settings
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-    app.state.settings = get_settings()
+    settings = get_settings()
+    app.state.settings = settings
+    app.state.raw_dataset = load_dataset(settings.data_dir)
     yield
 
 

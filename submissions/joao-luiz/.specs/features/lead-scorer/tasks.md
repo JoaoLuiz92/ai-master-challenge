@@ -133,7 +133,7 @@ T25 → T26 → T27
 **Where**: `backend/app/ingestion/loader.py`
 **Depends on**: T1
 **Reuses**: `solution/eda.py:46-51` (`load()`).
-**Requirement**: LEAD-08
+**Requirement**: nenhum LEAD-* direto (carga dos 4 CSVs). LEAD-08 é a âncora `TODAY` e pertence à T5.
 
 **Tools**:
 
@@ -142,10 +142,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `load_dataset(data_dir)` reads accounts, products, sales_teams, sales_pipeline
-- [ ] Missing/unreadable file raises an explicit startup error (no silent partial load)
-- [ ] Integration test reads the real CSVs and asserts row counts (8.800 pipeline / 85 / 7 / 35)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/integration -q`
+- [x] `load_dataset(data_dir)` reads accounts, products, sales_teams, sales_pipeline
+- [x] Missing/unreadable file raises an explicit startup error (no silent partial load)
+- [x] Integration test reads the real CSVs and asserts row counts (8.800 pipeline / 85 / 7 / 35)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/integration -q`
 
 **Tests**: integration
 **Gate**: full
