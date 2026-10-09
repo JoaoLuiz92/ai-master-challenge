@@ -519,10 +519,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] `GET /api/queue?view=&agent=&manager=&office=` returns ordered queue + Revisar
-- [ ] Switching view recomputes percentile (asserted across two requests)
-- [ ] E2E tests cover happy path, Revisar separation, and view switch (LEAD-01/04/18/23)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
+- [x] `GET /api/queue?view=&agent=&manager=&office=` returns ordered queue + Revisar
+- [x] Switching view recomputes percentile (asserted across two requests)
+- [x] E2E tests cover happy path, Revisar separation, and view switch (LEAD-01/04/18/23)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
 
 **Tests**: e2e
 **Gate**: full

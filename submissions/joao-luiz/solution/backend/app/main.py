@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app.api.agents import router as agents_router
+from app.api.queue import router as queue_router
 from app.ingestion.loader import load_dataset
 from app.ingestion.quality import normalize
 from app.ingestion.repository import build_deals
@@ -25,4 +26,5 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 def create_app() -> FastAPI:
     app = FastAPI(title="Lead Scorer", lifespan=lifespan)
     app.include_router(agents_router)
+    app.include_router(queue_router)
     return app
