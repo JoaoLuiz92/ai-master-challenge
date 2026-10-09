@@ -94,10 +94,10 @@ Na EDA, três hipóteses da IA não sobreviveram ao dado: cortar deal velho da f
 - [x] Evolução da fórmula (`docs/evolucao-do-score.md`)
 - [x] ADRs (`docs/adr/`)
 - [x] Spec / design / tasks
-- [ ] Capturas da UI (vendedor / gestor) — depois do Execute
+- [x] Capturas da UI (vendedor / gestor) — `.specs/features/lead-scorer/ui-evidence/`
 - [ ] Exportações de chat — depois do Execute
 - [x] Histórico git — cadeia aberta
 
 ---
 
-_Submissão em andamento. O que está sendo feito agora: [`.specs/NEXT-ACTION.md`](.specs/NEXT-ACTION.md)._
+_Execute e a faixa de validação fecharam. O registro está em [`.specs/features/lead-scorer/delivery.md`](.specs/features/lead-scorer/delivery.md)._
