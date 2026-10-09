@@ -1,4 +1,6 @@
-"""E2E tests for T4: POST /api/handoff (REPA-02, REPA-03, REPA-04, REPA-10..13)."""
+"""E2E tests for handoff routes (REPA-01..04, REPA-10..13)."""
+
+from dataclasses import replace
 
 from fastapi.testclient import TestClient
 
@@ -143,3 +145,49 @@ def test_repa_13_deal_outside_the_workable_queue_is_422() -> None:
     assert response.status_code == 422
     assert response.json()["detail"] == "Este negócio não está na fila trabalhável"
     assert owner.sales_agent == won.sales_agent
+
+
+def test_repa_01_candidates_are_the_same_office_minus_the_owner() -> None:
+    with TestClient(create_app()) as client:
+        deal, colleague = _pair(client)
+        response = client.get(
+            "/api/handoff/candidates",
+            params={"opportunity_id": deal.opportunity_id},
+        )
+        team = _team(client)
+
+    names = response.json()["candidates"]
+    assert response.status_code == 200
+    assert colleague in names
+    assert deal.sales_agent not in names
+    assert names == list(
+        eligible_candidates(
+            client.app.state.deals, deal.opportunity_id, team_by_agent=team
+        )
+    )
+    assert all(team[name][1] == deal.regional_office for name in names)
+
+
+def test_unknown_and_no_office_candidates_are_empty() -> None:
+    with TestClient(create_app()) as client:
+        missing = client.get(
+            "/api/handoff/candidates", params={"opportunity_id": "missing"}
+        )
+        deal, _colleague = _pair(client)
+        deals = list(client.app.state.deals)
+        index = next(
+            position
+            for position, item in enumerate(deals)
+            if item.opportunity_id == deal.opportunity_id
+        )
+        deals[index] = replace(deals[index], regional_office=None)
+        client.app.state.deals = tuple(deals)
+        no_office = client.get(
+            "/api/handoff/candidates",
+            params={"opportunity_id": deal.opportunity_id},
+        )
+
+    assert missing.status_code == 200
+    assert missing.json()["candidates"] == []
+    assert no_office.status_code == 200
+    assert no_office.json()["candidates"] == []

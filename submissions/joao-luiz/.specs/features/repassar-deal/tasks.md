@@ -9,7 +9,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 ---
 
 **Design**: `.specs/features/repassar-deal/design.md`
-**Status**: Execute (T4)
+**Status**: Execute (T5)
 
 > Repasse **só em memória** (ADR-013 / AD-013). Sem `handoffs.jsonl`. Sem AD extra antes da Phase 1: a decisão já está em `docs/adr/013-repasse-so-na-sessao.md` e no README § Limitações.
 
@@ -194,9 +194,9 @@ T9 → T10
 
 **Done when**:
 
-- [ ] Same-office minus owner; empty list for no-office / unknown
-- [ ] E2E covers populated and empty
-- [ ] Gate check passes: `.venv\Scripts\python.exe -m pytest backend/tests/e2e -q`
+- [x] Same-office minus owner; empty list for no-office / unknown
+- [x] E2E covers populated and empty
+- [x] Gate check passes: `.venv\Scripts\python.exe -m pytest backend/tests/e2e -q`
 
 **Tests**: e2e
 **Gate**: full (backend)

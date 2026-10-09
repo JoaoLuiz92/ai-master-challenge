@@ -4,7 +4,7 @@ import pandas as pd
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
-from app.handoffs.service import assign
+from app.handoffs.service import assign, eligible_candidates
 from app.ingestion.repository import Deal
 
 router = APIRouter()
@@ -40,6 +40,13 @@ def post_handoff(body: HandoffBody, request: Request) -> dict:
         "sales_agent": moved.sales_agent,
         "from_agent": moved.from_agent,
     }
+
+
+@router.get("/api/handoff/candidates")
+def get_candidates(request: Request, opportunity_id: str) -> dict:
+    deals: tuple[Deal, ...] = request.app.state.deals
+    names = eligible_candidates(deals, opportunity_id, team_by_agent(request))
+    return {"candidates": list(names)}
 
 
 def team_by_agent(request: Request) -> dict[str, tuple[str | None, str | None]]:
