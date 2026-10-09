@@ -311,9 +311,9 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Shows product, the parked-reason, and action; renders no SCORE
-- [ ] Unit tests cover missing-account and missing-date reasons and the no-SCORE invariant (FOCO-16)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Shows product, the parked-reason, and action; renders no SCORE
+- [x] Unit tests cover missing-account and missing-date reasons and the no-SCORE invariant (FOCO-16)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
