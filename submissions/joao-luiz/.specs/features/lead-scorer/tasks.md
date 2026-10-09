@@ -666,10 +666,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Revisar shown separate from the workable queue
-- [ ] Empty state shown for empty view and ghost agents
-- [ ] Component unit tests cover separation + empty state (LEAD-18/15)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Revisar shown separate from the workable queue
+- [x] Empty state shown for empty view and ghost agents
+- [x] Component unit tests cover separation + empty state (LEAD-18/15)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

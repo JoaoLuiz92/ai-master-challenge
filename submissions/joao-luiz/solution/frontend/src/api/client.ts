@@ -22,10 +22,22 @@ export type QueueItem = {
   action: string;
 };
 
+export type ReviewItem = {
+  opportunity_id: string;
+  product: string;
+  account: string | null;
+  deal_stage: string;
+  value: number;
+  age_days: number | null;
+  estado: string;
+  reason: string;
+  action: string;
+};
+
 export type QueueResponse = {
   view: string | null;
   items: QueueItem[];
-  revisar: unknown[];
+  revisar: ReviewItem[];
   empty_message: string | null;
 };
 
