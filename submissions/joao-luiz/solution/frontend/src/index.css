@@ -302,3 +302,57 @@ ul {
 [role="alert"] {
   color: var(--rust);
 }
+
+.handoff-dialog {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 1rem 1.15rem 0.9rem;
+  border-radius: 2px;
+  max-width: 26rem;
+}
+
+.handoff-dialog::backdrop {
+  background: oklch(0.24 0.04 250 / 0.28);
+}
+
+.handoff-dialog h2 {
+  margin: 0 0 0.6rem;
+  font-family: Palatino, "Palatino Linotype", "Iowan Old Style", serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.handoff-dialog fieldset {
+  border: 0;
+  margin: 0.4rem 0 0;
+  padding: 0;
+}
+
+.handoff-dialog legend {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.handoff-dialog label {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  margin: 0.35rem 0;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.handoff-note {
+  margin: 0 0 0.6rem;
+  color: var(--rust);
+  font-weight: 700;
+}
+
+.handoff-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
