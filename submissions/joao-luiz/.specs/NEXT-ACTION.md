@@ -4,13 +4,13 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-Feature `foco-ui` Execute: **T11** (`RollupTable`). T1–T10 fechados.
+Feature `foco-ui` Execute: **T12** (`ExportButton` erro visível). T1–T11 fechados.
 
-**Próximo:** T11. Depende de T5. Gate: `npm --prefix frontend test -- --run`.
+**Próximo:** T12. Sem dependência. Gate: `npm --prefix frontend test -- --run`.
 
 ## Fila
 
-1. T11 RollupTable
-2. T12 ExportButton
-3. T13–T18 (resto do Execute)
+1. T12 ExportButton
+2. T13 AppShell
+3. T14–T18 (resto do Execute)
 4. Faixa de validação `foco-ui` (Playwright MCP) + verifier

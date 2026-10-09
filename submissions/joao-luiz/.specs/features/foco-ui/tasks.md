@@ -359,10 +359,10 @@ T16 → T18
 
 **Done when**:
 
-- [ ] Every displayed column has a header cell; "Bons esfriando" no longer a headerless `<td>`
-- [ ] Activating a row calls `onSelectAgent(sales_agent)`
-- [ ] Unit tests cover header alignment and row click (FOCO-24/27) — update/replace `ManagerRollup.test.tsx`
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Every displayed column has a header cell; "Bons esfriando" no longer a headerless `<td>`
+- [x] Activating a row calls `onSelectAgent(sales_agent)`
+- [x] Unit tests cover header alignment and row click (FOCO-24/27) — update/replace `ManagerRollup.test.tsx`
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick
