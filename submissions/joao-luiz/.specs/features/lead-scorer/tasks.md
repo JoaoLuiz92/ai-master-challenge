@@ -494,10 +494,10 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Endpoint lists agents/managers/offices for the filters
-- [ ] 5 agents without deals returned with an explicit empty-state marker, not as real portfolios
-- [ ] E2E tests cover listing + empty-state (LEAD-15/24)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
+- [x] Endpoint lists agents/managers/offices for the filters
+- [x] 5 agents without deals returned with an explicit empty-state marker, not as real portfolios
+- [x] E2E tests cover listing + empty-state (LEAD-15/24)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
 
 **Tests**: e2e
 **Gate**: full

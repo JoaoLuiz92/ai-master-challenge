@@ -5,7 +5,10 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from app.api.agents import router as agents_router
 from app.ingestion.loader import load_dataset
+from app.ingestion.quality import normalize
+from app.ingestion.repository import build_deals
 from app.settings import get_settings
 
 
@@ -14,8 +17,12 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     settings = get_settings()
     app.state.settings = settings
     app.state.raw_dataset = load_dataset(settings.data_dir)
+    normalized, _quality_log = normalize(app.state.raw_dataset)
+    app.state.deals = build_deals(normalized)
     yield
 
 
 def create_app() -> FastAPI:
-    return FastAPI(title="Lead Scorer", lifespan=lifespan)
+    app = FastAPI(title="Lead Scorer", lifespan=lifespan)
+    app.include_router(agents_router)
+    return app
