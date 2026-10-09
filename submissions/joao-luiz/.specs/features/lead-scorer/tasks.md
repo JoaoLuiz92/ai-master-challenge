@@ -617,9 +617,9 @@ T25 → T26 → T27
 
 **Done when**:
 
-- [ ] Client calls queue/rollup/agents endpoints; role + filter state managed
-- [ ] Unit tests (mocked fetch) cover state transitions on filter/role change (LEAD-24)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Client calls queue/rollup/agents endpoints; role + filter state managed
+- [x] Unit tests (mocked fetch) cover state transitions on filter/role change (LEAD-24)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

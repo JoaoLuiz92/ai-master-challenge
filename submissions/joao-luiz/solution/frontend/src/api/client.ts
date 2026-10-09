@@ -1,0 +1,131 @@
+/** Fetches the current view and keeps role + filter. A change refetches the queue. */
+
+export type Role = "seller" | "manager";
+
+export type ViewFilter = {
+  agent?: string;
+  manager?: string;
+  office?: string;
+};
+
+export type QueueItem = {
+  opportunity_id: string;
+  product: string;
+  account: string;
+  value: number;
+  deal_stage: string;
+  age_days: number;
+  score: number;
+  estado: string;
+  confidence: string;
+  reason: string;
+  action: string;
+};
+
+export type QueueResponse = {
+  view: string | null;
+  items: QueueItem[];
+  revisar: unknown[];
+  empty_message: string | null;
+};
+
+export type RollupRow = {
+  sales_agent: string;
+  queued_count: number;
+  expected_value_sum: number;
+  cooling_count: number;
+  good_deals_cooling: number;
+};
+
+export type AgentOption = {
+  sales_agent: string;
+  manager: string | null;
+  regional_office: string | null;
+  deal_count: number;
+  empty: boolean;
+};
+
+export type AgentsResponse = {
+  agents: AgentOption[];
+  managers: string[];
+  offices: string[];
+};
+
+export type ViewSnapshot = {
+  role: Role;
+  filter: ViewFilter;
+  queue: QueueResponse;
+  rollup: { rows: RollupRow[] };
+  agents: AgentsResponse;
+};
+
+const VIEW_PARAM: Record<Role, "mine" | "team"> = {
+  seller: "mine",
+  manager: "team",
+};
+
+export function createViewClient(baseUrl = "") {
+  let role: Role = "seller";
+  let filter: ViewFilter = {};
+  let snapshot: ViewSnapshot | null = null;
+
+  async function read<T>(path: string): Promise<T> {
+    const response = await fetch(`${baseUrl}${path}`);
+    if (!response.ok) {
+      throw new Error(`GET ${path} failed: ${response.status}`);
+    }
+    return response.json() as Promise<T>;
+  }
+
+  async function refresh(): Promise<ViewSnapshot> {
+    const [queue, rollup, agents] = await Promise.all([
+      read<QueueResponse>(queuePath(role, filter)),
+      read<{ rows: RollupRow[] }>(rollupPath(filter)),
+      read<AgentsResponse>("/api/agents"),
+    ]);
+    snapshot = { role, filter: { ...filter }, queue, rollup, agents };
+    return snapshot;
+  }
+
+  return {
+    getState(): ViewSnapshot | null {
+      return snapshot;
+    },
+    load: refresh,
+    async setRole(next: Role): Promise<ViewSnapshot> {
+      role = next;
+      return refresh();
+    },
+    async setFilter(next: ViewFilter): Promise<ViewSnapshot> {
+      filter = { ...next };
+      return refresh();
+    },
+  };
+}
+
+export function queuePath(role: Role, filter: ViewFilter): string {
+  return withParams("/api/queue", {
+    view: VIEW_PARAM[role],
+    agent: filter.agent,
+    manager: filter.manager,
+    office: filter.office,
+  });
+}
+
+export function rollupPath(filter: ViewFilter): string {
+  return withParams("/api/rollup", {
+    manager: filter.manager,
+    office: filter.office,
+  });
+}
+
+function withParams(path: string, params: Record<string, string | undefined>): string {
+  const search = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (value) {
+      search.set(key, value);
+    }
+  }
+  const query = search.toString();
+  return query ? `${path}?${query}` : path;
+}
