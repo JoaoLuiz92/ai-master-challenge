@@ -93,6 +93,12 @@ describe("GestorStation", () => {
     expect(screen.queryByRole("button", { name: "Exportar CSV" })).toBeNull();
     expect(screen.queryByRole("button", { name: "Passar para colega" })).toBeNull();
     expect(screen.queryByRole("button", { name: "Focar (1)" })).toBeNull();
+    for (const node of screen.getAllByText("Esfriando")) {
+      expect(node.closest("button")).toBeNull();
+    }
+    for (const node of screen.getAllByText("Bons esfriando")) {
+      expect(node.closest("button")).toBeNull();
+    }
   });
 
   it("drills into a seller queue, switches the strip, and shows export", () => {
@@ -122,6 +128,9 @@ describe("GestorStation", () => {
     expect(screen.getAllByText("US$ 2.000").length).toBeGreaterThan(0);
     expect(screen.getByRole("button", { name: "Focar (1)" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "Exportar CSV" })).toBeTruthy();
+    for (const node of screen.getAllByText("Esfriando")) {
+      expect(node.closest("button")).toBeNull();
+    }
     expect(screen.queryByRole("columnheader", { name: "Vendedor" })).toBeNull();
   });
 

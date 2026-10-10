@@ -105,6 +105,10 @@ describe("VendedorStation", () => {
     expect(screen.queryByRole("button", { name: "Passar para colega" })).toBeNull();
     expect(screen.queryByText("Nutrir")).toBeNull();
     expect(screen.getByRole("button", { name: "Exportar CSV" })).toBeTruthy();
+    for (const node of screen.getAllByText("Esfriando")) {
+      expect(node.closest("button")).toBeNull();
+    }
+    expect(screen.getByRole("button", { name: "Nº Focar1" })).toBeTruthy();
   });
 
   it("opens the Revisar band when the Revisar KPI is activated", () => {
