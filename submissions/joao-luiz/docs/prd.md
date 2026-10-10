@@ -114,7 +114,8 @@ A ingestão deve **normalizar e registrar** cada correção (nada some em silên
 
 - **Probabilidade de conversão / ML no ranking** — sem sinal (ADR-001); vira experimento no process log.
 - **LLM no caminho crítico** — o score é 100% aritmético sobre CSV; modelo no ranking quebraria RNF2 (ADR-006). Possível uso **futuro** só para texto não estruturado (motivo de perda, nota de reunião).
-- **Redistribuição de carteira entre vendedores** — problema de gestor, infla o v1; fora.
+- **Redistribuição automática / fit / sugestão de colega** — o gestor escolhe; a ferramenta não ranqueia “passa para fulano”.
+- **Repasse durável (arquivo ou banco)** — o gesto existe na sessão (ADR-013); restart recarrega os donos do CSV. Persistência seria CRM, não este desafio.
 - **Login / SSO / RBAC** — dataset público de demonstração.
 - **Persistência / banco / "já revisei"** — export CSV cobre o durável.
 
@@ -122,7 +123,7 @@ A ingestão deve **normalizar e registrar** cada correção (nada some em silên
 
 | Risco | Mitigação |
 |---|---|
-| Avaliador achar "simples demais" | ADR-001 + process log mostram o `p̂` testado e descartado com números |
+| Stakeholder achar o ranking "simples demais" | ADR-001 + process log mostram o `p̂` testado e descartado com números |
 | Curva de urgência mal calibrada | parâmetros (57/106d) saem da EDA, documentados e ajustáveis em código |
 | `.gitignore` da raiz ignora `submissions/` e `datasets/` | commit com `git add -f`; dados copiados para `solution/data/` |
 | Fila esvaziar | regra explícita: idade nunca exclui, só modula |

@@ -7,7 +7,7 @@
 
 ## Contexto e Problema
 
-O challenge exige software que o vendedor **abra e use**, não um notebook. Time budget 4–6h, dataset público de demonstração (~8.800 linhas), avaliador precisa reproduzir com um comando. Persistência, auth e BI macro não resolvem o job da segunda de manhã.
+O v1 precisa de software que o vendedor **abra e use**, não um notebook. Time budget 4–6h, dataset público de demonstração (~8.800 linhas), o MVP sobe com um comando. Persistência, auth e BI macro não resolvem o job da segunda de manhã.
 
 ## Decision Drivers
 
@@ -31,11 +31,11 @@ O challenge exige software que o vendedor **abra e use**, não um notebook. Time
 
 ## Decision Outcome
 
-Opção escolhida: **"A"**. Backend calcula score determinístico sobre pandas; frontend escolhe papel/filtro e renderiza. Sem SSO, sem flag “já revisei”, sem Redistribuição de carteira.
+Opção escolhida: **"A"**. Backend calcula score determinístico sobre pandas; frontend escolhe papel/filtro e renderiza. Sem SSO, sem flag “já revisei”, sem redistribuição **durável** de carteira (banco/arquivo). Gesto de passar deal **na sessão**: [ADR-013](013-repasse-so-na-sessao.md).
 
 ### Consequências Positivas
 
-- Um comando sobe API + UI; avaliador vê deals reais.
+- Um comando sobe API + UI; a interface lista deals reais.
 - Superfície mínima: leitura de CSV local, sem segredos.
 - Separação API em inglês / rótulos PT na borda da UI (ADR-004).
 
@@ -64,4 +64,4 @@ Opção escolhida: **"A"**. Backend calcula score determinístico sobre pandas; 
 ## Links
 
 - PRD §4, §9; RNF1–RNF4
-- [ADR-001](001-priorizar-por-valor-em-risco.md), [ADR-004](004-ui-portugues-codigo-ingles.md)
+- [ADR-001](001-priorizar-por-valor-em-risco.md), [ADR-004](004-ui-portugues-codigo-ingles.md), [ADR-013](013-repasse-so-na-sessao.md)

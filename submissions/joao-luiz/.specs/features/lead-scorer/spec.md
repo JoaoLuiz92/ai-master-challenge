@@ -1,5 +1,7 @@
 # Lead Scorer ("Foco da Semana") Specification
 
+**Apresentação (a partir de 2026-10-09):** chrome, estações Vendedor/Gestor e hierarquia visual não são definidos aqui. Ver ADRs [008](../../../docs/adr/008-duas-estacoes-enderecaveis.md)–[012](../../../docs/adr/012-tom-visual-mesa-operacional.md). Esta spec permanece dona do motor, da ingestão e dos campos de domínio. A home **destaca** Focar e colapsa Acompanhar/Revisar (LEAD-04/18: a fila existe na estação, não necessariamente expandida). Estágio some do card trabalhável; SCORE permanece visível e rebaixado (ADR-010).
+
 ## Problem Statement
 
 35 vendedores em escritórios regionais trabalham ~8.800 oportunidades e priorizam "no feeling", gastando tempo em deals que não fecham e deixando oportunidades boas esfriar. Não existe uma visão única de **onde focar hoje**, com o motivo em português e uma ação. Esta feature entrega uma ferramenta FastAPI + React que ordena os deals abertos por **valor em risco** (preço de lista × urgência) e explica cada prioridade, para o vendedor (primário) e o gestor (secundário).
@@ -172,7 +174,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 
 ### P2: Setup reprodutível (Docker + local)
 
-**User Story**: As a avaliador, I want subir a solução com um comando, so that eu reproduza a ferramenta sem fricção.
+**User Story**: As a desenvolvedor, I want subir a solução com um comando, so that eu reproduza o MVP sem fricção.
 
 **Why P2**: Necessário para a entrega, mas independente da lógica de produto.
 
@@ -203,39 +205,39 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 | Requirement ID | Story | Source (PRD/EDA/ADR) | Phase | Status |
 | -------------- | ----- | -------------------- | ----- | ------ |
-| LEAD-01 | P1: Fila priorizada | CA1, RF1 | Tasks | Pending |
-| LEAD-02 | P1: Fila priorizada | CA1 | Tasks | Pending |
-| LEAD-03 | P1: Fila priorizada | CA2 | Tasks | Pending |
-| LEAD-04 | P1: Fila priorizada | RF2 | Tasks | Pending |
-| LEAD-05 | P1: Fila priorizada | RF3, CA3 | Tasks | Pending |
-| LEAD-06 | P1: Motor de priorização | ADR-001, CA2 | Tasks | Pending |
-| LEAD-07 | P1: Motor de priorização | EDA §4 | Tasks | Pending |
-| LEAD-08 | P1: Motor de priorização | EDA (hoje=2017-12-31) | Tasks | Pending |
-| LEAD-09 | P1: Motor de priorização | CA7, RF11 | Tasks | Pending |
-| LEAD-10 | P1: Motor de priorização | ADR-001 | Tasks | Pending |
-| LEAD-11 | P1: Ingestão e qualidade | CA6 | Tasks | Pending |
-| LEAD-12 | P1: Ingestão e qualidade | EDA §2.4 | Tasks | Pending |
-| LEAD-13 | P1: Ingestão e qualidade | PRD §6 (log) | Tasks | Pending |
-| LEAD-14 | P1: Ingestão e qualidade | EDA §2.1 | Tasks | Pending |
-| LEAD-15 | P1: Ingestão e qualidade | EDA §2.5 | Tasks | Pending |
-| LEAD-16 | P1: Revisar vs. fila | CA4 | Tasks | Pending |
-| LEAD-17 | P1: Revisar vs. fila | CA4 (Prospecting) | Tasks | Pending |
-| LEAD-18 | P1: Revisar vs. fila | RF5 | Tasks | Pending |
-| LEAD-19 | P1: Estado e badge | CA5, RF4 | Tasks | Pending |
-| LEAD-20 | P1: Estado e badge | CA5 | Tasks | Pending |
-| LEAD-21 | P1: Estado e badge | PRD §5 (estados) | Tasks | Pending |
-| LEAD-22 | P1: Estado e badge | PRD §5 (confiança) | Tasks | Pending |
-| LEAD-23 | P1: Filtro e percentil | CA7, RF11 | Tasks | Pending |
-| LEAD-24 | P1: Filtro e percentil | RF10 | Tasks | Pending |
-| LEAD-25 | P1: Export CSV | RF6, CA9 | Tasks | Pending |
-| LEAD-26 | P2: Visão de gestor | RF7, RF8 | Tasks | Pending |
-| LEAD-27 | P2: Visão de gestor | RF9 | Tasks | Pending |
-| LEAD-28 | P2: Visão de gestor | RF10, RF11 | Tasks | Pending |
-| LEAD-29 | P2: Setup reprodutível | CA8, RNF1 | Tasks | Pending |
-| LEAD-30 | P2: Setup reprodutível | RNF2 | Tasks | Pending |
-| LEAD-31 | Transversal (UI/idioma) | RNF3 | Tasks | Pending |
-| LEAD-32 | Transversal (sem persistência) | RNF4 | Execute | Implementing |
-| LEAD-33 | P2: Setup reprodutível | RNF1 (fallback local) | Tasks | Pending |
+| LEAD-01 | P1: Fila priorizada | CA1, RF1 | Tasks | Verified |
+| LEAD-02 | P1: Fila priorizada | CA1 | Tasks | Verified |
+| LEAD-03 | P1: Fila priorizada | CA2 | Tasks | Verified |
+| LEAD-04 | P1: Fila priorizada | RF2 | Tasks | Verified |
+| LEAD-05 | P1: Fila priorizada | RF3, CA3 | Tasks | Verified |
+| LEAD-06 | P1: Motor de priorização | ADR-001, CA2 | Tasks | Verified |
+| LEAD-07 | P1: Motor de priorização | EDA §4 | Tasks | Verified |
+| LEAD-08 | P1: Motor de priorização | EDA (hoje=2017-12-31) | Tasks | Verified |
+| LEAD-09 | P1: Motor de priorização | CA7, RF11 | Tasks | Verified |
+| LEAD-10 | P1: Motor de priorização | ADR-001 | Tasks | Verified |
+| LEAD-11 | P1: Ingestão e qualidade | CA6 | Tasks | Verified |
+| LEAD-12 | P1: Ingestão e qualidade | EDA §2.4 | Tasks | Verified |
+| LEAD-13 | P1: Ingestão e qualidade | PRD §6 (log) | Tasks | Verified |
+| LEAD-14 | P1: Ingestão e qualidade | EDA §2.1 | Tasks | Verified |
+| LEAD-15 | P1: Ingestão e qualidade | EDA §2.5 | Tasks | Verified |
+| LEAD-16 | P1: Revisar vs. fila | CA4 | Tasks | Verified |
+| LEAD-17 | P1: Revisar vs. fila | CA4 (Prospecting) | Tasks | Verified |
+| LEAD-18 | P1: Revisar vs. fila | RF5 | Tasks | Verified |
+| LEAD-19 | P1: Estado e badge | CA5, RF4 | Tasks | Verified |
+| LEAD-20 | P1: Estado e badge | CA5 | Tasks | Verified |
+| LEAD-21 | P1: Estado e badge | PRD §5 (estados) | Tasks | Verified |
+| LEAD-22 | P1: Estado e badge | PRD §5 (confiança) | Tasks | Verified |
+| LEAD-23 | P1: Filtro e percentil | CA7, RF11 | Tasks | Verified |
+| LEAD-24 | P1: Filtro e percentil | RF10 | Tasks | Verified |
+| LEAD-25 | P1: Export CSV | RF6, CA9 | Tasks | Verified |
+| LEAD-26 | P2: Visão de gestor | RF7, RF8 | Tasks | Verified |
+| LEAD-27 | P2: Visão de gestor | RF9 | Tasks | Verified |
+| LEAD-28 | P2: Visão de gestor | RF10, RF11 | Tasks | Verified |
+| LEAD-29 | P2: Setup reprodutível | CA8, RNF1 | Tasks | Verified |
+| LEAD-30 | P2: Setup reprodutível | RNF2 | Tasks | Verified |
+| LEAD-31 | Transversal (UI/idioma) | RNF3 | Tasks | Verified |
+| LEAD-32 | Transversal (sem persistência) | RNF4 | Execute | Verified |
+| LEAD-33 | P2: Setup reprodutível | RNF1 (fallback local) | Tasks | Verified |
 
 **ID format:** `[CATEGORY]-[NUMBER]` (e.g., `LEAD-01`).
 

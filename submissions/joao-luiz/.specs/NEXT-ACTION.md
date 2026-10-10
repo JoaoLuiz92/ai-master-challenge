@@ -4,10 +4,10 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-Pacote da submissão: README no template, evidência de IA, PR. Fora do Execute.
+Pacote da submissão (fora do Execute): README no template, harness publicado em `docs/harness/`, `.cursor/` fora do git. PR ainda não aberto.
 
-`foco-ui` e `repassar-deal` estão com Execute e faixa PASS. Relatórios: `.specs/features/foco-ui/validation.md` e `.specs/features/repassar-deal/validation.md`.
+As três features (`lead-scorer`, `foco-ui`, `repassar-deal`) estão com Execute e faixa PASS. Relatórios em `.specs/features/<feature>/validation.md`.
 
 ## Fila
 
-1. Pacote da submissão (README no template, evidência de IA, PR)
+1. Revisar o working tree e abrir o PR (`[Submission] João Luiz Da Rosa Junior — Challenge 003`)

@@ -11,7 +11,7 @@ Idade do deal = diferença entre “hoje” e `engage_date`. O snapshot do CRM t
 
 ## Decision Drivers
 
-- Idade tem de refletir o mundo do dataset, não o relógio da máquina do avaliador.
+- Idade tem de refletir o mundo do dataset, não o relógio da máquina de quem sobe o app.
 - Reprodutibilidade: a mesma entrada produz a mesma idade em qualquer dia.
 
 ## Considered Options

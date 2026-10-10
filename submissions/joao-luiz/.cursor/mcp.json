@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest", "--output-dir", "submissions/joao-luiz/.playwright-mcp"]
-    }
-  }
-}

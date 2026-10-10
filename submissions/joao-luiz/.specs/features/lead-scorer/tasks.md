@@ -24,7 +24,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 | View / query service (filter, percentil, estado, rollup) | unit | All branches; 1:1 to spec ACs; edge cases (N=1, ties, empty view) | `backend/tests/unit/*.py` | `.venv\Scripts\python -m pytest backend/tests/unit -q` |
 | API routes (FastAPI) | e2e | All routes in scope: happy path + edge + error | `backend/tests/e2e/*.py` | `.venv\Scripts\python -m pytest backend/tests/e2e -q` |
 | React components | unit | Render + behavior per AC (reason/action/badge/estado/empty state) | `frontend/src/**/*.test.tsx` | `npm --prefix frontend test -- --run` |
-| User-facing flows (fila, filtros, export vs UI, gestor, empty state, PT labels) | UI e2e (Playwright MCP) | Independent Tests + CA8/CA9/RNF3 against a running UI — not mocked | validation-lane `ui-tester` (no committed Playwright suite) | Playwright MCP: scenarios in `.specs/features/lead-scorer/validation-lane.md` |
+| User-facing flows (fila, filtros, export vs UI, gestor, empty state, PT labels) | UI e2e (Playwright MCP) | Independent Tests + CA8/CA9/RNF3 against a running UI — not mocked | validation-lane `ui-tester` (no committed Playwright suite) | Playwright MCP, one scenario per UI Independent Test in `spec.md` |
 | Config / packaging (scaffold, Docker, compose) | none | build gate only | - | build gate only |
 
 ## Gate Check Commands
@@ -36,7 +36,7 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 | Quick | After tasks with unit tests only | backend: `.venv\Scripts\python -m pytest backend/tests/unit -q` ; frontend: `npm --prefix frontend test -- --run` |
 | Full | After tasks with e2e/integration tests | `.venv\Scripts\python -m pytest backend/tests -q` |
 | Build | After phase completion or config/packaging tasks | `.venv\Scripts\python -m pytest backend/tests -q && npm --prefix frontend run build && npm --prefix frontend test -- --run` |
-| Validation lane | After the last task (or on "validate") | Orchestrator `submissions/joao-luiz/.cursor/agents/validation-lane.md`: backend-tester ∥ ui-tester (Playwright MCP) → spec-verifier. See `validation-lane.md`. |
+| Validation lane | After the last task (or on "validate") | Harness orchestrator `.cursor/agents/validation-lane.md`: backend-tester ∥ ui-tester (Playwright MCP) → spec-verifier. Rule: `.cursor/rules/validation-lane.mdc`. |
 
 ---
 
@@ -878,7 +878,7 @@ All dependencies point backward or within the same phase. No forward-phase depen
 
 No violations: every task's `Tests` field matches its code layer's required test type in the Test Coverage Matrix.
 
-The Playwright MCP row is a **feature-level** gate (validation-lane `ui-tester`), not a per-task `Tests` field. T21–T25 still own component unit tests; T26 Independent Test (UI lists real deals) is exercised in that lane after packaging.
+The Playwright MCP row runs once, through the harness validation lane (`ui-tester`), not as a per-task `Tests` field. T21–T25 still own component unit tests; T26 Independent Test (UI lists real deals) is exercised in that lane after packaging.
 
 ---
 
@@ -886,4 +886,4 @@ The Playwright MCP row is a **feature-level** gate (validation-lane `ui-tester`)
 
 Execute tasks use the `filesystem` MCP and the project venv / `npm` for gates. Product critical path stays offline (RNF2).
 
-**Validation lane (after last task):** Playwright MCP for UI Independent Tests (`ui-tester`). Enable the Cursor Playwright plugin or approve `submissions/joao-luiz/.cursor/mcp.json` (`npx -y @playwright/mcp@latest`). Backend gates stay pytest. See `.specs/features/lead-scorer/validation-lane.md`.
+**Validation lane (after last task):** Playwright MCP for UI Independent Tests (`ui-tester`). Enable the Cursor Playwright plugin or approve `submissions/joao-luiz/.cursor/mcp.json` (`npx -y @playwright/mcp@latest`). Backend gates stay pytest. Lane contract: `.cursor/rules/validation-lane.mdc`.

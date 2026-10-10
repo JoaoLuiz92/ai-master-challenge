@@ -22,7 +22,7 @@ Ou seja: um score de conversão mandaria o time para o produto barato de alto wi
 
 - O score precisa refletir **dinheiro em risco**, não só chance de fechar.
 - Precisa ser **explicável** para um vendedor não-técnico ("por que este deal?").
-- Precisa ser **reprodutível** por um avaliador (sem modelo frágil nem dependência externa).
+- Precisa ser **reprodutível** em qualquer máquina (sem modelo frágil nem dependência externa).
 - Time budget de 4–6h: regra + heurística bem apresentada > ML sem interface (dica explícita do challenge).
 - Honestidade estatística: não embarcar um classificador AUC ~0,50 fingindo sinal.
 
@@ -47,7 +47,7 @@ Opção escolhida: **"A — preço de lista × urgência(idade)"**, porque a EDA
 ### Consequências Positivas
 
 - Fila ordenada por **retorno por hora de vendedor**, não por chance de um ticket de US$ 55.
-- 100% **determinística e auditável**: roda offline, o avaliador reproduz com `docker compose up`.
+- 100% **determinística e auditável**: roda offline; `docker compose up` reproduz a mesma fila.
 - Explicação trivial em português ("GTX Pro · US$ 4.821 · 40 dias · esfriando").
 - Evita o erro central que reprovaria a entrega (premiar MG Special).
 
@@ -55,7 +55,7 @@ Opção escolhida: **"A — preço de lista × urgência(idade)"**, porque a EDA
 
 - Abrimos mão de "predizer quem fecha" — mas os dados não sustentam isso de qualquer forma.
 - Depende de **urgência** bem calibrada (curva de idade vs. ciclo de Won); se a curva estiver ruim, a fila perde qualidade.
-- Um avaliador desavisado pode achar "simples demais" sem ler a justificativa estatística — por isso o `p̂` e seu AUC ficam documentados no process log como tentativa descartada, não escondida.
+- Quem olhar só o ranking pode achar "simples demais" sem ler a justificativa estatística — por isso o `p̂` e seu AUC ficam documentados no process log como tentativa descartada, não escondida.
 
 ## Pros and Cons of the Options
 

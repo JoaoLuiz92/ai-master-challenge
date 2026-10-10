@@ -7,7 +7,7 @@
 
 ## Contexto e Problema
 
-O motor é aritmética sobre CSV: alias, idade, `sales_price × urgência`, percentil. Um LLM no ranking (motivo gerado, “score inteligente”) adicionaria chave de API, ruído run-a-run e faria o avaliador não reproduzir a mesma fila. A doc de uso de modelo também reserva LLM para o que o código **não** calcula de forma exata — datas e contas não são esse caso.
+O motor é aritmética sobre CSV: alias, idade, `sales_price × urgência`, percentil. Um LLM no ranking (motivo gerado, “score inteligente”) adicionaria chave de API, ruído run-a-run e impediria reproduzir a mesma fila. A doc de uso de modelo também reserva LLM para o que o código **não** calcula de forma exata — datas e contas não são esse caso.
 
 ## Decision Drivers
 
@@ -26,7 +26,7 @@ O motor é aritmética sobre CSV: alias, idade, `sales_price × urgência`, perc
 | | Opção | Por quê (resumido) |
 |---|--------|-------------------|
 | **Tomada** | A — aritmética + template; LLM fora | O CSV já explica o deal (produto, lista, dias). Mesma entrada → mesma saída (RNF2); CA3 testa texto fixo. LLM só faria sentido em texto que o CSV **não** tem (Lost, nota) — fora do v1. |
-| **Não tomada** | B — LLM no score | Demo de IA; o modelo chutaria o que pandas já calcula e o avaliador não reproduz. |
+| **Não tomada** | B — LLM no score | Demo de IA; o modelo chutaria o que pandas já calcula e a fila deixaria de ser reproduzível. |
 | **Não tomada** | C — LLM só na copy | Score intacto, mas o motivo muda a cada run: quebra CA3 e `docker compose up` idêntico. |
 
 ## Decision Outcome

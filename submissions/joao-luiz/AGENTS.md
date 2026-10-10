@@ -1,104 +1,71 @@
-# AGENTS.md — Submissão João Luiz (Lead Scorer)
+# AGENTS.md
 
-Instruções para qualquer agente nesta pasta. O PR **só** altera `submissions/joao-luiz/`. Não mexer no resto do repositório (`.cursor/` da raiz incluso).
+Instruções para qualquer agente em `submissions/joao-luiz/`.
+> Documento perene. Só regras estáveis. O que muda a cada tarefa vive em `.specs/` (este arquivo só aponta).
 
-Prosa, commits, docs e este arquivo: **português**. Código, API e identificadores: **inglês** (ADR-004). UI do vendedor/gestor: **português**.
+## Como trabalhar
 
----
+- **Spec-driven:** skill `tlc-spec-driven`. Ao retomar, ler `.specs/NEXT-ACTION.md` e executar só o **Agora**. Uma tarefa por janela. Antes de codar, a armadilha em `.specs/CONCERNS.md` que toca essa tarefa.
+- **Não inventar.** Dúvida: `spec.md` → `design.md` → ADRs / EDA. Se ainda faltar, parar e perguntar.
+- **Provar antes de marcar done.** O gate da tarefa passa antes do checkbox. Testes afirmam o AC da spec. Não pular, xfail ou enfraquecer asserção.
+- **Contexto (45%):** no meio da tarefa, fechar essa tarefa por completo (implementar, testes, gate, `tasks.md`, commit, reescrever `NEXT-ACTION.md`). A próxima nasce em outra janela. Não compactar a janela para continuar.
+- **Não narrar a fase.** Fazer o artefato.
+- **Validar fora do chat.** Última tarefa Execute, ou pedido de validar / UAT / testes: disparar o subagente `validation-lane`. Contrato publicado: `docs/harness/`. A spec da feature diz o que assertar.
 
-## Fonte da verdade
+## Guard-rails
 
-Em dúvida, **não inventar**. Reler nesta ordem: `spec.md` → `design.md` → ADRs / EDA. Se ainda faltar, parar e perguntar.
-
-| Artefato | Caminho |
-|----------|---------|
-| Spec | `.specs/features/lead-scorer/spec.md` |
-| Design | `.specs/features/lead-scorer/design.md` |
-| Tasks | `.specs/features/lead-scorer/tasks.md` |
-| Delivery | `.specs/features/lead-scorer/DELIVERY.md` |
-| Validation-lane | `.specs/features/lead-scorer/validation-lane.md` |
-| Estado / decisões | `.specs/STATE.md` |
-| Fórmula (v0→v1→v2) | `docs/evolucao-do-score.md` |
-| ADRs | `docs/adr/` |
-| EDA | `docs/analise-exploratoria.md` |
-
-Retomar sessão: ler `STATE.md` (Handoff + Decisions), conferir git e `tasks.md`. Evidência no disco ganha de snapshot velho.
-
----
-
-## Fluxo e skills
-
-Skill de planejamento/implementação: **`tlc-spec-driven`**.
-
-```
-Specify → Design → Tasks → Execute → validation-lane
-```
-
-| Fase | Skill / agente | Saída |
-|------|----------------|-------|
-| Specify | `tlc-spec-driven` | `spec.md` |
-| **Spec fechada** | este harness | **criar `DELIVERY.md`** (obrigatório; não seguir sem ele) |
-| Design | `tlc-spec-driven` | `design.md` |
-| Tasks | `tlc-spec-driven` | `tasks.md` |
-| Execute | `tlc-spec-driven` (um T por vez) | código + testes + commit atômico |
-| **Última tarefa Execute concluída** | subagente **`validation-lane`** | `validation.md` |
-
-Não narrar a fase. Fazer o artefato.
-
-Execute: um commit por tarefa; gate da tarefa passa **antes** de marcar done; testes afirmam o AC da spec, não o código. Não pular, xfail ou enfraquecer asserção.
-
----
-
-## Janela de contexto (Execute)
-
-Limite **45%** da janela enquanto estiver em tasks.
-
-- Carregar só o que a tarefa atual precisa (`STATE.md`, spec, design, a tarefa, código tocado).
-- Se o uso **atingir 45% no meio de uma tarefa**: **terminar essa tarefa por completo** (implementar, testes, gate, marcar `tasks.md`, commit). Não abandonar no meio.
-- A **próxima** tarefa **não** continua nesta janela. Abrir **nova janela via subagente**, com payload: número da tarefa, spec/design relevantes, `STATE.md`, gate, o que a anterior entregou.
-- Não começar T(n+1) numa janela já no limite.
-
----
-
-## Validation-lane (não validar no chat)
-
-Gatilho: **terminou a última tarefa Execute** (T27 marcada done + commit), ou o usuário pediu validar / verificar / UAT / testes.
-
-Não validar inline. Disparar o subagente `validation-lane`.
-
-```
-backend-tester  ∥  ui-tester   →   spec-verifier
-   pytest                         (só se os dois PASS)
-   Playwright MCP                 autor ≠ verificador
-```
-
-- UI: Playwright MCP (`browser_navigate`, `browser_snapshot`, refs). Independent Tests e CA8/CA9/RNF3. Vitest não substitui.
-- MCP desconectado: **bloquear** a faixa de UI; pedir para ligar o plugin Playwright. Não usar Chrome DevTools no lugar.
-- Verificador não escreve código de produto. Máx. 3 ciclos correção → re-verificar.
-
-Workdir: `submissions/joao-luiz/solution`. Python: `solution\.venv\Scripts\python.exe`.
-
----
-
-## Git
-
-A raiz ignora `submissions/`. Entrar com `git add -f`.
-
-Não versionar: `solution/.venv/`, `__pycache__/`, `node_modules/`, segredos.
-
-Mensagem em português, Conventional Commits (`feat:`, `fix:`, `docs:`, `test:`), corpo com o **porquê**. Um commit atômico por tarefa. **Não squash.** Não push sem pedido explícito.
-
-Cadeia visível para o avaliador (não um único commit): harness/docs → EDA/ADRs → ingestão → score → API → UI → Docker → evidências.
-
----
-
-## Produto (o que não negociar)
-
+- O PR **só** altera `submissions/joao-luiz/`. Não mexer no resto do repositório. `.cursor/` desta pasta e o junction `.cursor` da raiz do monorepo são **locais**: não entram no git. O harness publicado está em `docs/harness/`.
+- Prosa, commits e docs em **português**. Código, API e identificadores em **inglês**. UI do vendedor/gestor em **português** (ADR-004).
+- A raiz ignora `submissions/`: entrar com `git add -f` nos caminhos da submissão, **sem** `.cursor/`, `.playwright-mcp/`, `solution/.venv/`, `node_modules/`, `__pycache__/`, segredos. Um commit atômico por tarefa, Conventional Commits, corpo com o porquê. Sem squash. Sem push sem pedido.
 - `PRIORIDADE = sales_price × urgência`. SCORE = percentil **da visão**. `p̂` fora do ranking.
-- Explainability por deal: **fator positivo**, **risco**, **ação** em português.
-- Idade não tira da fila. Badge Esfriando se idade > 106d. `TODAY = 2017-12-31`.
-- Em memória, sem LLM no caminho crítico. Alias `GTXPro` → `GTX Pro`.
+- Idade não tira da fila. Badge Esfriando se idade > 106d. `TODAY = 2017-12-31`. Relato: `.specs/CONCERNS.md`.
+- Alias `GTXPro` → `GTX Pro` antes do preço. Relato no mesmo arquivo.
+- Em memória, sem LLM no caminho crítico. Explainability por deal: fator positivo, risco, ação, em português.
+- Pin: `fastapi==0.112.4`, `pydantic==1.10.22`, `starlette==0.38.6`. Relato em `CONCERNS.md`.
+- O bloco **Como usei IA** fica no README, com os quatro títulos do template. Relato em `CONCERNS.md`.
+- Faixa de UI: Playwright MCP. Plugin desligado **bloqueia** a faixa. Não usar Chrome DevTools no lugar. Vitest não substitui. O verificador não escreve código de produto.
 
-## Evidências do PR
+## Repositório
 
-`process-log/` com transcripts reais, prints por papel (vendedor e gestor), auditoria independente (`validation.md` / spec-verifier). Evolução da fórmula em `docs/evolucao-do-score.md`.
+Ferramenta para o vendedor ver onde focar no pipeline, e para o gestor ver valor na fila. Dados: CSVs do CRM, em memória.
+
+- `solution/` — app. Cwd dos comandos abaixo. `backend/` (FastAPI), `data/` (CSVs), `eda.py` (análise, não é o app).
+- `.specs/` — spec, design, tasks, fila, estado, erros que não voltam.
+- `docs/` — EDA, evolução da fórmula, ADRs, harness publicado (`docs/harness/`).
+- `process-log/` — narrativa de uma sessão de desenvolvimento. Um arquivo por sessão.
+
+## Fonte da verdade (ponteiros — não duplicar)
+
+- `.specs/NEXT-ACTION.md` — o que fazer agora (ler primeiro)
+- `.specs/CONCERNS.md` — risco em aberto e armadilha que não volta
+- `.specs/STATE.md` — decisões (AD-*)
+- `.specs/features/<feature>/` — `spec.md` · `design.md` · `tasks.md` · `validation.md`. `delivery.md` só depois da última tarefa e da faixa, com o que a execução fez.
+- `docs/harness/` — contratos da faixa (orquestrador, backend, UI, verificador). `.cursor/` e `.playwright-mcp/` são locais e não entram no git.
+- `docs/evolucao-do-score.md` · `docs/adr/` · `docs/analise-exploratoria.md`
+
+Evidência no disco ganha de snapshot velho.
+
+## Commands
+
+Cwd: `submissions/joao-luiz/solution`. Python: `.venv\Scripts\python.exe`.
+
+```text
+.venv\Scripts\python.exe -m pytest backend/tests/unit -q
+.venv\Scripts\python.exe -m pytest backend/tests/integration -q
+.venv\Scripts\python.exe -m pytest backend/tests -q
+
+.venv\Scripts\python.exe -m pip install -r requirements-eda.txt
+.venv\Scripts\python.exe eda.py
+```
+
+`docker compose` e os dois comandos locais do app entram no Execute (T26) e passam a constar no README.
+
+## Manutenção deste arquivo
+
+Atualize o `AGENTS.md` só quando mudar algo estrutural e duradouro:
+
+- Guard-rail novo, que vale para o resto do projeto.
+- Stack, comando de teste, ou topologia de pastas.
+- Ponteiro novo em `.specs/` ou `docs/`.
+
+Não atualize aqui: tarefa atual, o que a última janela entregou, decisão recente, armadilha nova. Isso vai para `NEXT-ACTION.md`, `STATE.md` ou `CONCERNS.md`.

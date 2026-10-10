@@ -1,6 +1,6 @@
 # Evolução da fórmula de scoring
 
-Narrativa única de **o que mudou e por quê**. Números congelados em `analise-exploratoria.md`. Decisões formais nos ADRs. Este arquivo existe para um avaliador seguir a cadeia sem abrir sete documentos.
+Narrativa única de **o que mudou e por quê**. Números congelados em `analise-exploratoria.md`. Decisões formais nos ADRs. Este arquivo existe para um novo membro do time seguir a cadeia sem abrir sete documentos.
 
 **Motor atual (v2):**
 
