@@ -4,14 +4,10 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-Feature `foco-ui`: Execute T1–T18 fechado. **Próximo:** faixa de validação do harness.
+Pacote da submissão: README no template, evidência de IA, PR. Fora do Execute.
 
-Disparar o subagente `validation-lane`. Contrato: `.cursor/rules/validation-lane.mdc`. Cenários de UI = Independent Tests da `spec.md`. Evidência em `.specs/features/foco-ui/ui-evidence/`. Motor 001–007 intocado; sem endpoint novo.
-
-`repassar-deal` Execute T1–T10 e a faixa estão fechados (PASS). Relatório: `.specs/features/repassar-deal/validation.md`.
+`foco-ui` e `repassar-deal` estão com Execute e faixa PASS. Relatórios: `.specs/features/foco-ui/validation.md` e `.specs/features/repassar-deal/validation.md`.
 
 ## Fila
 
-1. Faixa de validação `foco-ui` (ui-tester Playwright MCP → spec-verifier)
-2. `validation.md` de `foco-ui` com evidence-or-zero
-3. Pacote da submissão (README no template, evidência de IA, PR)
+1. Pacote da submissão (README no template, evidência de IA, PR)

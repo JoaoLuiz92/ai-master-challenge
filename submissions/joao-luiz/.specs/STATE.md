@@ -108,11 +108,11 @@
 
 ## Handoff
 
-- **Feature**: `repassar-deal`
-- **Phase / Task**: Execute T1–T10 e faixa PASS. **Agora:** faixa de `foco-ui`.
-- **Completed**: `repassar-deal` T1–T10 e validation.md PASS (19/19, sensor 3/3). Commits `2689e83`..`5385bb5`. ADR-013 / AD-013. `foco-ui` Execute T1–T18 fechado (sem `validation.md`). `lead-scorer` Execute + faixa PASS.
+- **Feature**: `foco-ui`
+- **Phase / Task**: Execute T1–T18 e faixa PASS. **Agora:** pacote da submissão.
+- **Completed**: `foco-ui` validation.md PASS (38/38, sensor do Esfriando morto em `19adc75`). `repassar-deal` T1–T10 e faixa PASS. `lead-scorer` Execute + faixa PASS.
 - **In-progress** (file:line): none.
-- **Next step**: `validation-lane` de `foco-ui`. Ver `.specs/NEXT-ACTION.md`.
+- **Next step**: pacote da submissão (README no template, evidência de IA, PR). Ver `.specs/NEXT-ACTION.md`.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. UI Docker em http://127.0.0.1:8080. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
-- **Uncommitted files**: `NEXT-ACTION.md`, `STATE.md` (handoff). `design.md` de `repassar-deal` ainda fora do git. Diffs locais anteriores (harness, README, ADRs, PRD) continuam fora destes commits.
+- **Uncommitted files**: diffs locais anteriores (harness, README, ADRs, PRD) continuam fora destes commits.
 - **Branch**: submission/joao-luiz
