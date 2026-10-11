@@ -201,11 +201,11 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-17 | P1: Explicação | frase da parede | Spec | Verified |
 | CHANCE-18 | P1: Explicação | ação por fila | Spec | Verified |
 | CHANCE-19 | P1: Explicação | sem número fabricado | Spec | Verified |
-| CHANCE-20 | P1: Backtest gate | verificação | Spec | Pending |
-| CHANCE-21 | P1: Backtest gate | receita top‑N | Spec | Pending |
-| CHANCE-22 | P1: Backtest gate | baseline preço | Spec | Pending |
-| CHANCE-23 | P1: Backtest gate | reverter se não bater | Spec | Pending |
-| CHANCE-24 | P1: Backtest gate | reprodutível offline | Spec | Pending |
+| CHANCE-20 | P1: Backtest gate | verificação | Spec | Verified |
+| CHANCE-21 | P1: Backtest gate | receita top‑N | Spec | Verified |
+| CHANCE-22 | P1: Backtest gate | baseline preço | Spec | Verified |
+| CHANCE-23 | P1: Backtest gate | reverter se não bater | Spec | Implementing |
+| CHANCE-24 | P1: Backtest gate | reprodutível offline | Spec | Verified |
 | CHANCE-25 | P2: Rollup gestor | RF7/RF8 | Spec | Pending |
 | CHANCE-26 | P2: Rollup gestor | destaque parado | Spec | Pending |
 | CHANCE-27 | P2: Rollup gestor | recálculo por visão | Spec | Pending |

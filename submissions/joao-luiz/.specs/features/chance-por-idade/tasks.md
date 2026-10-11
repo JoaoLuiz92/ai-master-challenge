@@ -321,12 +321,12 @@ C15 → C16
 
 **Done when**:
 
-- [ ] For each cutoff, the table is recalibrated using only deals known at that date (no future field read)
-- [ ] Reports captured revenue (top‑N per agent, next 90 days) for new/price/random with a dispersion measure
-- [ ] Emits the new-vs-price comparison; documents that the change is adopted only if new > price
-- [ ] Integration test asserts no field later than the cutoff is read (leakage guard)
-- [ ] Reproducible with a single documented command (`python backtest.py`)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/integration -q`
+- [x] For each cutoff, the table is recalibrated using only deals known at that date (no future field read)
+- [x] Reports captured revenue (top‑N per agent, next 90 days) for new/price/random with a dispersion measure
+- [x] Emits the new-vs-price comparison; documents that the change is adopted only if new > price
+- [x] Integration test asserts no field later than the cutoff is read (leakage guard)
+- [x] Reproducible with a single documented command (`python backtest.py`)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/integration -q`
 
 **Tests**: integration
 **Gate**: full

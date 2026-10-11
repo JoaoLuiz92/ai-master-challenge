@@ -4,9 +4,9 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-C9: backtest sem leakage (`chance-por-idade`). `backend/app/analysis/backtest.py` + `solution/backtest.py`. Depende de C3.
+C10: GET /api/queue com três cestas (`chance-por-idade`). `backend/app/api/queue.py`. Depende de C7.
 
 ## Fila
 
-1. C10: GET /api/queue com três cestas
-2. C11–C16 conforme `tasks.md`
+1. C11: GET /api/rollup Trabalhar vs Decidir
+2. C12–C16 conforme `tasks.md`
