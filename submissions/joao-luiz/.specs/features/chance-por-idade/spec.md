@@ -198,7 +198,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-14 | P1: Fila Decidir | três seções | Spec | Pending |
 | CHANCE-15 | P1: Fila Decidir | supersede LEAD-19/20 | Spec | Pending |
 | CHANCE-16 | P1: Explicação | RF3 (motivo/ação) | Spec | Pending |
-| CHANCE-17 | P1: Explicação | frase da parede | Spec | Pending |
+| CHANCE-17 | P1: Explicação | frase da parede | Spec | Implementing |
 | CHANCE-18 | P1: Explicação | ação por fila | Spec | Pending |
 | CHANCE-19 | P1: Explicação | sem número fabricado | Spec | Pending |
 | CHANCE-20 | P1: Backtest gate | verificação | Spec | Pending |
@@ -216,7 +216,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 29 total, 5 mapped (CHANCE-02/04/05 Verified; CHANCE-01/03 Implementing — wall no load em C15).
+**Coverage:** 29 total, 6 mapped (CHANCE-02/04/05 Verified; CHANCE-01/03/17 Implementing).
 
 ---
 

@@ -192,9 +192,9 @@ C15 → C16
 
 **Done when**:
 
-- [ ] `past_wall_open_count(repo, wall)` returns the count of open deals with age > wall
-- [ ] Unit test asserts the count against a fixed fixture (CHANCE-17)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `past_wall_open_count(repo, wall)` returns the count of open deals with age > wall
+- [x] Unit test asserts the count against a fixed fixture (CHANCE-17)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick

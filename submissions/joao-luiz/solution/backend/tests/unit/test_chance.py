@@ -1,6 +1,16 @@
 """Unit tests for C2: survival table with censoring (CHANCE-01, CHANCE-03)."""
 
-from app.scoring.chance import MISSING_CHANCE, chance, derive_wall, survival_table
+from datetime import timedelta
+
+from app.constants import TODAY
+from app.ingestion.repository import Deal
+from app.scoring.chance import (
+    MISSING_CHANCE,
+    chance,
+    derive_wall,
+    past_wall_open_count,
+    survival_table,
+)
 from app.scoring.cohort import CohortEntry
 from app.settings import get_settings
 
@@ -103,3 +113,40 @@ def test_chance_05_identical_input_yields_identical_table_and_wall() -> None:
     table = survival_table(cohort, _BANDS)
     wall = derive_wall(cohort)
     assert chance(25, table, wall) == chance(25, table, wall)
+
+
+def _deal(**overrides: object) -> Deal:
+    fields: dict[str, object] = {
+        "opportunity_id": "opp",
+        "sales_agent": "Ana",
+        "product": "GTX Pro",
+        "account": "Acme",
+        "deal_stage": "Engaging",
+        "engage_date": TODAY - timedelta(days=40),
+        "close_date": None,
+        "close_value": None,
+        "value": 200,
+        "confidence": None,
+        "manager": "Mia",
+        "regional_office": "East",
+    }
+    fields.update(overrides)
+    return Deal(**fields)  # type: ignore[arg-type]
+
+
+def test_chance_17_past_wall_open_count_matches_fixture() -> None:
+    wall = 10
+    repo = (
+        _deal(opportunity_id="over", engage_date=TODAY - timedelta(days=11)),
+        _deal(opportunity_id="over-2", engage_date=TODAY - timedelta(days=40)),
+        _deal(opportunity_id="on-wall", engage_date=TODAY - timedelta(days=10)),
+        _deal(opportunity_id="young", engage_date=TODAY - timedelta(days=3)),
+        _deal(
+            opportunity_id="won",
+            deal_stage="Won",
+            engage_date=TODAY - timedelta(days=80),
+            close_date=TODAY - timedelta(days=20),
+        ),
+        _deal(opportunity_id="no-date", engage_date=None, deal_stage="Prospecting"),
+    )
+    assert past_wall_open_count(repo, wall) == 2

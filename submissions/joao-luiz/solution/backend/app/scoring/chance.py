@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from app.ingestion.repository import Deal
+from app.scoring.age import age_days
 from app.scoring.cohort import CohortEntry
 
 # Missing age: no chance, the view routes the deal to Revisar.
@@ -63,3 +65,15 @@ def chance(
         if row.min_age <= age_days <= row.max_age:
             return row.chance
     return 0.0
+
+
+def past_wall_open_count(repo: tuple[Deal, ...], wall: int) -> int:
+    """How many still-open deals have age strictly greater than the wall."""
+    count = 0
+    for deal in repo:
+        if deal.deal_stage in ("Won", "Lost"):
+            continue
+        age = age_days(deal.engage_date)
+        if age is not None and age > wall:
+            count += 1
+    return count
