@@ -19,7 +19,19 @@ Pytest no host quebra (WDAC bloqueia pandas). Gate na imagem `solution-api` com 
 
 A maior parte do Engaging aberto no snapshot 2017-12-31 já passou da parede (~138d). Isso é o mesmo artefato da EDA §4, agora com cesta própria. Anna Snelling abre com Trabalhar pequeno e Decidir cheio — não é bug.
 
-Gate `python backtest.py`: adotar só se a captura top‑N / 90d da nova ordem superar ordenar por preço (ADR-016).
+Gate `python backtest.py`: adotar só se a captura top‑N / 90d da nova ordem superar ordenar por preço (ADR-016). Rodado na imagem `solution-api` (pandas bloqueado no host), deu `adopted=True`:
+
+```
+cutoff      nova    preco   aleatorio
+2017-06-30  489481  436874  192688
+2017-08-31  399663  345790  120708
+2017-09-30  320815  232505  118168
+nova_vs_preco_delta  53873
+dispersion           16540
+adopted              True
+```
+
+A nova ordem ganha nos três cortes; o aleatório fica bem abaixo dos dois. A tese do v3 se sustenta.
 
 ## Iterações
 

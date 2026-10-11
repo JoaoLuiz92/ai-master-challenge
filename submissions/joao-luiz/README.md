@@ -108,7 +108,15 @@ Filas      = Trabalhar | Decidir (preço desc) | Revisar
 - **Parede derivada, não literal.** Maior idade de um Won na coorte, exposta em `Settings` (`chance_bands`, `wall_override`). Deal **acima** da parede vai para Decidir; na parede ainda é Trabalhar. [ADR-015](docs/adr/015-fila-decidir-alem-da-parede.md) (substitui [ADR-003](docs/adr/003-idade-nao-exclui-da-fila.md) — o deal não some do produto).
 - **SCORE é de Trabalhar, na visão.** Percentil só nos deals trabalháveis do filtro. [ADR-007](docs/adr/007-score-percentil-por-visao.md).
 - **Esfriando é pista visual.** O badge (>106d) não decide mais a cesta.
-- **Gate de adoção.** `python backtest.py` — a troca só entra se a nova ordem capturar mais receita que ordenar por preço. [ADR-016](docs/adr/016-backtest-como-gate-do-motor.md).
+- **Gate de adoção — passou.** `python backtest.py` reconstrói a fila em cortes passados (sem olhar o futuro) e mede a receita capturada no top‑N por vendedor nos 90 dias seguintes. A nova ordem supera ordenar por preço nos três cortes; `adopted=True`. [ADR-016](docs/adr/016-backtest-como-gate-do-motor.md).
+
+  | Corte | Nova ordem | Preço | Aleatório |
+  |---|---:|---:|---:|
+  | 2017-06-30 | 489.481 | 436.874 | 192.688 |
+  | 2017-08-31 | 399.663 | 345.790 | 120.708 |
+  | 2017-09-30 | 320.815 | 232.505 | 118.168 |
+
+  Mediana da diferença (nova − preço): **+US$ 53.873**; dispersão 16.540. Se desse `adopted=False`, o motor reverteria para valor × urgência (CHANCE-23).
 - **Âncora temporal `TODAY = 2017-12-31`**. [ADR-005](docs/adr/005-ancora-temporal-2017-12-31.md).
 - **Explainability sem LLM.** Frase de chance / frase da parede em português, números do dado. [ADR-006](docs/adr/006-sem-llm-no-caminho-critico.md).
 
@@ -129,7 +137,7 @@ Cadeia v0 → v1 → v2 → v3: [`docs/evolucao-do-score.md`](docs/evolucao-do-s
 - **`p̂` não entra no ranking.** AUC 0,478; o classificador empurraria o time para deals irrelevantes (experimento descartado).
 - **A maior parte do Engaging aberto cai em Decidir.** A mediana dos abertos (165d) passa da parede de Won (~138d): é o corte do snapshot, não cadáver escondido. Eles não saem do produto.
 - **Curva global, não por produto.** Recalibrar por segmento fica para a v2 da chance.
-- **Backtest de adoção.** Se `python backtest.py` emitir `adopted=false`, o motor v3 não se justifica e reverte para lista × urgência.
+- **Backtest de adoção.** `python backtest.py` deu `adopted=True` (tabela acima); o motor é reavaliável a cada dataset — se um dia emitir `adopted=False`, reverte para lista × urgência.
 
 ---
 
