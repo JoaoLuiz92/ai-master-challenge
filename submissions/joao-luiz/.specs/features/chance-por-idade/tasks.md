@@ -242,11 +242,11 @@ C15 → C16
 
 **Done when**:
 
-- [ ] Engaging+account+age>wall → Decidir; ≤wall → Trabalhar; no account/date & Prospecting → Revisar
-- [ ] Decidir ordered by list price desc; Revisar unchanged
-- [ ] Each bucket carries its count and summed value
-- [ ] Unit tests cover routing, Decidir order, and three-way split (CHANCE-11/12/13/14)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] Engaging+account+age>wall → Decidir; ≤wall → Trabalhar; no account/date & Prospecting → Revisar
+- [x] Decidir ordered by list price desc; Revisar unchanged
+- [x] Each bucket carries its count and summed value
+- [x] Unit tests cover routing, Decidir order, and three-way split (CHANCE-11/12/13/14)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
