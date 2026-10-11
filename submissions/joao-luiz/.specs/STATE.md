@@ -109,10 +109,10 @@
 ## Handoff
 
 - **Feature**: `chance-por-idade`
-- **Phase / Task**: Execute C11 feito. **Agora:** C12 (DealCard chance).
-- **Completed**: C1–C11. Features anteriores Execute + faixa PASS. PR #182 aberto.
+- **Phase / Task**: Execute C12 feito. **Agora:** C13 (DecidirSection).
+- **Completed**: C1–C12. Features anteriores Execute + faixa PASS. PR #182 aberto.
 - **In-progress** (file:line): none.
-- **Next step**: C12 — DealCard mostra a frase de chance. Ver `.specs/NEXT-ACTION.md`.
+- **Next step**: C13 — seção Decidir na UI. Ver `.specs/NEXT-ACTION.md`.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
 - **Uncommitted files**: none after this commit.
 - **Branch**: submission/joao-luiz

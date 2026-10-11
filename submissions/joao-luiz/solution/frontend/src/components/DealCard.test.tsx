@@ -17,7 +17,7 @@ function deal(overrides: Partial<QueueItem> = {}): QueueItem {
     score: 90,
     estado: "Focar",
     confidence: "Alta",
-    reason: "GTX Pro · US$ 1.000 · 40 dias no funil · dentro do ciclo",
+    reason: "47% dos deals desta idade fecharam.",
     action: "Avançar proposta",
     ...overrides,
   };
@@ -30,19 +30,31 @@ function appearsBefore(first: HTMLElement, second: HTMLElement): boolean {
 afterEach(cleanup);
 
 describe("DealCard focar", () => {
-  it("renders action, then reason, then value/age, then Estado", () => {
+  it("renders action, then chance sentence, then value/age, then Estado", () => {
     render(<DealCard item={deal()} variant="focar" />);
 
     const action = screen.getByRole("heading", { name: "Avançar proposta" });
-    const reason = screen.getByText("GTX Pro · US$ 1.000 · 40 dias no funil · dentro do ciclo");
+    const chance = screen.getByText("47% dos deals desta idade fecharam.");
     const value = screen.getByText("US$ 1.000");
     const age = screen.getByText("40");
     const estado = screen.getByText("Focar");
 
-    expect(appearsBefore(action, reason)).toBe(true);
-    expect(appearsBefore(reason, value)).toBe(true);
+    expect(appearsBefore(action, chance)).toBe(true);
+    expect(appearsBefore(chance, value)).toBe(true);
     expect(appearsBefore(value, age)).toBe(true);
     expect(appearsBefore(age, estado)).toBe(true);
+  });
+
+  it("shows the chance sentence and Portuguese labels", () => {
+    render(<DealCard item={deal()} variant="focar" />);
+
+    expect(screen.getByText("47% dos deals desta idade fecharam.")).toBeTruthy();
+    expect(screen.getByText("Chance")).toBeTruthy();
+    expect(screen.getByText("Valor")).toBeTruthy();
+    expect(screen.getByText("Dias no funil")).toBeTruthy();
+    expect(screen.getByText("Estado")).toBeTruthy();
+    expect(screen.queryByText(/dentro do ciclo/)).toBeNull();
+    expect(screen.queryByText(/urgência/i)).toBeNull();
   });
 
   it("keeps SCORE secondary with the tooltip and hides stage, percentil, and PRIORIDADE", () => {
@@ -112,6 +124,7 @@ describe("DealCard acompanhar", () => {
     expect(screen.getByText("Acme")).toBeTruthy();
     expect(screen.getByText("US$ 1.000")).toBeTruthy();
     expect(screen.getByText("Avançar proposta")).toBeTruthy();
+    expect(screen.getByText("47% dos deals desta idade fecharam.")).toBeTruthy();
     const score = screen.getByText(/SCORE/);
     expect(score.className).toContain("deal-card__score");
     expect(score.getAttribute("title")).toBe(SCORE_TOOLTIP);

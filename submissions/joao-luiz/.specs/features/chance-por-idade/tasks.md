@@ -399,10 +399,10 @@ C15 → C16
 
 **Done when**:
 
-- [ ] Each workable card shows the chance sentence in Portuguese
-- [ ] Esfriando badge still rendered where applicable (visual only)
-- [ ] Component unit tests cover the chance text and label language
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Each workable card shows the chance sentence in Portuguese
+- [x] Esfriando badge still rendered where applicable (visual only)
+- [x] Component unit tests cover the chance text and label language
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

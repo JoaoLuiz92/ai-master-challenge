@@ -4,9 +4,9 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-C12: DealCard mostra a chance (`chance-por-idade`). `frontend/src/components/DealCard.tsx`. Depende de C10.
+C13: DecidirSection (`chance-por-idade`). `frontend/src/components/DecidirSection.tsx`. Depende de C12.
 
 ## Fila
 
-1. C13: DecidirSection
-2. C14–C16 conforme `tasks.md`
+1. C14: ManagerRollup valor parado
+2. C15–C16 conforme `tasks.md`

@@ -17,7 +17,7 @@ function deal(overrides: Partial<QueueItem> = {}): QueueItem {
     score: 90,
     estado: "Focar",
     confidence: "Alta",
-    reason: "GTX Pro · US$ 1.000 · 40 dias no funil · dentro do ciclo",
+    reason: "47% dos deals desta idade fecharam.",
     action: "Avançar proposta",
     ...overrides,
   };
@@ -28,7 +28,7 @@ describe("QueueList", () => {
     render(<QueueList items={[deal()]} />);
 
     expect(screen.getByRole("heading", { name: "Avançar proposta" })).toBeTruthy();
-    expect(screen.getByText("GTX Pro · US$ 1.000 · 40 dias no funil · dentro do ciclo")).toBeTruthy();
+    expect(screen.getByText("47% dos deals desta idade fecharam.")).toBeTruthy();
     expect(screen.getByText("US$ 1.000")).toBeTruthy();
     expect(screen.queryByText("Engaging")).toBeNull();
     expect(screen.queryByText("Estágio")).toBeNull();

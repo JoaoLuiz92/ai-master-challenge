@@ -13,6 +13,7 @@ const LABELS = {
   score: "SCORE",
   estado: "Estado",
   cooling: "Esfriando",
+  chance: "Chance",
 } as const;
 
 export function DealCard({
@@ -33,17 +34,27 @@ export function DealCard({
     </button>
   ) : null;
 
+  const chance = (
+    <p className="deal-card__reason deal-card__chance">
+      <span className="deal-card__chance-label">{LABELS.chance}</span>
+      {item.reason}
+    </p>
+  );
+  const coolingBadge =
+    item.age_days > COOLING_AFTER_DAYS ? (
+      <span className="badge-cooling">{LABELS.cooling}</span>
+    ) : null;
+
   if (variant === "acompanhar") {
     return (
       <article className="deal-card deal-card--acompanhar">
         <span>{item.product}</span>
         <span>{item.account}</span>
         <span>{formatValue(item.value)}</span>
+        {chance}
         <span>{item.action}</span>
         <Score score={item.score} />
-        {item.age_days > COOLING_AFTER_DAYS ? (
-          <span className="badge-cooling">{LABELS.cooling}</span>
-        ) : null}
+        {coolingBadge}
         {trace}
         {pass}
       </article>
@@ -53,7 +64,7 @@ export function DealCard({
   return (
     <article className="deal-card deal-card--focar">
       <h2 className="deal-card__action">{item.action}</h2>
-      <p className="deal-card__reason">{item.reason}</p>
+      {chance}
       <dl className="deal-card__facts">
         <div>
           <dt>{LABELS.value}</dt>
@@ -68,9 +79,7 @@ export function DealCard({
           <dd>{item.estado}</dd>
         </div>
       </dl>
-      {item.age_days > COOLING_AFTER_DAYS ? (
-        <span className="badge-cooling">{LABELS.cooling}</span>
-      ) : null}
+      {coolingBadge}
       {trace}
       {pass}
       <Score score={item.score} />
