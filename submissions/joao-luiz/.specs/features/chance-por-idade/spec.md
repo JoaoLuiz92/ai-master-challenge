@@ -209,7 +209,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-25 | P2: Rollup gestor | RF7/RF8 | Spec | Verified |
 | CHANCE-26 | P2: Rollup gestor | destaque parado | Spec | Verified |
 | CHANCE-27 | P2: Rollup gestor | recálculo por visão | Spec | Verified |
-| CHANCE-28 | P2: Export/filtros | CA9 | Spec | Pending |
+| CHANCE-28 | P2: Export/filtros | CA9 | Spec | Verified |
 | CHANCE-29 | P2: Export/filtros | percentil por visão | Spec | Verified |
 
 **ID format:** `CHANCE-[NUMBER]`.
