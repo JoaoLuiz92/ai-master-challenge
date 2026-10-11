@@ -348,10 +348,10 @@ C15 → C16
 
 **Done when**:
 
-- [ ] `GET /api/queue?...` returns the three buckets with counts and totals
-- [ ] Switching view recomputes the Trabalhar percentile (asserted across two requests)
-- [ ] E2E tests cover the three-bucket payload and view switch (CHANCE-14/29)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
+- [x] `GET /api/queue?...` returns the three buckets with counts and totals
+- [x] Switching view recomputes the Trabalhar percentile (asserted across two requests)
+- [x] E2E tests cover the three-bucket payload and view switch (CHANCE-14/29)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
 
 **Tests**: e2e
 **Gate**: full

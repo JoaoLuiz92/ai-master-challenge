@@ -28,7 +28,8 @@ def _pair(client: TestClient) -> tuple[Deal, str]:
 
 def _item(client: TestClient, agent: str, opportunity_id: str) -> dict:
     body = client.get("/api/queue", params={"view": "mine", "agent": agent}).json()
-    return next(item for item in body["items"] if item["opportunity_id"] == opportunity_id)
+    queued = body["trabalhar"] + body["decidir"] + body.get("items", [])
+    return next(item for item in queued if item["opportunity_id"] == opportunity_id)
 
 
 def test_repa_02_post_moves_the_deal_between_queues() -> None:

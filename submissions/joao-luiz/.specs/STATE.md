@@ -109,10 +109,10 @@
 ## Handoff
 
 - **Feature**: `chance-por-idade`
-- **Phase / Task**: Execute C9 feito. **Agora:** C10 (`GET /api/queue`).
-- **Completed**: C1–C9. Features anteriores Execute + faixa PASS. PR #182 aberto.
+- **Phase / Task**: Execute C10 feito. **Agora:** C11 (rollup).
+- **Completed**: C1–C10. Features anteriores Execute + faixa PASS. PR #182 aberto.
 - **In-progress** (file:line): none.
-- **Next step**: C10 — três cestas em `/api/queue`. Ver `.specs/NEXT-ACTION.md`.
+- **Next step**: C11 — rollup Trabalhar vs Decidir. Ver `.specs/NEXT-ACTION.md`.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
 - **Uncommitted files**: none after this commit.
 - **Branch**: submission/joao-luiz

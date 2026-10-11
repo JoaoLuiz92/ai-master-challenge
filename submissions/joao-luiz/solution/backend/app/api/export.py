@@ -7,7 +7,7 @@ from fastapi import APIRouter, Request
 from fastapi.responses import Response
 
 from app.ingestion.repository import Deal
-from app.views.query import QueueItem, ViewFilter, build_queue
+from app.views.query import QueueItem, ViewFilter, build_view
 
 router = APIRouter()
 
@@ -39,8 +39,8 @@ def export_csv(
         office=_blank(office),
     )
     deals: tuple[Deal, ...] = request.app.state.deals
-    queue = build_queue(deals, selected)
-    return Response(content=_csv(queue.items), media_type="text/csv")
+    view = build_view(deals, selected)
+    return Response(content=_csv(view.trabalhar + view.decidir), media_type="text/csv")
 
 
 def _csv(items: tuple[QueueItem, ...]) -> str:

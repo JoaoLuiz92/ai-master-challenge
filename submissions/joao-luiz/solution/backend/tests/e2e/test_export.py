@@ -28,7 +28,8 @@ def test_lead_25_csv_matches_the_filtered_queue_line_by_line() -> None:
         exported = client.get("/api/export.csv", params=params)
 
     assert queue.status_code == 200
-    items = queue.json()["items"]
+    payload = queue.json()
+    items = payload["trabalhar"] + payload["decidir"]
     assert items
     assert exported.status_code == 200
 

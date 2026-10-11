@@ -195,7 +195,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-11 | P1: Fila Decidir | pedido da Head | Spec | Implementing |
 | CHANCE-12 | P1: Fila Decidir | ordem por preço | Spec | Implementing |
 | CHANCE-13 | P1: Fila Decidir | mantém Revisar (LEAD-16/17) | Spec | Implementing |
-| CHANCE-14 | P1: Fila Decidir | três seções | Spec | Implementing |
+| CHANCE-14 | P1: Fila Decidir | três seções | Spec | Verified |
 | CHANCE-15 | P1: Fila Decidir | supersede LEAD-19/20 | Spec | Verified |
 | CHANCE-16 | P1: Explicação | RF3 (motivo/ação) | Spec | Verified |
 | CHANCE-17 | P1: Explicação | frase da parede | Spec | Verified |
@@ -210,7 +210,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-26 | P2: Rollup gestor | destaque parado | Spec | Pending |
 | CHANCE-27 | P2: Rollup gestor | recálculo por visão | Spec | Pending |
 | CHANCE-28 | P2: Export/filtros | CA9 | Spec | Pending |
-| CHANCE-29 | P2: Export/filtros | percentil por visão | Spec | Pending |
+| CHANCE-29 | P2: Export/filtros | percentil por visão | Spec | Verified |
 
 **ID format:** `CHANCE-[NUMBER]`.
 

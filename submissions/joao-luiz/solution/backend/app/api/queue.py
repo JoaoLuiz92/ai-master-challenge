@@ -1,4 +1,4 @@
-"""Workable queue and Revisar section for the current filter."""
+"""Workable queue, Decidir and Revisar for the current filter."""
 
 from dataclasses import asdict
 
@@ -6,9 +6,8 @@ from fastapi import APIRouter, Request
 
 from app.ingestion.repository import Deal
 from app.scoring.age import age_days
-from app.views.explain import explain
-from app.views.filter import split_view
-from app.views.query import QueueItem, ViewFilter, build_queue
+from app.views.explain import action_for, explain
+from app.views.query import QueueItem, ViewFilter, build_view
 
 router = APIRouter()
 
@@ -21,25 +20,25 @@ def get_queue(
     manager: str | None = None,
     office: str | None = None,
 ) -> dict:
-    """SCORE and ESTADO are computed on this filter, not on a cached global rank."""
+    """SCORE is the Trabalhar percentile of this filter."""
     selected = ViewFilter(
         agent=_blank(agent),
         manager=_blank(manager),
         office=_blank(office),
     )
     deals: tuple[Deal, ...] = request.app.state.deals
-    queue = build_queue(deals, selected)
-    revisar = split_view(
-        deals,
-        agent=selected.agent,
-        manager=selected.manager,
-        office=selected.office,
-    ).revisar
+    result = build_view(deals, selected)
+    trabalhar = [_queue_item(item) for item in result.trabalhar]
+    decidir = [_queue_item(item) for item in result.decidir]
+    revisar = [_review_item(deal) for deal in result.revisar]
     return {
         "view": _blank(view),
-        "items": [_queue_item(item) for item in queue.items],
-        "revisar": [_review_item(deal) for deal in revisar],
-        "empty_message": queue.empty_message,
+        "trabalhar": trabalhar,
+        "decidir": decidir,
+        "revisar": revisar,
+        "items": trabalhar + decidir,
+        "totals": asdict(result.totals),
+        "empty_message": result.empty_message,
     }
 
 
@@ -59,7 +58,7 @@ def _review_item(deal: Deal) -> dict:
         "age_days": age,
         "estado": "Revisar",
         "reason": text.reason,
-        "action": text.action,
+        "action": action_for("revisar"),
     }
 
 

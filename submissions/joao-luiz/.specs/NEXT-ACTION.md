@@ -4,9 +4,9 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-C10: GET /api/queue com três cestas (`chance-por-idade`). `backend/app/api/queue.py`. Depende de C7.
+C11: GET /api/rollup Trabalhar vs Decidir (`chance-por-idade`). `backend/app/api/rollup.py`. Depende de C10.
 
 ## Fila
 
-1. C11: GET /api/rollup Trabalhar vs Decidir
-2. C12–C16 conforme `tasks.md`
+1. C12: DealCard mostra a chance
+2. C13–C16 conforme `tasks.md`
