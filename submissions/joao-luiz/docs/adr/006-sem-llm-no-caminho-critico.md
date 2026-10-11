@@ -64,3 +64,7 @@ Opção escolhida: **"A"**. Uso futuro de modelo, se houver, fica para texto nã
 
 - PRD §9 Fora de escopo; RNF2
 - [ADR-001](001-priorizar-por-valor-em-risco.md), [ADR-002](002-fastapi-react-em-memoria.md)
+
+## Nota posterior (2026-10-11)
+
+A aritmética vigente é `sales_price × CHANCE(idade)` ([ADR-014](014-chance-por-idade-com-censura.md)). LLM continua fora do caminho crítico. Os nós 57/106 deixaram de ser a curva de ranking; o badge Esfriando ainda usa 106d como pista visual.

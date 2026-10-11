@@ -31,7 +31,7 @@ Re-verify loop 2 of 3. Coverage re-derived from spec.md and tests; previous repo
 | C15 | ✅ Done | Config, ADRs, docs |
 | C16 | ✅ Lane PASS | backend-tester 133 passed; ui-tester 4 scenarios passed; this report |
 
-C16 remains unchecked in `tasks.md` until the orchestrator records the lane result.
+C16 marcado em `tasks.md` depois desta faixa.
 
 ---
 

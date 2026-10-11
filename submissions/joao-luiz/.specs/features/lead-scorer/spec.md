@@ -1,6 +1,8 @@
 # Lead Scorer ("Foco da Semana") Specification
 
-**Apresentação (a partir de 2026-10-09):** chrome, estações Vendedor/Gestor e hierarquia visual não são definidos aqui. Ver ADRs [008](../../../docs/adr/008-duas-estacoes-enderecaveis.md)–[012](../../../docs/adr/012-tom-visual-mesa-operacional.md). Esta spec permanece dona do motor, da ingestão e dos campos de domínio. A home **destaca** Focar e colapsa Acompanhar/Revisar (LEAD-04/18: a fila existe na estação, não necessariamente expandida). Estágio some do card trabalhável; SCORE permanece visível e rebaixado (ADR-010).
+> **Motor vigente.** A ordenação desta spec (`VALOR × URGÊNCIA`, LEAD-06/07/19/20) foi **substituída** em 2026-10-11 por `chance-por-idade` (ADR-014/015, critérios CHANCE-*). O texto abaixo é o contrato histórico da v1; não reescreve o produto no ar. Ingestão (LEAD-11..15), Revisar (LEAD-16/17) e âncora temporal continuam.
+
+**Apresentação (a partir de 2026-10-09):** chrome, estações Vendedor/Gestor e hierarquia visual não são definidos aqui. Ver ADRs [008](../../../docs/adr/008-duas-estacoes-enderecaveis.md)–[012](../../../docs/adr/012-tom-visual-mesa-operacional.md). A home **destaca** Focar e colapsa Acompanhar/Revisar (LEAD-04/18: a fila existe na estação, não necessariamente expandida). Estágio some do card trabalhável; SCORE permanece visível e rebaixado (ADR-010).
 
 ## Problem Statement
 
@@ -210,7 +212,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | LEAD-03 | P1: Fila priorizada | CA2 | Tasks | Verified |
 | LEAD-04 | P1: Fila priorizada | RF2 | Tasks | Verified |
 | LEAD-05 | P1: Fila priorizada | RF3, CA3 | Tasks | Verified |
-| LEAD-06 | P1: Motor de priorização | ADR-001, CA2 | Tasks | Verified |
+| LEAD-06 | P1: Motor de priorização | ADR-001, CA2 | Tasks | Superseded |
 | LEAD-07 | P1: Motor de priorização | EDA §4 | Tasks | Superseded |
 | LEAD-08 | P1: Motor de priorização | EDA (hoje=2017-12-31) | Tasks | Verified |
 | LEAD-09 | P1: Motor de priorização | CA7, RF11 | Tasks | Verified |
@@ -241,7 +243,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 **ID format:** `[CATEGORY]-[NUMBER]` (e.g., `LEAD-01`).
 
-**Status values:** Pending → In Design → In Tasks → Implementing → Verified
+**Status values:** Pending → In Design → In Tasks → Implementing → Verified. `Superseded` = reescrito por `chance-por-idade` (LEAD-06/07/19/20).
 
 **Coverage:** 33 total, all mapped to tasks in `tasks.md`, 0 unmapped.
 

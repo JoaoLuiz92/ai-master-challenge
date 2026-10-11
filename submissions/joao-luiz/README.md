@@ -135,46 +135,54 @@ Cadeia v0 → v1 → v2 → v3: [`docs/evolucao-do-score.md`](docs/evolucao-do-s
 
 ## Process Log — Como usei IA
 
-> **Este bloco é obrigatório.** Sem ele, a submissão é desclassificada. Narrativa longa da EDA: [`process-log/eda-2026-10-08.md`](process-log/eda-2026-10-08.md).
+> **Este bloco é obrigatório.** Sem ele, a submissão é desclassificada.
+>
+> Resumo aqui; narrativa por sessão em [`process-log/`](process-log/) ([EDA](process-log/eda-2026-10-08.md) · [motor v3](process-log/chance-por-idade-2026-10-11.md)). O git history é a outra evidência: um commit por tarefa.
 
 ### Ferramentas usadas
 
-| Ferramenta | Para que usou |
+| Ferramenta | Para que usei |
 |------------|--------------|
-| Cursor | EDA, spec, ADRs, Execute, e o harness de agentes (faixa de validação) |
-| Playwright MCP | Browser real na faixa de UI — cliques, prints, export vs. tela. Não é o produto. |
+| Cursor (agente + skill `tlc-spec-driven`) | EDA, PRD, specs, ADRs e código, uma tarefa por vez |
+| Subagentes do Cursor | Faixa de validação: backend, UI e verificador independente (autor ≠ verificador) |
+| Playwright MCP | Browser real na faixa de UI: cliques, prints, export comparado à tela |
 
 ### Workflow
 
-1. EDA nos CSVs antes de congelar a fórmula. O dado derrubou corte por idade e classificador.
-2. Spec fechada, com contrato de entrega, antes de escrever o app.
-3. Execute uma tarefa por vez, com a cadeia de commits visível (harness → evidência → spec → tarefas), em vez de um dump único.
-4. Validação fora do chat: subagentes de backend, UI (Playwright MCP) e um verificador independente (autor ≠ verificador). Por que essa topologia existe: [`docs/harness/`](docs/harness/README.md).
+1. Do briefing saíram hipóteses para **testar**, não implementar (`p̂`, corte por idade, join de produto).
+2. EDA nos CSVs como juiz; números congelados em [`docs/analise-exploratoria.md`](docs/analise-exploratoria.md).
+3. PRD dividido em quatro features, cada uma com spec (critérios EARS), design e tarefas atômicas.
+4. Cada prompt = uma tarefa, com critério de aceite e gate. Um commit por tarefa (82 no total).
+5. Validação fora do chat pelo harness ([`docs/harness/`](docs/harness/README.md)). A fórmula iterou quatro vezes ([`docs/evolucao-do-score.md`](docs/evolucao-do-score.md)).
 
 ### Onde a IA errou e como corrigi
 
-O primeiro commit desta branch foi desfeito de propósito: faltava o harness. Sem `AGENTS.md`, o próximo agente reabria a spec ou empilhava tudo num único commit.
+- Queria cortar deal velho da fila; a EDA mostrou que isso esvaziaria 89% do funil.
+- Queria rankear por `p̂`; o holdout deu AUC 0,478.
+- Juntava produto sem o alias `GTXPro`; 1.480 linhas ficariam sem preço.
+- Fez o app num commit só, sem harness; desfiz e recomecei.
+- Na validação: um mutante sobreviveu na `foco-ui` (`19adc75`) e o export da v3 saiu sem a coluna `fila` (`cb2f89f`).
 
-Na EDA, três hipóteses da IA não sobreviveram ao dado: cortar deal velho da fila (esvaziaria 89% do funil), rankear por `p̂` (AUC 0,478) e juntar produto sem o alias `GTXPro` (1.480 linhas, o produto que mais fatura, ficariam sem preço). Números: [`process-log/eda-2026-10-08.md`](process-log/eda-2026-10-08.md).
+Detalhe de cada caso nos logs de sessão.
 
 ### O que eu adicionei que a IA sozinha não faria
 
-- Cadeia de commits visível, em vez de um único commit com o app pronto.
-- Teto de contexto no Execute: fechar a tarefa atual; a próxima abre em janela nova.
-- Quem testa não é quem escreveu: faixa de validação com subagentes separados ([`docs/harness/`](docs/harness/README.md)). A pasta `.cursor/` desta máquina é local e não entra no PR.
-- Decisão de negócio ancorada no dado (derrubar `p̂` e o corte por idade), não na intuição de mercado.
+- Derrubar `p̂` e o corte por idade com números, contra a intuição de mercado.
+- Autor ≠ verificador, com `file:line` por critério e mutantes que o teste tem de matar.
+- Backtest como gate: a v3 só entra se capturar mais receita que ordenar por preço ([ADR-016](docs/adr/016-backtest-como-gate-do-motor.md)).
+- Fechar uma tarefa antes de abrir a próxima, com a cadeia de commits legível.
 
 ---
 
 ## Evidências
 
 - [x] Harness de agentes — raciocínio e contratos em [`docs/harness/`](docs/harness/README.md); `AGENTS.md` + `.specs/`
-- [x] Narrativa da EDA (`process-log/eda-2026-10-08.md`)
+- [x] Narrativa da EDA e do motor v3 (`process-log/`)
 - [x] Evolução da fórmula (`docs/evolucao-do-score.md`)
 - [x] ADRs (`docs/adr/`)
-- [x] Spec / design / tasks das três features (`.specs/features/`)
-- [x] Capturas da UI (vendedor / gestor / repasse) — `.specs/features/*/ui-evidence/`
-- [x] Relatórios de validação independentes — `lead-scorer`, `foco-ui` e `repassar-deal` (`validation.md`)
+- [x] Spec / design / tasks das quatro features (`.specs/features/`)
+- [x] Capturas da UI (vendedor / gestor / repasse / chance) — `.specs/features/*/ui-evidence/`
+- [x] Relatórios de validação independentes — `lead-scorer`, `foco-ui`, `repassar-deal` e `chance-por-idade` (`validation.md`)
 - [x] Histórico git — cadeia de commits aberta por tarefa
 
 ---
@@ -187,4 +195,4 @@ Na EDA, três hipóteses da IA não sobreviveram ao dado: cortar deal velho da f
 - `process-log/` — narrativa por sessão de desenvolvimento.
 - `AGENTS.md` — como qualquer agente trabalha nesta pasta.
 
-_As três features fecharam Execute e faixa de validação. Registro em cada `.specs/features/<feature>/validation.md`._
+_As quatro features fecharam Execute e faixa de validação. Registro em cada `.specs/features/<feature>/validation.md`._

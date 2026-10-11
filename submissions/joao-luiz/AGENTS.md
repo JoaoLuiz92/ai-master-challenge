@@ -17,17 +17,18 @@ Instruções para qualquer agente em `submissions/joao-luiz/`.
 - O PR **só** altera `submissions/joao-luiz/`. Não mexer no resto do repositório. `.cursor/` desta pasta e o junction `.cursor` da raiz do monorepo são **locais**: não entram no git. O harness publicado está em `docs/harness/`.
 - Prosa, commits e docs em **português**. Código, API e identificadores em **inglês**. UI do vendedor/gestor em **português** (ADR-004).
 - A raiz ignora `submissions/`: entrar com `git add -f` nos caminhos da submissão, **sem** `.cursor/`, `.playwright-mcp/`, `solution/.venv/`, `node_modules/`, `__pycache__/`, segredos. Um commit atômico por tarefa, Conventional Commits, corpo com o porquê. Sem squash. Sem push sem pedido.
-- `PRIORIDADE = sales_price × urgência`. SCORE = percentil **da visão**. `p̂` fora do ranking.
-- Idade não tira da fila. Badge Esfriando se idade > 106d. `TODAY = 2017-12-31`. Relato: `.specs/CONCERNS.md`.
+- `PRIORIDADE = sales_price × CHANCE(idade)`. SCORE = percentil **de Trabalhar** na visão. `p̂` fora do ranking. Relato: ADR-014.
+- Idade **acima da parede** (máx. Won da coorte) sai de Trabalhar e vai para **Decidir** — não some do produto. Badge Esfriando (>106d) é só pista visual. `TODAY = 2017-12-31`. Relato: `.specs/CONCERNS.md`, ADR-015.
+- Pytest do backend na imagem Docker (WDAC bloqueia pandas no host). Backtest: `python backtest.py` a partir de `solution/`.
 - Alias `GTXPro` → `GTX Pro` antes do preço. Relato no mesmo arquivo.
-- Em memória, sem LLM no caminho crítico. Explainability por deal: fator positivo, risco, ação, em português.
+- Em memória, sem LLM no caminho crítico. Trabalhar: frase de chance. Decidir: frase da parede + “Requalificar ou encerrar”. Revisar: dado ruim.
 - Pin: `fastapi==0.112.4`, `pydantic==1.10.22`, `starlette==0.38.6`. Relato em `CONCERNS.md`.
 - O bloco **Como usei IA** fica no README, com os quatro títulos do template. Relato em `CONCERNS.md`.
 - Faixa de UI: Playwright MCP. Plugin desligado **bloqueia** a faixa. Não usar Chrome DevTools no lugar. Vitest não substitui. O verificador não escreve código de produto.
 
 ## Repositório
 
-Ferramenta para o vendedor ver onde focar no pipeline, e para o gestor ver valor na fila. Dados: CSVs do CRM, em memória.
+Ferramenta para o vendedor ver onde focar no pipeline, e para o gestor ver o valor parado em Decidir. Dados: CSVs do CRM, em memória.
 
 - `solution/` — app. Cwd dos comandos abaixo. `backend/` (FastAPI), `data/` (CSVs), `eda.py` (análise, não é o app).
 - `.specs/` — spec, design, tasks, fila, estado, erros que não voltam.
@@ -50,15 +51,14 @@ Evidência no disco ganha de snapshot velho.
 Cwd: `submissions/joao-luiz/solution`. Python: `.venv\Scripts\python.exe`.
 
 ```text
-.venv\Scripts\python.exe -m pytest backend/tests/unit -q
-.venv\Scripts\python.exe -m pytest backend/tests/integration -q
-.venv\Scripts\python.exe -m pytest backend/tests -q
+docker compose run --rm --no-deps -e PYTHONPATH=/app/backend -v "%CD%/backend:/app/backend" api python -m pytest /app/backend/tests -q
 
-.venv\Scripts\python.exe -m pip install -r requirements-eda.txt
-.venv\Scripts\python.exe eda.py
+npm --prefix frontend test -- --run
+
+python backtest.py
 ```
 
-`docker compose` e os dois comandos locais do app entram no Execute (T26) e passam a constar no README.
+`docker compose up --build` e os dois comandos locais do app constam no README. No host Windows com WDAC, não rode pytest/pandas fora da imagem.
 
 ## Manutenção deste arquivo
 

@@ -1,5 +1,7 @@
 # Foco da Semana — Reorganização da UX (`foco-ui`) Specification
 
+> **Chrome vigente.** Estações, faixa e hierarquia do card continuam. A terceira cesta **Decidir** e a frase de chance no card vieram depois, em `chance-por-idade` (ADR-015); esta spec não as define.
+
 ## Problem Statement
 
 A UI atual é um documento único: um `<select>` de visão misturado a três filtros, um subtítulo que ensina estatística ("O SCORE é o percentil desta visão") e um `<ol>` de cards idênticos onde Focar e Acompanhar pesam igual e Revisar cai no fim. O vendedor não vê "os ~8 da semana"; vê scroll. O gestor recebe rollup **e** a fila do time no mesmo canvas — dois jobs, zero foco. Esta feature reorganiza a **apresentação** (não o motor) em duas estações endereçáveis, com hierarquia de atenção e vocabulário sem jargão, conforme os ADRs 008–012.

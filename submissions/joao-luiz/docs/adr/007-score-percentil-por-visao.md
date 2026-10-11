@@ -65,3 +65,7 @@ Opção escolhida: **"A"**. Empates compartilham o percentil; N=1 → SCORE 100 
 
 - PRD RF11, CA7; spec assumptions (fórmula do percentil e ceil)
 - [ADR-001](001-priorizar-por-valor-em-risco.md), [ADR-003](003-idade-nao-exclui-da-fila.md)
+
+## Nota posterior (2026-10-11)
+
+SCORE e Focar calculam-se só em **Trabalhar** da visão. Decidir não entra no percentil ([ADR-015](015-fila-decidir-alem-da-parede.md)). PRIORIDADE passou a `lista × CHANCE` ([ADR-014](014-chance-por-idade-com-censura.md)). O rollup do gestor usa Trabalhar vs Decidir e o **valor parado**, não o percentil cruzado.

@@ -114,7 +114,7 @@ ADRs: `014-chance-por-idade-com-censura.md`, `015-fila-decidir-alem-da-parede.md
 ## O que a fórmula v3 **não** é
 
 - Não é ML no caminho crítico (ADR-006): ranking 100% aritmético sobre CSV.
-- Não compara SCORE entre visões (o rollup do gestor usa contagem, soma de VALOR e esfriando).
+- Não compara SCORE entre visões (o rollup do gestor usa contagem e valor em Trabalhar vs Decidir; o destaque é o **valor parado**).
 - Não usa `close_value` do aberto (só existe depois de fechar).
 
 ---

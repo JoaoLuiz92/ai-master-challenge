@@ -56,7 +56,7 @@ MCP desligado **bloqueia** a faixa. Não inventar `@playwright/test` para “des
 2. **Sensor de discriminação.** 1–3 mutantes no comportamento central, em worktree isolada. O teste tem de **falhar**. Se o mutante sobrevive, a suíte não está assertando o que a spec diz.
 3. Relatório no disco (`validation.md`), não um “LGTM” no chat.
 
-As três features fecharam assim. Os números estão em cada `validation.md`.
+As quatro features fecharam assim. Os números estão em cada `validation.md`.
 
 ## Como isso se relaciona com o produto
 

@@ -1,7 +1,7 @@
 # Foco da Semana — Reorganização da UX (`foco-ui`) Design
 
 **Spec**: `.specs/features/foco-ui/spec.md`
-**Status**: Execute complete (T1–T18). `validation.md` ainda não existe.
+**Status**: Implemented (Execute T1–T18 + faixa PASS). A cesta Decidir e a frase de chance no card vieram depois, em `chance-por-idade`.
 
 ---
 

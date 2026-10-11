@@ -9,6 +9,7 @@
 - **Scope**: Motor de score e qualquer feature futura que ordene/prioritize deals.
 - **Date**: 2026-10-08
 - **Status**: superseded by AD-014 (ADR-014)
+- **Nota vigente**: a ordenação passou a `lista × CHANCE` (AD-014). O que permanece desta decisão é `p̂` fora do ranking.
 
 ### AD-002
 - **Decision**: Stack FastAPI (backend) + React (frontend) com todos os dados dos CSVs carregados em memória, sem banco, sem login, sem persistência além do export CSV.
@@ -25,6 +26,7 @@
 - **Scope**: Motor de urgência e regras de ESTADO.
 - **Date**: 2026-10-08
 - **Status**: superseded by AD-015 (ADR-015)
+- **Nota vigente**: o deal **não some** do produto (isso permanece). Além da parede vai para Decidir (AD-015); o badge Esfriando não escolhe a cesta.
 
 ### AD-004
 - **Decision**: UI em português; código, identificadores e API em inglês.
@@ -38,20 +40,20 @@
 - **Decision**: Âncora temporal "hoje" = 2017-12-31 (máxima data observada no pipeline) para todo cálculo de idade.
 - **Reason**: Usar a data real tornaria todo deal ~9 anos velho; o snapshot termina nessa data (EDA §2.3). Ver `docs/adr/005-ancora-temporal-2017-12-31.md`.
 - **Trade-off**: Valor fixo em código; precisa ser ajustado se o dataset mudar.
-- **Scope**: Motor de urgência e cálculo de idade.
+- **Scope**: Cálculo de idade em todo o motor.
 - **Date**: 2026-10-08
 - **Status**: active
 
 ### AD-006
 - **Decision**: Score 100% aritmético sobre CSV; LLM fora do caminho crítico.
-- **Reason**: Ranking é conta exata (alias, idade, lista × urgência, percentil); chamada externa quebraria RNF2. Ver `docs/adr/006-sem-llm-no-caminho-critico.md`.
+- **Reason**: Ranking é conta exata (alias, idade, lista × CHANCE, percentil); chamada externa quebraria RNF2. Ver `docs/adr/006-sem-llm-no-caminho-critico.md`. A fórmula vigente é ADR-014.
 - **Trade-off**: Motivo/ação são template, não prosa gerada.
 - **Scope**: Ingestão, motor de score, textos de explain.
 - **Date**: 2026-10-08
 - **Status**: active
 
 ### AD-007
-- **Decision**: SCORE é o percentil 0–100 de PRIORIDADE na visão filtrada; Focar = ceil(20% × N) dessa visão; cálculo na camada de query.
+- **Decision**: SCORE é o percentil 0–100 de PRIORIDADE **em Trabalhar** da visão filtrada; Focar = ceil(20% × N) desse conjunto; cálculo na camada de query. Decidir não entra no percentil.
 - **Reason**: Percentil global mentiria ao filtrar (CA7). Ver `docs/adr/007-score-percentil-por-visao.md`.
 - **Trade-off**: SCORE não é comparável entre visões; export tem de sair da visão atual.
 - **Scope**: ViewQueryService, API `/queue` `/export` `/rollup`.
@@ -102,7 +104,7 @@
 - **Decision**: O gestor passa um deal da fila trabalhável para um colega do mesmo escritório **só em memória**. Reiniciar a API devolve os donos dos CSVs. Sem `handoffs.jsonl`, sem banco. Os quatro CSVs de origem não são escritos.
 - **Reason**: “Não perder o deal” é o negócio continuar um só na tela (mesmo `opportunity_id`, sai de um e entra no outro). Gravar overlay ou banco contradiz AD-002, quebra a reprodução do snapshot e infla o desafio. Ver `docs/adr/013-repasse-so-na-sessao.md`.
 - **Trade-off**: Quem mata o processo perde o repasse; está escrito no README como limitação, não como bug.
-- **Scope**: Feature `repassar-deal`. Não altera o motor (AD-001..007). AD-002 permanece active.
+- **Scope**: Feature `repassar-deal`. Não altera o motor. AD-002 permanece active. O ranking vigente é AD-014.
 - **Date**: 2026-10-09
 - **Status**: active
 
@@ -138,5 +140,5 @@
 - **In-progress** (file:line): none.
 - **Next step**: nenhuma Execute. Relatório em `.specs/features/chance-por-idade/validation.md`. Não fazer push.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
-- **Uncommitted files**: none after this commit.
+- **Uncommitted files**: alinhamento de docs com o motor v3 (ainda sem commit; não fazer push).
 - **Branch**: submission/joao-luiz

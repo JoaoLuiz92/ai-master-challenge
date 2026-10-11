@@ -3,7 +3,7 @@
 **Data da análise:** 2026-10-08  
 **Script:** `solution/eda.py`  
 **Âncora temporal (“hoje”):** 2017-12-31 (máximo de `close_date` / `engage_date`)  
-**Este documento congela números. A spec TLC vem depois, em cima disto — não o contrário.**
+**Este documento congela números da EDA de 2026-10-08.** Não reescreve o produto: o motor vigente (v3, lista × CHANCE) está em `docs/evolucao-do-score.md` e ADR-014/015. A §4.1 registra a curva de sobrevivência; a §7 foi o freeze da spec v1.
 
 ---
 
@@ -235,6 +235,8 @@ GTK 500: suporte de conversão é frágil (n=15 Won), mas o **valor** não depen
 ---
 
 ## 7. O que a spec TLC deve congelar (input, não spec ainda)
+
+> Freeze da **spec v1** (lista × urgência, idade só badge). O motor vigente é **v3** (`lista × CHANCE`, cestas Trabalhar / Decidir / Revisar). Esta tabela não foi reescrita para não misturar EDA com produto atual.
 
 | Decisão | Valor vindo da EDA |
 |---|---|

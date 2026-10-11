@@ -1,7 +1,7 @@
 # Chance por idade — Design
 
 **Spec**: `.specs/features/chance-por-idade/spec.md`
-**Status**: Draft
+**Status**: Implemented
 
 ---
 

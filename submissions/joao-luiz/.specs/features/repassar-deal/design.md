@@ -1,7 +1,7 @@
 # Repassar deal — o gestor passa o negócio sem perdê-lo (`repassar-deal`) Design
 
 **Spec**: `.specs/features/repassar-deal/spec.md`
-**Status**: Approved
+**Status**: Implemented (Execute + faixa PASS). Repasse continua só na fila trabalhável (Focar/Acompanhar); Decidir não oferece o botão.
 
 ---
 

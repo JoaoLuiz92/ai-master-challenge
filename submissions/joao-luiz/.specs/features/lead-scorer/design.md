@@ -1,7 +1,7 @@
 # Lead Scorer Design
 
 **Spec**: `.specs/features/lead-scorer/spec.md`
-**Status**: Draft
+**Status**: Implemented (Execute + faixa PASS). Motor de ordenação desta design (`lista × urgência`) foi substituído por `chance-por-idade` (ADR-014). Ingestão, query por visão e API de leitura permanecem.
 
 ---
 

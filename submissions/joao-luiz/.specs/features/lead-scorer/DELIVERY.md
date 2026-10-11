@@ -2,6 +2,8 @@
 
 Registro do que a execução entregou. Os critérios continuam em `spec.md`. O veredito com evidência está em `validation.md`.
 
+> **Motor vigente.** A ordenação desta entrega (`lista × urgência`) foi substituída em 2026-10-11 pela feature `chance-por-idade` (ADR-014/015). Ingestão, estações e o CSV como canal durável permanecem. Ver `.specs/features/chance-por-idade/`.
+
 **Status:** Execute T1–T27 fechado. Faixa de validação PASS em 2026-10-09.
 
 ## O que subiu

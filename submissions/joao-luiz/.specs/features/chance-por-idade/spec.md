@@ -4,17 +4,17 @@
 
 ## Problem Statement
 
-A Head de RevOps pediu que o vendedor pare de gastar tempo em deal que não fecha. A EDA do pipeline mostra que a probabilidade de fechamento **cai com a idade do deal** e zera a partir de uma parede observada nos dados: nenhum deal fechado converteu depois dessa idade. O motor atual não usa essa curva — ordena por `VALOR × URGÊNCIA` com um piso que mantém o deal velho na fila de trabalho, só marcado como "Esfriando". Resultado: a maior parte do pipeline aberto além da parede continua na fila do vendedor como trabalho, quando deveria ser decisão do gestor (requalificar ou encerrar).
+A Head de RevOps pediu que o vendedor pare de gastar tempo em deal que não fecha. A EDA do pipeline mostra que a probabilidade de fechamento **cai com a idade do deal** e zera a partir de uma parede observada nos dados: nenhum deal fechado converteu depois dessa idade. O motor **v1** (à época desta spec) não usava essa curva — ordenava por `VALOR × URGÊNCIA` com um piso que mantinha o deal velho na fila de trabalho, só marcado como "Esfriando". Resultado: a maior parte do pipeline aberto além da parede continuava na fila do vendedor como trabalho, quando deveria ser decisão do gestor (requalificar ou encerrar).
 
 Esta feature troca a urgência com piso por uma **chance de fechar por idade**, calculada contando também os deals que seguem abertos (censura), e separa o pipeline em duas filas: **Trabalhar** (ainda pode fechar) e **Decidir** (parado além da parede). O achado de negócio — o volume e o valor parados além da parede — passa a ser a primeira leitura do gestor, com evidência em backtest de que a nova ordem captura mais receita que ordenar por preço.
 
 ## Goals
 
-- [ ] O motor calcula `CHANCE(idade)` a partir de uma curva de sobrevivência sobre o ciclo de fechamento, contando como censurados os deals ainda abertos, de modo que a chance decline com a idade e seja 0 além da parede (maior idade de deal fechado na coorte).
-- [ ] `PRIORIDADE = sales_price × CHANCE(idade)` substitui `VALOR × URGÊNCIA`; sem piso que sustente deal parado no topo.
-- [ ] A fila de trabalho (Trabalhar) contém só deals Engaging com conta e idade ≤ parede; o deal além da parede sai da fila de trabalho e entra na fila **Decidir**, ordenada por valor, para requalificar ou encerrar.
-- [ ] Cada deal traz, em português, a chance e a frase da parede ("Nenhum deal da base fechou depois de N dias; M abertos já passaram disso").
-- [ ] Um backtest reconstrói a fila em cortes passados sem olhar o futuro e prova que a nova ordem captura mais receita no top‑N que ordenar só por preço; se não bater o baseline, a mudança não entra.
+- [x] O motor calcula `CHANCE(idade)` a partir de uma curva de sobrevivência sobre o ciclo de fechamento, contando como censurados os deals ainda abertos, de modo que a chance decline com a idade e seja 0 além da parede (maior idade de deal fechado na coorte).
+- [x] `PRIORIDADE = sales_price × CHANCE(idade)` substitui `VALOR × URGÊNCIA`; sem piso que sustente deal parado no topo.
+- [x] A fila de trabalho (Trabalhar) contém só deals Engaging com conta e idade ≤ parede; o deal além da parede sai da fila de trabalho e entra na fila **Decidir**, ordenada por valor, para requalificar ou encerrar.
+- [x] Cada deal traz, em português, a chance e a frase da parede ("Nenhum deal da base fechou depois de N dias; M abertos já passaram disso").
+- [x] Um backtest reconstrói a fila em cortes passados sem olhar o futuro e prova que a nova ordem captura mais receita no top‑N que ordenar só por preço; se não bater o baseline, a mudança não entra.
 
 ## Out of Scope
 
@@ -216,7 +216,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 29 total, 14 mapped (CHANCE-02/04/05/06/07/09 Verified; CHANCE-01/03/10/11/12/13/14/17 Implementing).
+**Coverage:** 29 total, 29 Verified (faixa PASS 2026-10-11).
 
 ---
 
@@ -224,19 +224,18 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 
 How we know the feature is successful:
 
-- [ ] A chance por idade é calculada com censura e vale 0 acima da parede derivada dos dados (CHANCE-01/02).
-- [ ] A fila ordena por `VALOR × CHANCE`; o deal além da parede tem PRIORIDADE 0 e sai da fila de trabalho (CHANCE-06/07).
-- [ ] Trabalhar, Decidir e Revisar são três seções distintas, cada uma com contagem e valor (CHANCE-11/14).
-- [ ] Cada deal traz a chance (Trabalhar) ou a frase da parede (Decidir) em português, com números do dado (CHANCE-16/17/19).
-- [ ] O backtest prova, em ≥ 3 cortes, que a nova ordem captura mais receita no top‑N que ordenar por preço; caso contrário, a troca não é adotada (CHANCE-20..23).
-- [ ] O gestor vê, por vendedor, o valor parado em Decidir como figura principal de limpeza (CHANCE-25/26).
-- [ ] `docker compose up` sobe a solução com as duas filas e saída determinística (RNF1/RNF2 preservados).
+- [x] A chance por idade é calculada com censura e vale 0 acima da parede derivada dos dados (CHANCE-01/02).
+- [x] A fila ordena por `VALOR × CHANCE`; o deal além da parede tem PRIORIDADE 0 e sai da fila de trabalho (CHANCE-06/07).
+- [x] Trabalhar, Decidir e Revisar são três seções distintas, cada uma com contagem e valor (CHANCE-11/14).
+- [x] Cada deal traz a chance (Trabalhar) ou a frase da parede (Decidir) em português, com números do dado (CHANCE-16/17/19).
+- [x] O backtest prova, em ≥ 3 cortes, que a nova ordem captura mais receita no top‑N que ordenar por preço; caso contrário, a troca não é adotada (CHANCE-20..23).
+- [x] O gestor vê, por vendedor, o valor parado em Decidir como figura principal de limpeza (CHANCE-25/26).
+- [x] `docker compose up` sobe a solução com as duas filas e saída determinística (RNF1/RNF2 preservados).
 
 ---
 
 ## Supersession & migration notes
 
-- **ADR a criar:** ADR-014 (chance por idade com censura), ADR-015 (fila Decidir separada), ADR-016 (backtest como gate do motor). Os ADR-001 e ADR-003 passam a `Superseded by ADR-014/015`, com o texto original preservado.
-- **Critérios reescritos:** LEAD-07 (urgência) → CHANCE-01/06; LEAD-19/20 (idade só modula, nunca exclui) → CHANCE-02/11/15. Atualizar o status desses LEAD-* para `Superseded` em `lead-scorer/spec.md` quando esta feature entrar em Tasks.
-- **O que não muda:** ingestão e normalização (LEAD-11..15), Revisar (LEAD-16/17), export (LEAD-25), âncora temporal, repasse (ADR-013), ausência de banco/login. A UI ganha a seção Decidir e troca o texto de urgência pela chance; o chrome das estações permanece.
-- **Docs a atualizar junto do Execute:** `README.md` (Executive Summary, lógica do score, limitações), `docs/evolucao-do-score.md` (v3) e `docs/analise-exploratoria.md` (seção da curva de sobrevivência e da parede).
+- **ADRs feitos:** ADR-014 (chance por idade com censura), ADR-015 (fila Decidir), ADR-016 (backtest como gate). ADR-001 e ADR-003 estão `Superseded by ADR-014/015`, texto original preservado.
+- **Critérios reescritos:** LEAD-06/07 (urgência) → CHANCE-01/06; LEAD-19/20 (idade só modula, nunca exclui) → CHANCE-02/11/15. Status `Superseded` em `lead-scorer/spec.md`.
+- **O que não muda:** ingestão e normalização (LEAD-11..15), Revisar (LEAD-16/17), âncora temporal, repasse (ADR-013), ausência de banco/login. O export (LEAD-25) ganhou coluna `fila` e as três cestas (CHANCE-28). A UI ganhou Decidir e trocou o texto de urgência pela chance; o chrome das estações permanece.

@@ -25,4 +25,4 @@ Cada ADR traz **tomada** e **não tomadas** com o porquê. Resumo:
 | [015](015-fila-decidir-alem-da-parede.md) | Trabalhar / Decidir / Revisar | Além da parede é decisão, não exclusão | B só badge; C tirar do produto | B gasta esforço; C esvazia 89% |
 | [016](016-backtest-como-gate-do-motor.md) | Adotar só se nova > preço | Captura top‑N / 90d em ≥3 cortes, sem leakage | B adotar no feeling; C AUC | B é opinião; C não mede a fila |
 
-Detalhes de produto que não são ADR (forma da curva de urgência, textos de ação, `ceil(0,20×N)`, aliases, coluna `sales_price`, `metadata.csv` ignorado) estão congelados em `.specs/features/lead-scorer/spec.md` § Assumptions.
+Detalhes de produto que não são ADR (faixas da tábua em `Settings`, textos de ação, `ceil(0,20×N)`, aliases, coluna `sales_price`, `metadata.csv` ignorado) estão congelados nas specs: motor vigente em `.specs/features/chance-por-idade/spec.md`; ingestão e chrome históricos em `lead-scorer` / `foco-ui`.
