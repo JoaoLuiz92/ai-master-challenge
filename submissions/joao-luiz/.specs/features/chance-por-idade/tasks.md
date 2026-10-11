@@ -216,11 +216,11 @@ C15 → C16
 
 **Done when**:
 
-- [ ] `priority(value, chance) = value * chance` (deterministic, no probability-model term)
-- [ ] Deal above the wall → priority 0 (asserted)
-- [ ] No reference to `urgency` remains in the ranking path
-- [ ] Unit tests confirm new ordering and past-wall zero (CHANCE-06/07/09/10)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `priority(value, chance) = value * chance` (deterministic, no probability-model term)
+- [x] Deal above the wall → priority 0 (asserted)
+- [x] No reference to `urgency` remains in the ranking path
+- [x] Unit tests confirm new ordering and past-wall zero (CHANCE-06/07/09/10)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick

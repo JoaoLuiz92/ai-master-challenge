@@ -109,10 +109,10 @@
 ## Handoff
 
 - **Feature**: `chance-por-idade`
-- **Phase / Task**: Execute C4 feito. **Agora:** C5 (`PRIORIDADE = valor × chance`).
-- **Completed**: C1–C4 (coorte, tábua, parede, contagem além da parede). Features anteriores Execute + faixa PASS. PR #182 aberto.
+- **Phase / Task**: Execute C5 feito. **Agora:** C6 (bucketizer).
+- **Completed**: C1–C5. Features anteriores Execute + faixa PASS. PR #182 aberto.
 - **In-progress** (file:line): none.
-- **Next step**: C5 — reescrever `priority()` em `backend/app/scoring/priority.py`. Ver `.specs/NEXT-ACTION.md`.
+- **Next step**: C6 — `backend/app/views/buckets.py`. Ver `.specs/NEXT-ACTION.md`.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
 - **Uncommitted files**: none after this commit.
 - **Branch**: submission/joao-luiz

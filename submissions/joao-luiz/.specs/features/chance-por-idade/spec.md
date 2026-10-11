@@ -187,11 +187,11 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-03 | P1: Chance por idade | config parametrizável | Spec | Implementing |
 | CHANCE-04 | P1: Chance por idade | âncora 2017-12-31 | Spec | Verified |
 | CHANCE-05 | P1: Chance por idade | RNF2 (determinismo) | Spec | Verified |
-| CHANCE-06 | P1: Valor × chance | supersede ADR-001 | Spec | Pending |
-| CHANCE-07 | P1: Valor × chance | remove piso (ADR-003) | Spec | Pending |
+| CHANCE-06 | P1: Valor × chance | supersede ADR-001 | Spec | Verified |
+| CHANCE-07 | P1: Valor × chance | remove piso (ADR-003) | Spec | Verified |
 | CHANCE-08 | P1: Valor × chance | SCORE percentil da visão | Spec | Pending |
-| CHANCE-09 | P1: Valor × chance | sem ML no ranking | Spec | Pending |
-| CHANCE-10 | P1: Valor × chance | supersede LEAD-07 | Spec | Pending |
+| CHANCE-09 | P1: Valor × chance | sem ML no ranking | Spec | Verified |
+| CHANCE-10 | P1: Valor × chance | supersede LEAD-07 | Spec | Implementing |
 | CHANCE-11 | P1: Fila Decidir | pedido da Head | Spec | Pending |
 | CHANCE-12 | P1: Fila Decidir | ordem por preço | Spec | Pending |
 | CHANCE-13 | P1: Fila Decidir | mantém Revisar (LEAD-16/17) | Spec | Pending |
@@ -216,7 +216,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 29 total, 6 mapped (CHANCE-02/04/05 Verified; CHANCE-01/03/17 Implementing).
+**Coverage:** 29 total, 10 mapped (CHANCE-02/04/05/06/07/09 Verified; CHANCE-01/03/10/17 Implementing).
 
 ---
 

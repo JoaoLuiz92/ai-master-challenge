@@ -4,9 +4,9 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-C5: `PRIORIDADE = valor × chance` (`chance-por-idade`). `backend/app/scoring/priority.py`. Depende de C3.
+C6: bucketizer Trabalhar / Decidir / Revisar (`chance-por-idade`). `backend/app/views/buckets.py`. Depende de C3.
 
 ## Fila
 
-1. C6: bucketizer Trabalhar / Decidir / Revisar
-2. C7–C16 conforme `tasks.md`
+1. C7: view builder, percentil só em Trabalhar
+2. C8–C16 conforme `tasks.md`
