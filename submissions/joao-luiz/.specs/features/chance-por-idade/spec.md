@@ -206,9 +206,9 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-22 | P1: Backtest gate | baseline preço | Spec | Verified |
 | CHANCE-23 | P1: Backtest gate | reverter se não bater | Spec | Implementing |
 | CHANCE-24 | P1: Backtest gate | reprodutível offline | Spec | Verified |
-| CHANCE-25 | P2: Rollup gestor | RF7/RF8 | Spec | Pending |
-| CHANCE-26 | P2: Rollup gestor | destaque parado | Spec | Pending |
-| CHANCE-27 | P2: Rollup gestor | recálculo por visão | Spec | Pending |
+| CHANCE-25 | P2: Rollup gestor | RF7/RF8 | Spec | Implementing |
+| CHANCE-26 | P2: Rollup gestor | destaque parado | Spec | Implementing |
+| CHANCE-27 | P2: Rollup gestor | recálculo por visão | Spec | Verified |
 | CHANCE-28 | P2: Export/filtros | CA9 | Spec | Pending |
 | CHANCE-29 | P2: Export/filtros | percentil por visão | Spec | Verified |
 

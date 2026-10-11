@@ -373,11 +373,11 @@ C15 → C16
 
 **Done when**:
 
-- [ ] Per agent: trabalharCount/Value and decidirCount/Value
-- [ ] Parked (Decidir) value highlighted as the primary cleanup figure
-- [ ] Filter recomputes both rollups and the percentile (CHANCE-27)
-- [ ] E2E tests cover the split rollup + filtered recompute (CHANCE-25/26/27)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
+- [x] Per agent: trabalharCount/Value and decidirCount/Value
+- [x] Parked (Decidir) value highlighted as the primary cleanup figure
+- [x] Filter recomputes both rollups and the percentile (CHANCE-27)
+- [x] E2E tests cover the split rollup + filtered recompute (CHANCE-25/26/27)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/e2e -q`
 
 **Tests**: e2e
 **Gate**: full

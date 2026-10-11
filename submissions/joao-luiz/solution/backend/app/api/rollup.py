@@ -20,7 +20,10 @@ def get_rollup(
     selected = ViewFilter(manager=_blank(manager), office=_blank(office))
     deals: tuple[Deal, ...] = request.app.state.deals
     rows = build_rollup(deals, selected)
-    return {"rows": [asdict(row) for row in rows]}
+    return {
+        "rows": [asdict(row) for row in rows],
+        "parked_value": sum(row.decidir_value for row in rows),
+    }
 
 
 def _blank(value: str | None) -> str | None:

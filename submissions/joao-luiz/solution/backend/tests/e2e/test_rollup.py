@@ -10,6 +10,10 @@ ROW_FIELDS = {
     "expected_value_sum",
     "cooling_count",
     "good_deals_cooling",
+    "trabalhar_count",
+    "trabalhar_value",
+    "decidir_count",
+    "decidir_value",
 }
 
 
@@ -24,6 +28,9 @@ def test_lead_26_rollup_lists_agents_with_queue_value_and_cooling() -> None:
     assert anna["expected_value_sum"] > 0
     assert anna["cooling_count"] >= 0
     assert anna["good_deals_cooling"] <= anna["cooling_count"]
+    assert anna["trabalhar_count"] + anna["decidir_count"] == anna["queued_count"]
+    assert "parked_value" in body
+    assert body["parked_value"] >= anna["decidir_value"]
 
 
 def test_lead_28_filter_recomputes_rollup_and_who_is_focar() -> None:
