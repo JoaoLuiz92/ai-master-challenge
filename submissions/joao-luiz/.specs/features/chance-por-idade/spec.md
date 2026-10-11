@@ -183,10 +183,10 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | Requirement ID | Story | Source | Phase | Status |
 | -------------- | ----- | ------ | ----- | ------ |
 | CHANCE-01 | P1: Chance por idade | EDA (curva de sobrevivência) | Spec | Implementing |
-| CHANCE-02 | P1: Chance por idade | EDA (parede) | Spec | Pending |
+| CHANCE-02 | P1: Chance por idade | EDA (parede) | Spec | Verified |
 | CHANCE-03 | P1: Chance por idade | config parametrizável | Spec | Implementing |
 | CHANCE-04 | P1: Chance por idade | âncora 2017-12-31 | Spec | Verified |
-| CHANCE-05 | P1: Chance por idade | RNF2 (determinismo) | Spec | Pending |
+| CHANCE-05 | P1: Chance por idade | RNF2 (determinismo) | Spec | Verified |
 | CHANCE-06 | P1: Valor × chance | supersede ADR-001 | Spec | Pending |
 | CHANCE-07 | P1: Valor × chance | remove piso (ADR-003) | Spec | Pending |
 | CHANCE-08 | P1: Valor × chance | SCORE percentil da visão | Spec | Pending |
@@ -216,7 +216,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 29 total, 3 mapped (CHANCE-04 Verified; CHANCE-01/03 Implementing — chance() e parede em C3).
+**Coverage:** 29 total, 5 mapped (CHANCE-02/04/05 Verified; CHANCE-01/03 Implementing — wall no load em C15).
 
 ---
 

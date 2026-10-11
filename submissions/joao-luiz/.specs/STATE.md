@@ -109,10 +109,10 @@
 ## Handoff
 
 - **Feature**: `chance-por-idade`
-- **Phase / Task**: Execute C2 feito. **Agora:** C3 (`chance(idade)` + parede).
-- **Completed**: C1 coorte; C2 `survival_table` com censura (curva sem censura cresce; com censura cai após o pico). Features anteriores Execute + faixa PASS. PR #182 aberto.
+- **Phase / Task**: Execute C3 feito. **Agora:** C4 (contagem além da parede).
+- **Completed**: C1 coorte; C2 tábua; C3 `derive_wall` + `chance(age)` (0 acima da parede, None sem idade). Features anteriores Execute + faixa PASS. PR #182 aberto.
 - **In-progress** (file:line): none.
-- **Next step**: C3 — `derive_wall` e `chance(age)` em `backend/app/scoring/chance.py`. Ver `.specs/NEXT-ACTION.md`.
+- **Next step**: C4 — `past_wall_open_count` em `backend/app/scoring/chance.py`. Ver `.specs/NEXT-ACTION.md`.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
 - **Uncommitted files**: none after this commit.
 - **Branch**: submission/joao-luiz

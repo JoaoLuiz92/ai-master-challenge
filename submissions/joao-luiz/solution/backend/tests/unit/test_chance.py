@@ -1,6 +1,6 @@
 """Unit tests for C2: survival table with censoring (CHANCE-01, CHANCE-03)."""
 
-from app.scoring.chance import survival_table
+from app.scoring.chance import MISSING_CHANCE, chance, derive_wall, survival_table
 from app.scoring.cohort import CohortEntry
 from app.settings import get_settings
 
@@ -72,3 +72,34 @@ def test_chance_03_bands_come_from_config_not_from_logic() -> None:
     other_table = survival_table(_hand_cohort(), other)
     assert [(row.min_age, row.max_age) for row in other_table] == list(other)
     assert len(table) != len(other_table)
+
+
+def test_chance_02_wall_is_max_won_age_from_the_cohort() -> None:
+    assert derive_wall(_hand_cohort()) == 25
+    younger = (_entry(10, "won"), _entry(40, "censored"), _entry(8, "lost"))
+    assert derive_wall(younger) == 10
+
+
+def test_chance_02_above_wall_is_zero_and_wall_keeps_last_band() -> None:
+    table = survival_table(_hand_cohort(), _BANDS)
+    wall = derive_wall(_hand_cohort())
+    assert chance(wall, table, wall) == 3 / 15
+    assert chance(wall + 1, table, wall) == 0.0
+    assert chance(400, table, wall) == 0.0
+    assert chance(5, table, wall) == 4 / 10
+
+
+def test_chance_02_missing_age_is_the_revisar_sentinel() -> None:
+    table = survival_table(_hand_cohort(), _BANDS)
+    wall = derive_wall(_hand_cohort())
+    assert chance(None, table, wall) is MISSING_CHANCE
+    assert MISSING_CHANCE is None
+
+
+def test_chance_05_identical_input_yields_identical_table_and_wall() -> None:
+    cohort = _hand_cohort()
+    assert survival_table(cohort, _BANDS) == survival_table(cohort, _BANDS)
+    assert derive_wall(cohort) == derive_wall(cohort)
+    table = survival_table(cohort, _BANDS)
+    wall = derive_wall(cohort)
+    assert chance(25, table, wall) == chance(25, table, wall)

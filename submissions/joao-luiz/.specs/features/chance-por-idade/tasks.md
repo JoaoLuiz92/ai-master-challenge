@@ -164,13 +164,13 @@ C15 → C16
 
 **Done when**:
 
-- [ ] `derive_wall(cohort)` returns the max age at which any Won occurred
-- [ ] `chance(age)` returns 0 for age > wall; the last band's chance at age == wall
-- [ ] `age is None` → documented sentinel (routes to Revisar; no chance)
-- [ ] Deterministic: identical input → identical table/wall (asserted)
-- [ ] Wall exposed as a configurable constant derived at load time
-- [ ] Unit tests cover wall boundary, above-wall zero, and None (CHANCE-02/03/05)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `derive_wall(cohort)` returns the max age at which any Won occurred
+- [x] `chance(age)` returns 0 for age > wall; the last band's chance at age == wall
+- [x] `age is None` → documented sentinel (routes to Revisar; no chance)
+- [x] Deterministic: identical input → identical table/wall (asserted)
+- [x] Wall exposed as a configurable constant derived at load time
+- [x] Unit tests cover wall boundary, above-wall zero, and None (CHANCE-02/03/05)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
