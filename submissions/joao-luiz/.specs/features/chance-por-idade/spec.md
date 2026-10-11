@@ -184,7 +184,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | -------------- | ----- | ------ | ----- | ------ |
 | CHANCE-01 | P1: Chance por idade | EDA (curva de sobrevivência) | Spec | Implementing |
 | CHANCE-02 | P1: Chance por idade | EDA (parede) | Spec | Verified |
-| CHANCE-03 | P1: Chance por idade | config parametrizável | Spec | Implementing |
+| CHANCE-03 | P1: Chance por idade | config parametrizável | Spec | Verified |
 | CHANCE-04 | P1: Chance por idade | âncora 2017-12-31 | Spec | Verified |
 | CHANCE-05 | P1: Chance por idade | RNF2 (determinismo) | Spec | Verified |
 | CHANCE-06 | P1: Valor × chance | supersede ADR-001 | Spec | Verified |
@@ -204,7 +204,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-20 | P1: Backtest gate | verificação | Spec | Verified |
 | CHANCE-21 | P1: Backtest gate | receita top‑N | Spec | Verified |
 | CHANCE-22 | P1: Backtest gate | baseline preço | Spec | Verified |
-| CHANCE-23 | P1: Backtest gate | reverter se não bater | Spec | Implementing |
+| CHANCE-23 | P1: Backtest gate | reverter se não bater | Spec | Verified |
 | CHANCE-24 | P1: Backtest gate | reprodutível offline | Spec | Verified |
 | CHANCE-25 | P2: Rollup gestor | RF7/RF8 | Spec | Verified |
 | CHANCE-26 | P2: Rollup gestor | destaque parado | Spec | Verified |

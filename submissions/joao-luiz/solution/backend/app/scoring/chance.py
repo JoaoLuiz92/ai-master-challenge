@@ -51,6 +51,13 @@ def derive_wall(cohort: tuple[CohortEntry, ...]) -> int:
     return max(entry.age_days for entry in cohort if entry.outcome == "won")
 
 
+def resolve_wall(cohort: tuple[CohortEntry, ...], override: int | None = None) -> int:
+    """Use the configured wall when set; otherwise derive it from Won ages."""
+    if override is not None:
+        return override
+    return derive_wall(cohort)
+
+
 def chance(
     age_days: int | None,
     table: tuple[BandChance, ...],

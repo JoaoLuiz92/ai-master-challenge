@@ -164,6 +164,18 @@ A ferramenta morre. **A EDA veta o cutoff de idade como exclusão.**
 
 Urgência: sobe até a mediana de Won (57d), fica alta até p90 (106d), **decai depois** — deal velho de GTK 500 ainda pode ganhar de MG Special fresco, mas perde para o mesmo produto mais novo.
 
+### 4.1 Curva de sobrevivência e a parede (feature posterior)
+
+A §4 veta **apagar** o deal velho do produto. A feature `chance-por-idade` não apaga: separa **Trabalhar** de **Decidir**.
+
+- **Idade de um Won** = `close_date − engage_date` (ciclo). **Aberto** = censurado: idade `TODAY − engage_date`, desfecho não-Won.
+- **CHANCE da faixa** = Won ÷ deals cuja idade cai na faixa. Sem os censurados, a chance sobe com a idade (só quem já fechou entra).
+- **Parede** = maior idade de um Won na coorte (no snapshot, 138d). Não é literal no motor; deriva no load. Acima dela, CHANCE = 0.
+- Faixas em config: 0–29, 30–59, 60–89, 90+.
+- A maioria dos Engaging abertos no corte 2017-12-31 já passou da parede — vão para Decidir. Isso é o artefato da §4, agora com cesta própria.
+
+Gate: `python backtest.py` (captura top‑N / 90d vs. preço, sem leakage).
+
 ---
 
 ## 5. Modelo `p̂` — holdout temporal

@@ -8,7 +8,7 @@ from random import Random
 from statistics import median, pstdev
 
 from app.ingestion.repository import Deal
-from app.scoring.chance import chance, derive_wall, survival_table
+from app.scoring.chance import chance, resolve_wall, survival_table
 from app.scoring.cohort import build_cohort
 from app.scoring.priority import priority
 from app.settings import get_settings
@@ -130,8 +130,9 @@ def _expected(deal: Deal, table, wall: int, cutoff: date) -> float:
 def _model(snap: tuple[Deal, ...], cutoff: date):
     cohort = build_cohort(snap, today=cutoff)
     # Open ages in the snapshot use cutoff, not TODAY, via build_cohort(today=cutoff).
-    table = survival_table(cohort, get_settings().chance_bands)
-    return table, derive_wall(cohort)
+    settings = get_settings()
+    table = survival_table(cohort, settings.chance_bands)
+    return table, resolve_wall(cohort, settings.wall_override)
 
 
 def _captured_revenue(

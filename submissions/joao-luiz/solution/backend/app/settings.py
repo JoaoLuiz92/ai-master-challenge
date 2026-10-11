@@ -15,6 +15,8 @@ class Settings:
         (60, 89),
         (90, 10_000),
     )
+    # None = derive the wall from the Won cohort at load. Set to pin a value.
+    wall_override: int | None = None
 
 
 def get_settings() -> Settings:

@@ -474,11 +474,11 @@ C15 → C16
 
 **Done when**:
 
-- [ ] Wall and bands configurable; no magic literal in logic
-- [ ] ADR-014/015/016 added; ADR-001/003 marked Superseded with original text intact
-- [ ] README (summary, score logic, limitations), evolução-do-score (v3) and análise (survival/wall) updated; LEAD-07/19/20 marked Superseded in `lead-scorer/spec.md`
-- [ ] Build gate passes
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests -q && npm --prefix frontend run build && npm --prefix frontend test -- --run`
+- [x] Wall and bands configurable; no magic literal in logic
+- [x] ADR-014/015/016 added; ADR-001/003 marked Superseded with original text intact
+- [x] README (summary, score logic, limitations), evolução-do-score (v3) and análise (survival/wall) updated; LEAD-07/19/20 marked Superseded in `lead-scorer/spec.md`
+- [x] Build gate passes
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests -q && npm --prefix frontend run build && npm --prefix frontend test -- --run`
 
 **Tests**: none
 **Gate**: build

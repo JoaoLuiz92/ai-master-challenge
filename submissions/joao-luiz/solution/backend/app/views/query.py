@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 from app.ingestion.repository import Deal
 from app.scoring.age import age_days
-from app.scoring.chance import chance, derive_wall, past_wall_open_count, survival_table
+from app.scoring.chance import chance, past_wall_open_count, resolve_wall, survival_table
 from app.scoring.cohort import build_cohort
 from app.scoring.confidence import confidence
 from app.scoring.cooling import cooling
@@ -119,8 +119,9 @@ def _chance_model(
     repo: tuple[Deal, ...],
 ) -> tuple[tuple, int]:
     cohort = build_cohort(repo)
-    table = survival_table(cohort, get_settings().chance_bands)
-    return table, derive_wall(cohort)
+    settings = get_settings()
+    table = survival_table(cohort, settings.chance_bands)
+    return table, resolve_wall(cohort, settings.wall_override)
 
 
 def _score_trabalhar(

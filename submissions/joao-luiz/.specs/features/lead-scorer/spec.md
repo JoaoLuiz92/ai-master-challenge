@@ -211,7 +211,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | LEAD-04 | P1: Fila priorizada | RF2 | Tasks | Verified |
 | LEAD-05 | P1: Fila priorizada | RF3, CA3 | Tasks | Verified |
 | LEAD-06 | P1: Motor de priorização | ADR-001, CA2 | Tasks | Verified |
-| LEAD-07 | P1: Motor de priorização | EDA §4 | Tasks | Verified |
+| LEAD-07 | P1: Motor de priorização | EDA §4 | Tasks | Superseded |
 | LEAD-08 | P1: Motor de priorização | EDA (hoje=2017-12-31) | Tasks | Verified |
 | LEAD-09 | P1: Motor de priorização | CA7, RF11 | Tasks | Verified |
 | LEAD-10 | P1: Motor de priorização | ADR-001 | Tasks | Verified |
@@ -223,8 +223,8 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | LEAD-16 | P1: Revisar vs. fila | CA4 | Tasks | Verified |
 | LEAD-17 | P1: Revisar vs. fila | CA4 (Prospecting) | Tasks | Verified |
 | LEAD-18 | P1: Revisar vs. fila | RF5 | Tasks | Verified |
-| LEAD-19 | P1: Estado e badge | CA5, RF4 | Tasks | Verified |
-| LEAD-20 | P1: Estado e badge | CA5 | Tasks | Verified |
+| LEAD-19 | P1: Estado e badge | CA5, RF4 | Tasks | Superseded |
+| LEAD-20 | P1: Estado e badge | CA5 | Tasks | Superseded |
 | LEAD-21 | P1: Estado e badge | PRD §5 (estados) | Tasks | Verified |
 | LEAD-22 | P1: Estado e badge | PRD §5 (confiança) | Tasks | Verified |
 | LEAD-23 | P1: Filtro e percentil | CA7, RF11 | Tasks | Verified |

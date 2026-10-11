@@ -4,8 +4,8 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-C15: config, ADRs e docs (`chance-por-idade`). `docs/adr/`, README. Depende de C9 e C14.
+C16: validation-lane (`chance-por-idade`). Depende de C15. Não validar no chat.
 
 ## Fila
 
-1. C16: validation-lane
+(vazia — última tarefa da feature)

@@ -16,6 +16,8 @@ import type { ViewRoute } from "../routing/route";
 const EMPTY_QUEUE = {
   view: null,
   items: [] as QueueItem[],
+  trabalhar: [] as QueueItem[],
+  decidir: [] as QueueItem[],
   revisar: [] as ReviewItem[],
   empty_message: null,
 };

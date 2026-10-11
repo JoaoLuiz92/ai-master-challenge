@@ -8,7 +8,7 @@
 - **Trade-off**: Abre mão de "prever quem fecha" e de ML visível; `p̂` fica documentado como experimento descartado no process log.
 - **Scope**: Motor de score e qualquer feature futura que ordene/prioritize deals.
 - **Date**: 2026-10-08
-- **Status**: active
+- **Status**: superseded by AD-014 (ADR-014)
 
 ### AD-002
 - **Decision**: Stack FastAPI (backend) + React (frontend) com todos os dados dos CSVs carregados em memória, sem banco, sem login, sem persistência além do export CSV.
@@ -24,7 +24,7 @@
 - **Trade-off**: A fila contém deals muito velhos; a urgência (não a exclusão) é quem os despromove.
 - **Scope**: Motor de urgência e regras de ESTADO.
 - **Date**: 2026-10-08
-- **Status**: active
+- **Status**: superseded by AD-015 (ADR-015)
 
 ### AD-004
 - **Decision**: UI em português; código, identificadores e API em inglês.
@@ -106,13 +106,37 @@
 - **Date**: 2026-10-09
 - **Status**: active
 
+### AD-014
+- **Decision**: `PRIORIDADE = sales_price × CHANCE(idade)`, com tábua de sobrevivência que conta abertos como censurados; chance 0 além da parede derivada da coorte.
+- **Reason**: Urgência com piso mantinha deal parado na fila de trabalho. Sem censura a chance cresce com a idade. Ver `docs/adr/014-chance-por-idade-com-censura.md`.
+- **Trade-off**: A maioria dos Engaging do snapshot cai além da parede (efeito de corte), e vai para Decidir.
+- **Scope**: Motor de score da feature `chance-por-idade`. Substitui AD-001.
+- **Date**: 2026-10-11
+- **Status**: active
+
+### AD-015
+- **Decision**: Engaging+conta com idade > parede vai para **Decidir** (preço desc), não some do produto e não mistura com Revisar.
+- **Reason**: A Head quer o vendedor fora do pipeline parado; excluir esvaziaria 89% (EDA §4). Ver `docs/adr/015-fila-decidir-alem-da-parede.md`.
+- **Trade-off**: Muitos vendedores abrem com Trabalhar vazio.
+- **Scope**: Filas Trabalhar / Decidir / Revisar. Substitui AD-003.
+- **Date**: 2026-10-11
+- **Status**: active
+
+### AD-016
+- **Decision**: Adotar o motor v3 só se o backtest sem leakage mostrar captura (top‑N / 90d) maior que ordenar por preço; senão reverter.
+- **Reason**: Troca de fórmula sem evidência é opinião. Ver `docs/adr/016-backtest-como-gate-do-motor.md` e `python backtest.py`.
+- **Trade-off**: O script é pesado e fica fora do caminho crítico da API.
+- **Scope**: Gate de adoção do motor `chance-por-idade`.
+- **Date**: 2026-10-11
+- **Status**: active
+
 ## Handoff
 
 - **Feature**: `chance-por-idade`
-- **Phase / Task**: Execute C14 feito. **Agora:** C15 (ADRs, config, docs).
-- **Completed**: C1–C14. Features anteriores Execute + faixa PASS. PR #182 aberto.
+- **Phase / Task**: Execute C15 feito. **Agora:** C16 (validation-lane).
+- **Completed**: C1–C15. Features anteriores Execute + faixa PASS. PR #182 aberto.
 - **In-progress** (file:line): none.
-- **Next step**: C15 — ADRs 014/015/016, supersessão e docs. Ver `.specs/NEXT-ACTION.md`.
+- **Next step**: C16 — faixa de validação (backend-tester ∥ ui-tester → spec-verifier). Ver `.specs/NEXT-ACTION.md`.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
 - **Uncommitted files**: none after this commit.
 - **Branch**: submission/joao-luiz

@@ -1,7 +1,7 @@
 # ADR-001: Priorizar o funil por valor em risco (lista × urgência), não por probabilidade de conversão
 
 - **Data**: 2026-10-08
-- **Status**: Accepted
+- **Status**: Superseded by [ADR-014](014-chance-por-idade-com-censura.md)
 - **Deciders**: João Luiz (AI Master candidate), apoiado por análise exploratória (`docs/analise-exploratoria.md`)
 - **Tags**: scoring, modeling, data, product
 

@@ -125,7 +125,14 @@ function DrillView({
   route: ViewRoute;
   navigate: (next: ViewRoute) => void;
 }) {
-  const incoming = snapshot.queue ?? { view: null, items: [], revisar: [], empty_message: null };
+  const incoming = snapshot.queue ?? {
+    view: null,
+    items: [],
+    trabalhar: [],
+    decidir: [],
+    revisar: [],
+    empty_message: null,
+  };
   const [queueOverride, setQueueOverride] = useState<QueueResponse | null>(null);
   const [passing, setPassing] = useState<QueueItem | null>(null);
   const queue = queueOverride ?? incoming;

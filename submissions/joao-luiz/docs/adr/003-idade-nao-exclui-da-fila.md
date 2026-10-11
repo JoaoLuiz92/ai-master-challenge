@@ -1,7 +1,7 @@
 # ADR-003: Idade nunca exclui da fila; Revisar é só dado ruim
 
 - **Data**: 2026-10-08
-- **Status**: Accepted
+- **Status**: Superseded by [ADR-015](015-fila-decidir-alem-da-parede.md)
 - **Deciders**: João Luiz, a partir da EDA (`docs/analise-exploratoria.md` §4)
 - **Tags**: product, scoring, estado
 

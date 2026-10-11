@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-Vendedores priorizam "no feeling": o snapshot mostra win rate plano (~63%) e valor variando 400×. Construí uma ferramenta **FastAPI + React** que o vendedor abre na segunda de manhã e vê, em segundos, **onde focar** — a fila de deals abertos ordenada por **valor em risco** (preço de lista × urgência), cada um com **motivo e ação em português**. O achado que definiu o produto veio da EDA: um classificador de conversão não tem sinal neste dataset (AUC 0,478), então `p̂` **não** entra no ranking — mandaria o time para deals irrelevantes. O gestor tem uma visão de rollup por vendedor e pode **passar um deal esfriando para um colega do mesmo escritório**. Recomendação: rodar com `docker compose up --build` e usar a estação do vendedor; o único artefato durável é o CSV exportado da visão atual.
+Vendedores priorizam "no feeling": o snapshot mostra win rate plano (~63%) e valor variando 400×. Construí uma ferramenta **FastAPI + React** que o vendedor abre na segunda de manhã e vê, em segundos, **onde focar** — a fila **Trabalhar** ordenada por **preço de lista × chance de fechar por idade**, cada deal com a frase de chance em português. Deal além da parede (nenhum Won da base fechou depois daquela idade) sai do trabalho e vai para **Decidir** (requalificar ou encerrar). `p̂` de classificador **não** entra no ranking (AUC 0,478). O gestor vê o **valor parado** por vendedor e pode **passar um deal para um colega do mesmo escritório**. Recomendação: `docker compose up --build`; o único artefato durável é o CSV exportado da visão atual.
 
 ---
 
@@ -58,6 +58,9 @@ docker compose run --rm --no-deps -e PYTHONPATH=/app/backend api python -m pytes
 # Frontend (vitest)
 npm --prefix frontend install
 npm --prefix frontend test -- --run
+
+# Backtest do motor v3 (sem leakage) — a partir de solution/
+python backtest.py
 ```
 
 ### Reproduzir a EDA
@@ -83,34 +86,38 @@ O script imprime AUC, Spearman e as tabelas que sustentam a fórmula.
 
 ### O que foi entregue
 
-Três features, todas com Execute concluído e faixa de validação **PASS**:
+Quatro features; as três primeiras com Execute e faixa **PASS**. `chance-por-idade` fechou o Execute (C1–C15); a faixa de validação é a tarefa C16.
 
 | Feature | O que faz | Validação |
 |---------|-----------|-----------|
 | **`lead-scorer`** — o motor | FastAPI carrega os 4 CSVs em memória no startup, normaliza, calcula PRIORIDADE/SCORE/ESTADO e serve `/api/queue`, `/api/rollup`, `/api/export.csv`. Score 100% aritmético, sem LLM no caminho crítico. | 68 pytest + verificador 38/38 — [`delivery.md`](.specs/features/lead-scorer/delivery.md) · [`validation.md`](.specs/features/lead-scorer/validation.md) |
 | **`foco-ui`** — a mesa de trabalho | React. Estações endereçáveis `/vendedor` e `/gestor`, fila com Focar (herói) / Acompanhar / Revisar, card com motivo e ação, badge Esfriando, rollup do gestor, drill por vendedor, export da visão. Textos em português. | vitest 70 + verificador 38/38 + 8 cenários UI — [`validation.md`](.specs/features/foco-ui/validation.md) |
 | **`repassar-deal`** — o repasse | No drill do gestor, "Passar para colega" move **um** `opportunity_id` para um colega do **mesmo escritório**. O deal continua único, sai de uma fila e entra na outra; o card de destino mostra "Veio de {dono anterior}". Só na sessão. | 96 pytest + verificador 19/19 + sensor 3/3 + 4 cenários UI — [`validation.md`](.specs/features/repassar-deal/validation.md) |
+| **`chance-por-idade`** — chance e Decidir | Tábua de sobrevivência com censura; `PRIORIDADE = lista × CHANCE`; filas Trabalhar / Decidir / Revisar; rollup com valor parado. | Execute C1–C15; faixa C16 — [spec](.specs/features/chance-por-idade/spec.md) |
 
 ### Lógica de scoring — e o porquê
 
 ```text
-PRIORIDADE = sales_price × urgência(idade)        # atributo estável do deal
-SCORE      = percentil 0–100 de PRIORIDADE na visão filtrada
-ESTADO     = Focar (ceil(20% × N) da visão) | Acompanhar | Revisar
+PRIORIDADE = sales_price × CHANCE(idade)
+CHANCE     = Won ÷ deals da faixa de idade (abertos = censurados); 0 além da parede
+SCORE      = percentil 0–100 de PRIORIDADE só em Trabalhar
+Filas      = Trabalhar | Decidir (preço desc) | Revisar
 ```
 
-- **Valor em risco, não probabilidade.** `p̂` (chance de fechar) **não** entra no ranking: AUC 0,478 no holdout temporal e Spearman 0,999 entre a fila com e sem `p̂`. Quem reordena é o **valor** (varia 400×) junto com a **urgência**. [ADR-001](docs/adr/001-priorizar-por-valor-em-risco.md).
-- **SCORE é da visão, não global.** Percentil calculado no conjunto filtrado (meus deals / time / filtros); percentil global mentiria ao filtrar. O SCORE da UI é "posição nesta visão, 0–100". [ADR-007](docs/adr/007-score-percentil-por-visao.md).
-- **Idade modula, não exclui.** Excluir deal velho esvaziaria 89% do funil (mediana Engaging 165d > máx Won 138d, efeito de snapshot). Idade só muda a urgência; acima de **106 dias** (p90 de Won) ganha o badge **Esfriando**. Revisar = dado ruim (sem conta / sem `engage_date`). [ADR-003](docs/adr/003-idade-nao-exclui-da-fila.md).
-- **Âncora temporal `TODAY = 2017-12-31`** (máxima data do pipeline); usar a data real zeraria a urgência de todo mundo. [ADR-005](docs/adr/005-ancora-temporal-2017-12-31.md).
-- **Explainability sem LLM.** Cada deal traz fator positivo, risco e ação em português, por template aritmético — reproduzível a cada run. [ADR-006](docs/adr/006-sem-llm-no-caminho-critico.md).
+- **Valor × chance, não urgência com piso.** A tábua de sobrevivência conta os ainda abertos; sem isso a chance cresce com a idade. `p̂` de classificador continua fora (AUC 0,478). [ADR-014](docs/adr/014-chance-por-idade-com-censura.md) (substitui [ADR-001](docs/adr/001-priorizar-por-valor-em-risco.md)).
+- **Parede derivada, não literal.** Maior idade de um Won na coorte, exposta em `Settings` (`chance_bands`, `wall_override`). Deal **acima** da parede vai para Decidir; na parede ainda é Trabalhar. [ADR-015](docs/adr/015-fila-decidir-alem-da-parede.md) (substitui [ADR-003](docs/adr/003-idade-nao-exclui-da-fila.md) — o deal não some do produto).
+- **SCORE é de Trabalhar, na visão.** Percentil só nos deals trabalháveis do filtro. [ADR-007](docs/adr/007-score-percentil-por-visao.md).
+- **Esfriando é pista visual.** O badge (>106d) não decide mais a cesta.
+- **Gate de adoção.** `python backtest.py` — a troca só entra se a nova ordem capturar mais receita que ordenar por preço. [ADR-016](docs/adr/016-backtest-como-gate-do-motor.md).
+- **Âncora temporal `TODAY = 2017-12-31`**. [ADR-005](docs/adr/005-ancora-temporal-2017-12-31.md).
+- **Explainability sem LLM.** Frase de chance / frase da parede em português, números do dado. [ADR-006](docs/adr/006-sem-llm-no-caminho-critico.md).
 
-Cadeia completa v0 → v1 → v2 da fórmula: [`docs/evolucao-do-score.md`](docs/evolucao-do-score.md). Todas as decisões: [`docs/adr/`](docs/adr/README.md).
+Cadeia v0 → v1 → v2 → v3: [`docs/evolucao-do-score.md`](docs/evolucao-do-score.md). Decisões: [`docs/adr/`](docs/adr/README.md).
 
 ### Recomendações
 
 - Começar pela estação do vendedor: a fila ordenada com motivo/ação resolve o job-to-be-done da segunda-feira sem planilha.
-- O gestor usa o rollup para achar valor esfriando e, no drill, repassar o deal para quem tem capacidade.
+- O gestor usa o rollup para atacar o **valor parado** em Decidir e, no drill, repassar o deal para quem tem capacidade.
 - O durável é o **CSV exportado** da visão atual — é o que o vendedor leva para fora da ferramenta.
 - Para produção: trocar o estado em memória por CRM real (donos, histórico, "já revisei") mantendo o motor intacto.
 
@@ -119,7 +126,10 @@ Cadeia completa v0 → v1 → v2 da fórmula: [`docs/evolucao-do-score.md`](docs
 - **Sem banco e sem arquivo de sessão.** Os CSVs entram na memória no startup. Recarregar a API (`docker compose down` / subir de novo) **volta o funil ao snapshot**. Não é falha: o desafio é um dataset público de demonstração; um banco faria cada restart deixar de ser o mesmo funil. O único artefato durável é o **CSV exportado**. [ADR-002](docs/adr/002-fastapi-react-em-memoria.md).
 - **Repasse de deal vale só na sessão.** O botão "Passar para colega" está entregue e validado no drill do gestor, mas o movimento é **em memória**: só colega do **mesmo escritório**, o `opportunity_id` continua um só, e **restart devolve o dono do CSV**. Em produção isso viveria no CRM. [ADR-013](docs/adr/013-repasse-so-na-sessao.md).
 - **Sem login.** Papel vendedor/gestor é a estação na URL, não SSO.
-- **`p̂` não entra no ranking.** AUC 0,478; o score de conversão empurraria o time para deals irrelevantes (documentado como experimento descartado).
+- **`p̂` não entra no ranking.** AUC 0,478; o classificador empurraria o time para deals irrelevantes (experimento descartado).
+- **A maior parte do Engaging aberto cai em Decidir.** A mediana dos abertos (165d) passa da parede de Won (~138d): é o corte do snapshot, não cadáver escondido. Eles não saem do produto.
+- **Curva global, não por produto.** Recalibrar por segmento fica para a v2 da chance.
+- **Backtest de adoção.** Se `python backtest.py` emitir `adopted=false`, o motor v3 não se justifica e reverte para lista × urgência.
 
 ---
 
