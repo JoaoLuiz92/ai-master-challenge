@@ -500,10 +500,10 @@ C15 → C16
 
 **Done when**:
 
-- [ ] backend-tester ∥ ui-tester pass; spec-verifier maps each AC → file:line
-- [ ] UI scenarios: Trabalhar vs Decidir split, chance/wall text, rollup parked value
-- [ ] `validation.md` written for the feature
-- [ ] Lane reports PASS
+- [x] backend-tester ∥ ui-tester pass; spec-verifier maps each AC → file:line
+- [x] UI scenarios: Trabalhar vs Decidir split, chance/wall text, rollup parked value
+- [x] `validation.md` written for the feature
+- [x] Lane reports PASS
 
 **Tests**: UI e2e (Playwright MCP) + verifier
 **Gate**: validation lane

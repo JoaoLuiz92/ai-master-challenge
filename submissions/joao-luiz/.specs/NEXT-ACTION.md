@@ -4,8 +4,8 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-C16: validation-lane (`chance-por-idade`). Depende de C15. Não validar no chat.
+Feature `chance-por-idade` fechada (Execute C1–C16 + faixa PASS). Sem próxima Execute.
 
 ## Fila
 
-(vazia — última tarefa da feature)
+(vazia)

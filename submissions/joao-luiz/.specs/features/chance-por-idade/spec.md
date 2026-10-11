@@ -182,7 +182,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 
 | Requirement ID | Story | Source | Phase | Status |
 | -------------- | ----- | ------ | ----- | ------ |
-| CHANCE-01 | P1: Chance por idade | EDA (curva de sobrevivência) | Spec | Implementing |
+| CHANCE-01 | P1: Chance por idade | EDA (curva de sobrevivência) | Spec | Verified |
 | CHANCE-02 | P1: Chance por idade | EDA (parede) | Spec | Verified |
 | CHANCE-03 | P1: Chance por idade | config parametrizável | Spec | Verified |
 | CHANCE-04 | P1: Chance por idade | âncora 2017-12-31 | Spec | Verified |

@@ -86,14 +86,14 @@ O script imprime AUC, Spearman e as tabelas que sustentam a fórmula.
 
 ### O que foi entregue
 
-Quatro features; as três primeiras com Execute e faixa **PASS**. `chance-por-idade` fechou o Execute (C1–C15); a faixa de validação é a tarefa C16.
+Quatro features, todas com Execute concluído e faixa de validação **PASS**.
 
 | Feature | O que faz | Validação |
 |---------|-----------|-----------|
 | **`lead-scorer`** — o motor | FastAPI carrega os 4 CSVs em memória no startup, normaliza, calcula PRIORIDADE/SCORE/ESTADO e serve `/api/queue`, `/api/rollup`, `/api/export.csv`. Score 100% aritmético, sem LLM no caminho crítico. | 68 pytest + verificador 38/38 — [`delivery.md`](.specs/features/lead-scorer/delivery.md) · [`validation.md`](.specs/features/lead-scorer/validation.md) |
 | **`foco-ui`** — a mesa de trabalho | React. Estações endereçáveis `/vendedor` e `/gestor`, fila com Focar (herói) / Acompanhar / Revisar, card com motivo e ação, badge Esfriando, rollup do gestor, drill por vendedor, export da visão. Textos em português. | vitest 70 + verificador 38/38 + 8 cenários UI — [`validation.md`](.specs/features/foco-ui/validation.md) |
 | **`repassar-deal`** — o repasse | No drill do gestor, "Passar para colega" move **um** `opportunity_id` para um colega do **mesmo escritório**. O deal continua único, sai de uma fila e entra na outra; o card de destino mostra "Veio de {dono anterior}". Só na sessão. | 96 pytest + verificador 19/19 + sensor 3/3 + 4 cenários UI — [`validation.md`](.specs/features/repassar-deal/validation.md) |
-| **`chance-por-idade`** — chance e Decidir | Tábua de sobrevivência com censura; `PRIORIDADE = lista × CHANCE`; filas Trabalhar / Decidir / Revisar; rollup com valor parado. | Execute C1–C15; faixa C16 — [spec](.specs/features/chance-por-idade/spec.md) |
+| **`chance-por-idade`** — chance e Decidir | Tábua de sobrevivência com censura; `PRIORIDADE = lista × CHANCE`; filas Trabalhar / Decidir / Revisar; rollup com valor parado. | 133 pytest + verificador 29/29 + sensor 3/3 + 4 cenários UI — [`validation.md`](.specs/features/chance-por-idade/validation.md) |
 
 ### Lógica de scoring — e o porquê
 

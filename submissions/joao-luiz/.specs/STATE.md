@@ -133,10 +133,10 @@
 ## Handoff
 
 - **Feature**: `chance-por-idade`
-- **Phase / Task**: Execute C15 feito. **Agora:** C16 (validation-lane).
-- **Completed**: C1–C15. Features anteriores Execute + faixa PASS. PR #182 aberto.
+- **Phase / Task**: Execute C16 feito. Feature fechada.
+- **Completed**: C1–C16. Faixa PASS. Features anteriores Execute + faixa PASS. PR #182 aberto.
 - **In-progress** (file:line): none.
-- **Next step**: C16 — faixa de validação (backend-tester ∥ ui-tester → spec-verifier). Ver `.specs/NEXT-ACTION.md`.
+- **Next step**: nenhuma Execute. Relatório em `.specs/features/chance-por-idade/validation.md`. Não fazer push.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
 - **Uncommitted files**: none after this commit.
 - **Branch**: submission/joao-luiz
