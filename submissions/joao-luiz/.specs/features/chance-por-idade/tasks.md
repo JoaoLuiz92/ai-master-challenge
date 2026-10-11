@@ -137,12 +137,12 @@ C15 → C16
 
 **Done when**:
 
-- [ ] `survival_table(cohort, bands)` returns a chance per band
-- [ ] A cohort without censoring yields a different (increasing) curve — asserted to prove censoring matters
-- [ ] The censored curve is non-increasing after its peak
-- [ ] Bands are read from config, not hard-coded in logic
-- [ ] Unit tests cover the censoring contrast and monotonicity (CHANCE-01)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `survival_table(cohort, bands)` returns a chance per band
+- [x] A cohort without censoring yields a different (increasing) curve — asserted to prove censoring matters
+- [x] The censored curve is non-increasing after its peak
+- [x] Bands are read from config, not hard-coded in logic
+- [x] Unit tests cover the censoring contrast and monotonicity (CHANCE-01)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick

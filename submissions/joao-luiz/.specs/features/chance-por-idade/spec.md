@@ -184,7 +184,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | -------------- | ----- | ------ | ----- | ------ |
 | CHANCE-01 | P1: Chance por idade | EDA (curva de sobrevivência) | Spec | Implementing |
 | CHANCE-02 | P1: Chance por idade | EDA (parede) | Spec | Pending |
-| CHANCE-03 | P1: Chance por idade | config parametrizável | Spec | Pending |
+| CHANCE-03 | P1: Chance por idade | config parametrizável | Spec | Implementing |
 | CHANCE-04 | P1: Chance por idade | âncora 2017-12-31 | Spec | Verified |
 | CHANCE-05 | P1: Chance por idade | RNF2 (determinismo) | Spec | Pending |
 | CHANCE-06 | P1: Valor × chance | supersede ADR-001 | Spec | Pending |
@@ -216,7 +216,7 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 
 **Status values:** Pending → In Design → In Tasks → Implementing → Verified
 
-**Coverage:** 29 total, 2 mapped (CHANCE-04 Verified in C1; CHANCE-01 Implementing — tábua em C2).
+**Coverage:** 29 total, 3 mapped (CHANCE-04 Verified; CHANCE-01/03 Implementing — chance() e parede em C3).
 
 ---
 

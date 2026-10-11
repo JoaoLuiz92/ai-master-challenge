@@ -4,11 +4,10 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-C2: tábua de sobrevivência com censura (`chance-por-idade`). `backend/app/scoring/chance.py`. Depende de C1.
+C3: `chance(idade)` + derivar a parede (`chance-por-idade`). `backend/app/scoring/chance.py`. Depende de C2.
 
 ## Fila
 
-1. C3: `chance(idade)` + derivar a parede
-2. C4: contagem de abertos além da parede
-3. C5: `PRIORIDADE = valor × chance`
-4. C6–C16 conforme `tasks.md`
+1. C4: contagem de abertos além da parede
+2. C5: `PRIORIDADE = valor × chance`
+3. C6–C16 conforme `tasks.md`
