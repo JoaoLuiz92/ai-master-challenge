@@ -424,11 +424,11 @@ C15 → C16
 
 **Done when**:
 
-- [ ] Decidir rendered separate from Trabalhar, ordered by price desc
-- [ ] Wall sentence shown; action "Requalificar ou encerrar"
-- [ ] Empty-work-but-decide state renders the decision list, not an error
-- [ ] Component unit tests cover list, order, wall text, and the empty-work state (CHANCE-11/12/17/18)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Decidir rendered separate from Trabalhar, ordered by price desc
+- [x] Wall sentence shown; action "Requalificar ou encerrar"
+- [x] Empty-work-but-decide state renders the decision list, not an error
+- [x] Component unit tests cover list, order, wall text, and the empty-work state (CHANCE-11/12/17/18)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

@@ -192,9 +192,9 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-08 | P1: Valor × chance | SCORE percentil da visão | Spec | Verified |
 | CHANCE-09 | P1: Valor × chance | sem ML no ranking | Spec | Verified |
 | CHANCE-10 | P1: Valor × chance | supersede LEAD-07 | Spec | Verified |
-| CHANCE-11 | P1: Fila Decidir | pedido da Head | Spec | Implementing |
-| CHANCE-12 | P1: Fila Decidir | ordem por preço | Spec | Implementing |
-| CHANCE-13 | P1: Fila Decidir | mantém Revisar (LEAD-16/17) | Spec | Implementing |
+| CHANCE-11 | P1: Fila Decidir | pedido da Head | Spec | Verified |
+| CHANCE-12 | P1: Fila Decidir | ordem por preço | Spec | Verified |
+| CHANCE-13 | P1: Fila Decidir | mantém Revisar (LEAD-16/17) | Spec | Verified |
 | CHANCE-14 | P1: Fila Decidir | três seções | Spec | Verified |
 | CHANCE-15 | P1: Fila Decidir | supersede LEAD-19/20 | Spec | Verified |
 | CHANCE-16 | P1: Explicação | RF3 (motivo/ação) | Spec | Verified |

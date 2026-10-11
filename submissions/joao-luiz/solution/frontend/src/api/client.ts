@@ -38,6 +38,8 @@ export type ReviewItem = {
 export type QueueResponse = {
   view: string | null;
   items: QueueItem[];
+  trabalhar?: QueueItem[];
+  decidir?: QueueItem[];
   revisar: ReviewItem[];
   empty_message: string | null;
 };

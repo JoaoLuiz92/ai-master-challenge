@@ -172,7 +172,12 @@ function DrillView({
           onCancel={() => setPassing(null)}
         />
       ) : null}
-      <DealBands items={queue.items} revisar={queue.revisar} onPass={setPassing} />
+      <DealBands
+        items={queue.trabalhar ?? queue.items}
+        decidir={queue.decidir ?? []}
+        revisar={queue.revisar}
+        onPass={setPassing}
+      />
     </>
   );
 }

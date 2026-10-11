@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { QueueItem, ReviewItem } from "../api/client";
 import { CollapsibleBand } from "../components/CollapsibleBand";
 import { DealCard } from "../components/DealCard";
+import { DecidirSection } from "../components/DecidirSection";
 import { EmptyState } from "../components/EmptyState";
 import { ExportButton } from "../components/ExportButton";
 import { ReviewRow } from "../components/ReviewRow";
@@ -83,7 +84,8 @@ export function VendedorStation({
             ]}
           />
           <DealBands
-            items={queue.items}
+            items={queue.trabalhar ?? queue.items}
+            decidir={queue.decidir ?? []}
             revisar={queue.revisar}
             revisarKey={revisarKey}
             openRevisar={openRevisar}
@@ -96,26 +98,33 @@ export function VendedorStation({
 
 export function DealBands({
   items,
+  decidir = [],
   revisar,
   revisarKey = 0,
   openRevisar = false,
   onPass,
 }: {
   items: QueueItem[];
+  decidir?: QueueItem[];
   revisar: ReviewItem[];
   revisarKey?: number;
   openRevisar?: boolean;
   onPass?: (item: QueueItem) => void;
 }) {
-  const focar = items.filter((item) => item.estado === "Focar");
-  const acompanhar = items.filter((item) => item.estado === "Acompanhar");
+  const work = items.filter((item) => item.estado !== "Decidir");
+  const focar = work.filter((item) => item.estado === "Focar");
+  const acompanhar = work.filter((item) => item.estado === "Acompanhar");
+  const parked = decidir.length > 0 ? decidir : items.filter((item) => item.estado === "Decidir");
+  const workEmpty = work.length === 0;
 
   return (
     <div className="deal-bands">
       <div id="band-focar">
         <CollapsibleBand title="Focar" count={focar.length} defaultOpen>
           {focar.length === 0 ? (
-            <EmptyState kind="only-revisar" count={revisar.length} />
+            parked.length === 0 ? (
+              <EmptyState kind="only-revisar" count={revisar.length} />
+            ) : null
           ) : (
             <ol>
               {focar.map((item) => (
@@ -146,6 +155,7 @@ export function DealBands({
           </ol>
         </CollapsibleBand>
       </div>
+      <DecidirSection items={parked} workEmpty={workEmpty} />
       <div id="band-revisar">
         <CollapsibleBand
           key={revisarKey}

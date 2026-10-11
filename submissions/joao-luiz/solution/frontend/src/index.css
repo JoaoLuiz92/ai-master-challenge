@@ -266,6 +266,50 @@ select,
   border-radius: 2px;
 }
 
+.decidir-section {
+  margin: 1.25rem 0;
+}
+
+.decidir-section__wall {
+  margin: 0 0 0.75rem;
+  color: var(--ink-soft);
+}
+
+.decidir-row {
+  padding: 0.5rem 0;
+  border-left: 3px solid var(--rust);
+  padding-left: 0.75rem;
+  margin: 0.4rem 0;
+}
+
+.decidir-row h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+}
+
+.decidir-row p,
+.decidir-row dl {
+  margin: 0;
+}
+
+.decidir-row dl {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.35rem;
+}
+
+.decidir-row dt {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.decidir-row dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
 .review-row {
   padding: 0.5rem 0;
   border-left: 3px solid var(--line);
