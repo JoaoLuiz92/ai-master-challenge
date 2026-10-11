@@ -4,10 +4,11 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-Pacote da submissão (fora do Execute): README no template, harness publicado em `docs/harness/`, `.cursor/` fora do git. PR ainda não aberto.
-
-As três features (`lead-scorer`, `foco-ui`, `repassar-deal`) estão com Execute e faixa PASS. Relatórios em `.specs/features/<feature>/validation.md`.
+C2: tábua de sobrevivência com censura (`chance-por-idade`). `backend/app/scoring/chance.py`. Depende de C1.
 
 ## Fila
 
-1. Revisar o working tree e abrir o PR (`[Submission] João Luiz Da Rosa Junior — Challenge 003`)
+1. C3: `chance(idade)` + derivar a parede
+2. C4: contagem de abertos além da parede
+3. C5: `PRIORIDADE = valor × chance`
+4. C6–C16 conforme `tasks.md`

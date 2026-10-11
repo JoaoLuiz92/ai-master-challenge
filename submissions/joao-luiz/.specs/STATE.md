@@ -108,11 +108,11 @@
 
 ## Handoff
 
-- **Feature**: `foco-ui`
-- **Phase / Task**: Execute T1–T18 e faixa PASS. **Agora:** pacote da submissão.
-- **Completed**: `foco-ui` validation.md PASS (38/38, sensor do Esfriando morto em `19adc75`). `repassar-deal` T1–T10 e faixa PASS. `lead-scorer` Execute + faixa PASS.
+- **Feature**: `chance-por-idade`
+- **Phase / Task**: Execute C1 feito. **Agora:** C2 (tábua de sobrevivência com censura).
+- **Completed**: C1 (`build_cohort`: won / lost / censored; âncora 2017-12-31). Features anteriores (`lead-scorer`, `foco-ui`, `repassar-deal`) Execute + faixa PASS. PR #182 aberto.
 - **In-progress** (file:line): none.
-- **Next step**: pacote da submissão (README no template, evidência de IA, PR). Ver `.specs/NEXT-ACTION.md`.
-- **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. UI Docker em http://127.0.0.1:8080. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
-- **Uncommitted files**: diffs locais anteriores (harness, README, ADRs, PRD) continuam fora destes commits.
+- **Next step**: C2 — `survival_table` em `backend/app/scoring/chance.py`. Ver `.specs/NEXT-ACTION.md`.
+- **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
+- **Uncommitted files**: none after this commit.
 - **Branch**: submission/joao-luiz
