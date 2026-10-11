@@ -37,3 +37,25 @@ def explain(
 
 def _thousands(value: int) -> str:
     return f"{value:,}".replace(",", ".")
+
+
+def chance_sentence(deal_chance: float) -> str:
+    """Percent of deals of this age that closed Won. Number comes from the table."""
+    percent = round(deal_chance * 100)
+    return f"{percent}% dos deals desta idade fecharam."
+
+
+def wall_sentence(wall: int, past_count: int) -> str:
+    """Wall age and how many open deals are past it. Both numbers come from data."""
+    return (
+        f"Nenhum deal da base fechou depois de {wall} dias; "
+        f"{past_count} abertos já passaram disso."
+    )
+
+
+def action_for(bucket: str) -> str:
+    if bucket == "trabalhar":
+        return "Avançar proposta"
+    if bucket == "decidir":
+        return "Requalificar ou encerrar"
+    return "Qualificar conta/dados"

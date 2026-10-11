@@ -87,3 +87,16 @@ def test_chance_15_empty_trabalhar_keeps_decidir() -> None:
     assert view.trabalhar == ()
     assert view.empty_message == "sem deals nesta visão"
     assert [item.opportunity_id for item in view.decidir] == ["parked"]
+
+
+def test_chance_16_trabalhar_reason_is_the_chance_sentence() -> None:
+    view = build_view(_repo(), ViewFilter(agent="Ana"))
+    assert view.trabalhar[0].reason.endswith("dos deals desta idade fecharam.")
+    assert view.trabalhar[0].action == "Avançar proposta"
+    assert str(round(view.trabalhar[0].chance * 100)) in view.trabalhar[0].reason
+
+
+def test_chance_17_decidir_reason_is_the_wall_sentence() -> None:
+    view = build_view(_repo(), ViewFilter(agent="Ana"))
+    assert view.decidir[0].reason.startswith("Nenhum deal da base fechou depois de ")
+    assert view.decidir[0].action == "Requalificar ou encerrar"

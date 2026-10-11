@@ -109,10 +109,10 @@
 ## Handoff
 
 - **Feature**: `chance-por-idade`
-- **Phase / Task**: Execute C7 feito. **Agora:** C8 (frases PT).
-- **Completed**: C1–C7. Features anteriores Execute + faixa PASS. PR #182 aberto.
+- **Phase / Task**: Execute C8 feito. **Agora:** C9 (backtest).
+- **Completed**: C1–C8. Features anteriores Execute + faixa PASS. PR #182 aberto.
 - **In-progress** (file:line): none.
-- **Next step**: C8 — `explain.py` chance/parede. Ver `.specs/NEXT-ACTION.md`.
+- **Next step**: C9 — backtest sem leakage. Ver `.specs/NEXT-ACTION.md`.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
 - **Uncommitted files**: none after this commit.
 - **Branch**: submission/joao-luiz

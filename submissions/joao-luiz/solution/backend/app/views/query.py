@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 from app.ingestion.repository import Deal
 from app.scoring.age import age_days
-from app.scoring.chance import chance, derive_wall, survival_table
+from app.scoring.chance import chance, derive_wall, past_wall_open_count, survival_table
 from app.scoring.cohort import build_cohort
 from app.scoring.confidence import confidence
 from app.scoring.cooling import cooling
@@ -13,7 +13,7 @@ from app.scoring.urgency import urgency
 from app.settings import get_settings
 from app.views.buckets import bucketize
 from app.views.estado import assign_estado
-from app.views.explain import explain
+from app.views.explain import action_for, chance_sentence, explain, wall_sentence
 from app.views.filter import split_view
 from app.views.percentile import percentile_scores
 
@@ -76,6 +76,7 @@ def build_view(
     """Trabalhar scored by value × chance. SCORE is the Trabalhar percentile."""
     selected = view_filter or ViewFilter()
     table, wall = _chance_model(repo)
+    past_count = past_wall_open_count(repo, wall)
     buckets = bucketize(
         repo,
         wall,
@@ -84,8 +85,18 @@ def build_view(
         office=selected.office,
     )
     trabalhar = _score_trabalhar(repo, buckets.trabalhar.deals, table, wall)
+    decide_reason = wall_sentence(wall, past_count)
+    decide_action = action_for("decidir")
     decidir = tuple(
-        _queue_item(deal, age_days(deal.engage_date) or 0, 0, "Decidir", 0.0)
+        _queue_item(
+            deal,
+            age_days(deal.engage_date) or 0,
+            0,
+            "Decidir",
+            0.0,
+            reason=decide_reason,
+            action=decide_action,
+        )
         for deal in buckets.decidir.deals
     )
     empty = EMPTY_VIEW_MESSAGE if not trabalhar else None
@@ -135,7 +146,16 @@ def _score_trabalhar(
     scores = percentile_scores(priorities)
     estados = assign_estado(priorities)
     items = [
-        _queue_item(deal, age, score, estado, deal_chance, closed_by_product)
+        _queue_item(
+            deal,
+            age,
+            score,
+            estado,
+            deal_chance,
+            closed_by_product,
+            reason=chance_sentence(deal_chance),
+            action=action_for("trabalhar"),
+        )
         for (deal, age, deal_chance, _rank), score, estado in zip(
             prepared, scores, estados, strict=True
         )
@@ -155,6 +175,8 @@ def _queue_item(
     estado: str,
     deal_chance: float,
     closed_by_product: dict[str, int] | None = None,
+    reason: str | None = None,
+    action: str | None = None,
 ) -> QueueItem:
     closed = closed_by_product or {}
     assessed = confidence(
@@ -175,8 +197,8 @@ def _queue_item(
         score=score,
         estado=estado,
         confidence=level,
-        reason=text.reason,
-        action=text.action,
+        reason=reason if reason is not None else text.reason,
+        action=action if action is not None else text.action,
         cooling=cooling(age),
         chance=deal_chance,
         from_agent=deal.from_agent,

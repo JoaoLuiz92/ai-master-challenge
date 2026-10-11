@@ -197,10 +197,10 @@ Every ambiguity is resolved or recorded here - nothing is left silently unclear.
 | CHANCE-13 | P1: Fila Decidir | mantém Revisar (LEAD-16/17) | Spec | Implementing |
 | CHANCE-14 | P1: Fila Decidir | três seções | Spec | Implementing |
 | CHANCE-15 | P1: Fila Decidir | supersede LEAD-19/20 | Spec | Verified |
-| CHANCE-16 | P1: Explicação | RF3 (motivo/ação) | Spec | Pending |
-| CHANCE-17 | P1: Explicação | frase da parede | Spec | Implementing |
-| CHANCE-18 | P1: Explicação | ação por fila | Spec | Pending |
-| CHANCE-19 | P1: Explicação | sem número fabricado | Spec | Pending |
+| CHANCE-16 | P1: Explicação | RF3 (motivo/ação) | Spec | Verified |
+| CHANCE-17 | P1: Explicação | frase da parede | Spec | Verified |
+| CHANCE-18 | P1: Explicação | ação por fila | Spec | Verified |
+| CHANCE-19 | P1: Explicação | sem número fabricado | Spec | Verified |
 | CHANCE-20 | P1: Backtest gate | verificação | Spec | Pending |
 | CHANCE-21 | P1: Backtest gate | receita top‑N | Spec | Pending |
 | CHANCE-22 | P1: Backtest gate | baseline preço | Spec | Pending |

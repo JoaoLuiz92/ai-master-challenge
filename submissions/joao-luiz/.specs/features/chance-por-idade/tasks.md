@@ -294,12 +294,12 @@ C15 → C16
 
 **Done when**:
 
-- [ ] Chance sentence (e.g., "47% dos deals desta idade fecharam") for workable deals
-- [ ] Wall sentence states wall age and past-wall open count for Decidir deals
-- [ ] Action: Trabalhar → advance; Decidir → "Requalificar ou encerrar"; Revisar → fix data
-- [ ] Every number is computed from data (no literal) — asserted
-- [ ] Unit tests cover all three bucket texts (CHANCE-16/17/18/19)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] Chance sentence (e.g., "47% dos deals desta idade fecharam") for workable deals
+- [x] Wall sentence states wall age and past-wall open count for Decidir deals
+- [x] Action: Trabalhar → advance; Decidir → "Requalificar ou encerrar"; Revisar → fix data
+- [x] Every number is computed from data (no literal) — asserted
+- [x] Unit tests cover all three bucket texts (CHANCE-16/17/18/19)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
