@@ -18,9 +18,12 @@ def main() -> None:
     raw = load_dataset(get_settings().data_dir)
     deals = build_deals(normalize(raw)[0])
     report = run_backtest(deals)
-    print("cutoff\tnova\tpreco\taleatorio")
+    print("cutoff\tnova\tpreco\tpreco_parede\taleatorio")
     for row in report.cutoffs:
-        print(f"{row.cutoff.isoformat()}\t{row.nova:.0f}\t{row.preco:.0f}\t{row.aleatorio:.0f}")
+        print(
+            f"{row.cutoff.isoformat()}\t{row.nova:.0f}\t{row.preco:.0f}"
+            f"\t{row.preco_parede:.0f}\t{row.aleatorio:.0f}"
+        )
     print(f"nova_vs_preco_delta\t{report.nova_vs_preco_delta:.0f}")
     print(f"dispersion\t{report.dispersion:.0f}")
     print(f"adopted\t{report.adopted}")

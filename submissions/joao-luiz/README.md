@@ -110,13 +110,13 @@ Filas      = Trabalhar | Decidir (preço desc) | Revisar
 - **Esfriando é pista visual.** O badge (>106d) não decide mais a cesta.
 - **Gate de adoção — passou.** `python backtest.py` reconstrói a fila em cortes passados (sem olhar o futuro) e mede a receita capturada no top‑N por vendedor nos 90 dias seguintes. A nova ordem supera ordenar por preço nos três cortes; `adopted=True`. [ADR-016](docs/adr/016-backtest-como-gate-do-motor.md).
 
-  | Corte | Nova ordem | Preço | Aleatório |
-  |---|---:|---:|---:|
-  | 2017-06-30 | 489.481 | 436.874 | 192.688 |
-  | 2017-08-31 | 399.663 | 345.790 | 120.708 |
-  | 2017-09-30 | 320.815 | 232.505 | 118.168 |
+  | Corte | Nova ordem | Preço | Preço ≤ parede | Aleatório |
+  |---|---:|---:|---:|---:|
+  | 2017-06-30 | 489.481 | 436.874 | 455.181 | 192.688 |
+  | 2017-08-31 | 399.663 | 345.790 | 390.820 | 120.708 |
+  | 2017-09-30 | 320.815 | 232.505 | 287.655 | 118.168 |
 
-  Mediana da diferença (nova − preço): **+US$ 53.873**; dispersão 16.540. Se desse `adopted=False`, o motor reverteria para valor × urgência (CHANCE-23).
+  A nova ordem ganha nos três cortes; diferença mediana vs. preço **+US$ 53.873** com dispersão **16.540** (vantagem estável, não um corte sorteado). O baseline **preço ≤ parede** isola a chance: só filtrar quem passou da parede já sobe a captura, mas ordenar por chance dentro da parede ainda ganha em todos os cortes — o ganho não é só da exclusão. Se desse `adopted=False`, o motor reverteria para valor × urgência (CHANCE-23).
 - **Âncora temporal `TODAY = 2017-12-31`**. [ADR-005](docs/adr/005-ancora-temporal-2017-12-31.md).
 - **Explainability sem LLM.** Frase de chance / frase da parede em português, números do dado. [ADR-006](docs/adr/006-sem-llm-no-caminho-critico.md).
 

@@ -22,16 +22,16 @@ A maior parte do Engaging aberto no snapshot 2017-12-31 já passou da parede (~1
 Gate `python backtest.py`: adotar só se a captura top‑N / 90d da nova ordem superar ordenar por preço (ADR-016). Rodado na imagem `solution-api` (pandas bloqueado no host), deu `adopted=True`:
 
 ```
-cutoff      nova    preco   aleatorio
-2017-06-30  489481  436874  192688
-2017-08-31  399663  345790  120708
-2017-09-30  320815  232505  118168
+cutoff      nova    preco   preco_parede  aleatorio
+2017-06-30  489481  436874  455181        192688
+2017-08-31  399663  345790  390820        120708
+2017-09-30  320815  232505  287655        118168
 nova_vs_preco_delta  53873
 dispersion           16540
 adopted              True
 ```
 
-A nova ordem ganha nos três cortes; o aleatório fica bem abaixo dos dois. A tese do v3 se sustenta.
+A nova ordem ganha nos três cortes; diferença mediana vs. preço +53.873 com dispersão 16.540 (estável). Acrescentei o baseline **preço ≤ parede** para isolar a contribuição da chance: filtrar quem passou da parede já sobe a captura (preço ≤ parede > preço), mas `nova` ainda bate `preço ≤ parede` nos três cortes — ou seja, ordenar por chance dentro da parede agrega além da exclusão. A tese do v3 se sustenta.
 
 ## Iterações
 

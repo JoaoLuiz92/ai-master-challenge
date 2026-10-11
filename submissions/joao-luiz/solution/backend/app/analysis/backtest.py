@@ -28,6 +28,7 @@ class CutoffCapture:
     cutoff: date
     nova: float
     preco: float
+    preco_parede: float
     aleatorio: float
 
 
@@ -67,12 +68,14 @@ def run_backtest(
         snap = snapshot_at(repo, cutoff)
         nova_ids = _top_n_by(snap, cutoff, top_n, kind="nova")
         preco_ids = _top_n_by(snap, cutoff, top_n, kind="preco")
+        preco_parede_ids = _top_n_by(snap, cutoff, top_n, kind="preco_parede")
         random_ids = _top_n_by(snap, cutoff, top_n, kind="aleatorio")
         rows.append(
             CutoffCapture(
                 cutoff=cutoff,
                 nova=_captured_revenue(repo, nova_ids, cutoff),
                 preco=_captured_revenue(repo, preco_ids, cutoff),
+                preco_parede=_captured_revenue(repo, preco_parede_ids, cutoff),
                 aleatorio=_captured_revenue(repo, random_ids, cutoff),
             )
         )
@@ -107,6 +110,15 @@ def _top_n_by(
         )
     elif kind == "preco":
         scored = sorted(candidates, key=lambda deal: deal.value, reverse=True)
+    elif kind == "preco_parede":
+        _, wall = _model(snap, cutoff)
+        within = [
+            deal
+            for deal in candidates
+            if deal.engage_date is not None
+            and (cutoff - deal.engage_date).days <= wall
+        ]
+        scored = sorted(within, key=lambda deal: deal.value, reverse=True)
     else:
         scored = list(candidates)
         Random(0).shuffle(scored)

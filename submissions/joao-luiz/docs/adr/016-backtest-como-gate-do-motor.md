@@ -12,7 +12,7 @@ Trocar urgência por chance é opinião até provar que a **nova ordem captura m
 ## Decision Drivers
 
 - Sem olhar o futuro: cada corte só usa o que era conhecido naquela data.
-- Comparar contra o baseline trivial (preço) e contra aleatório.
+- Comparar contra o baseline trivial (preço), contra **preço ≤ parede** (isola a chance: separa o ganho da exclusão além da parede do ganho de ordenar por chance) e contra aleatório.
 - Se a nova ordem não bater o preço, **não adotar**.
 
 ## Considered Options
@@ -31,7 +31,7 @@ Trocar urgência por chance é opinião até provar que a **nova ordem captura m
 
 ## Decision Outcome
 
-Opção escolhida: **A**. Comando: `python backtest.py` a partir de `solution/`. Cortes padrão: 2017-06-30, 2017-08-31, 2017-09-30. `adopted=true` só se a mediana dos deltas nova−preço for positiva. O motor v3 entra porque o script emite essa adoção; se um rerun virar `adopted=false`, a troca reverte para ADR-001.
+Opção escolhida: **A**. Comando: `python backtest.py` a partir de `solution/`. Cortes padrão: 2017-06-30, 2017-08-31, 2017-09-30. Baselines: preço, preço ≤ parede e aleatório. `adopted=true` só se a mediana dos deltas nova−preço for positiva. O motor v3 entra porque o script emite essa adoção; se um rerun virar `adopted=false`, a troca reverte para ADR-001. Resultado atual (`adopted=True`, mediana +53.873) no README e no process log; `nova` ainda bate `preço ≤ parede` nos três cortes, então a chance agrega além da exclusão.
 
 ### Consequências Positivas
 
