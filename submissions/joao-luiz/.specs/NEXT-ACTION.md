@@ -4,9 +4,9 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-C7: view builder, percentil só em Trabalhar (`chance-por-idade`). `backend/app/views/query.py`. Depende de C5 e C6.
+C8: frases de chance e da parede em português (`chance-por-idade`). `backend/app/views/explain.py`. Depende de C3 e C7.
 
 ## Fila
 
-1. C8: frases de chance e da parede
-2. C9–C16 conforme `tasks.md`
+1. C9: backtest sem leakage
+2. C10–C16 conforme `tasks.md`

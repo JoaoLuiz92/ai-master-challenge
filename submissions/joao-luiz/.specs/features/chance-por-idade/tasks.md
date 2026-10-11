@@ -268,11 +268,11 @@ C15 → C16
 
 **Done when**:
 
-- [ ] `build_view(repo, filter)` returns { trabalhar, decidir, revisar, totals }
-- [ ] Percentile computed over Trabalhar deals of the view (not over Decidir/Revisar)
-- [ ] Trabalhar ordered by SCORE desc; highest `value × chance` first
-- [ ] Unit tests cover percentile scope and ordering (CHANCE-08/15)
-- [ ] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
+- [x] `build_view(repo, filter)` returns { trabalhar, decidir, revisar, totals }
+- [x] Percentile computed over Trabalhar deals of the view (not over Decidir/Revisar)
+- [x] Trabalhar ordered by SCORE desc; highest `value × chance` first
+- [x] Unit tests cover percentile scope and ordering (CHANCE-08/15)
+- [x] Gate check passes: `.venv\Scripts\python -m pytest backend/tests/unit -q`
 
 **Tests**: unit
 **Gate**: quick
