@@ -4,9 +4,8 @@ Fonte única do que fazer agora. Uma tarefa por janela. Ao fechar: gate → `tas
 
 ## Agora
 
-C14: ManagerRollup mostra valor parado (`chance-por-idade`). `frontend/src/components/ManagerRollup.tsx`. Depende de C11.
+C15: config, ADRs e docs (`chance-por-idade`). `docs/adr/`, README. Depende de C9 e C14.
 
 ## Fila
 
-1. C15: ADRs, config, docs
-2. C16: validation-lane
+1. C16: validation-lane

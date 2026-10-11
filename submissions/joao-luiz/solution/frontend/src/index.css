@@ -327,6 +327,17 @@ select,
   color: var(--ink-soft);
 }
 
+.parked-value {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+}
+
+.parked-value mark {
+  margin-left: 0.4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
 .rollup-table {
   width: 100%;
   border-collapse: collapse;

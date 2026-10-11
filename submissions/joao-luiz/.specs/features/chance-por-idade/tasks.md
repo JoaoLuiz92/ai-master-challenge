@@ -450,9 +450,9 @@ C15 → C16
 
 **Done when**:
 
-- [ ] Per-agent rows show worked and parked counts/values; parked highlighted
-- [ ] Component unit tests cover the split columns + highlight (CHANCE-25/26)
-- [ ] Gate check passes: `npm --prefix frontend test -- --run`
+- [x] Per-agent rows show worked and parked counts/values; parked highlighted
+- [x] Component unit tests cover the split columns + highlight (CHANCE-25/26)
+- [x] Gate check passes: `npm --prefix frontend test -- --run`
 
 **Tests**: unit
 **Gate**: quick

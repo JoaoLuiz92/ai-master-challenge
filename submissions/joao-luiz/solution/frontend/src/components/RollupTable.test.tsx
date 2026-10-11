@@ -13,6 +13,10 @@ function row(overrides: Partial<RollupRow> = {}): RollupRow {
     expected_value_sum: 48210,
     cooling_count: 3,
     good_deals_cooling: 1,
+    trabalhar_count: 5,
+    trabalhar_value: 800,
+    decidir_count: 3,
+    decidir_value: 47410,
     ...overrides,
   };
 }
@@ -31,6 +35,10 @@ describe("RollupTable", () => {
             expected_value_sum: 1000,
             cooling_count: 0,
             good_deals_cooling: 0,
+            trabalhar_count: 2,
+            trabalhar_value: 1000,
+            decidir_count: 0,
+            decidir_value: 0,
           }),
         ]}
         onSelectAgent={() => undefined}
@@ -38,18 +46,25 @@ describe("RollupTable", () => {
     );
 
     const headers = screen.getAllByRole("columnheader").map((cell) => cell.textContent);
-    expect(headers).toEqual(["Vendedor", "Na fila", "Valor", "Esfriando", "Bons esfriando"]);
+    expect(headers).toEqual([
+      "Vendedor",
+      "Trabalhar",
+      "Valor trabalhar",
+      "Decidir",
+      "Valor parado",
+      "Esfriando",
+      "Bons esfriando",
+    ]);
 
     const anna = screen.getByRole("row", { name: /Anna Snelling/ });
-    expect(within(anna).getByText("8")).toBeTruthy();
-    expect(within(anna).getByText("US$ 48.210")).toBeTruthy();
-    expect(within(anna).getByText("3")).toBeTruthy();
-    expect(within(anna).getByText("1")).toBeTruthy();
+    const annaCells = within(anna).getAllByRole("cell").map((cell) => cell.textContent);
+    expect(annaCells).toEqual(["5", "US$ 800", "3", "US$ 47.410", "3", "1"]);
+    expect(within(anna).getByText("US$ 47.410").closest("mark")).not.toBeNull();
 
     const darcel = screen.getByRole("row", { name: /Darcel Schlecht/ });
     expect(within(darcel).getByText("2")).toBeTruthy();
     expect(within(darcel).getByText("US$ 1.000")).toBeTruthy();
-    expect(within(darcel).getAllByText("0")).toHaveLength(2);
+    expect(within(darcel).getByText("US$ 0")).toBeTruthy();
   });
 
   it("calls onSelectAgent when a seller row is activated", () => {

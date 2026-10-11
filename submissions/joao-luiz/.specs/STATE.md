@@ -109,10 +109,10 @@
 ## Handoff
 
 - **Feature**: `chance-por-idade`
-- **Phase / Task**: Execute C13 feito. **Agora:** C14 (ManagerRollup).
-- **Completed**: C1–C13. Features anteriores Execute + faixa PASS. PR #182 aberto.
+- **Phase / Task**: Execute C14 feito. **Agora:** C15 (ADRs, config, docs).
+- **Completed**: C1–C14. Features anteriores Execute + faixa PASS. PR #182 aberto.
 - **In-progress** (file:line): none.
-- **Next step**: C14 — rollup com valor parado em Decidir. Ver `.specs/NEXT-ACTION.md`.
+- **Next step**: C15 — ADRs 014/015/016, supersessão e docs. Ver `.specs/NEXT-ACTION.md`.
 - **Blockers**: WDAC no host bloqueia `pandas._libs.internals`. Pytest sobe na imagem `solution-api` com `backend/` montado. Pin FastAPI 0.112.4 + Pydantic 1.10.22.
 - **Uncommitted files**: none after this commit.
 - **Branch**: submission/joao-luiz

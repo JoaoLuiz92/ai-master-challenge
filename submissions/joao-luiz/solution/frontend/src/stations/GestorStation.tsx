@@ -4,7 +4,7 @@ import { queuePath, type QueueItem, type QueueResponse, type RollupRow } from ".
 import { HandoffDialog } from "../components/HandoffDialog";
 import { EmptyState } from "../components/EmptyState";
 import { ExportButton } from "../components/ExportButton";
-import { RollupTable } from "../components/RollupTable";
+import { ManagerRollup } from "../components/ManagerRollup";
 import { SituationStrip } from "../components/SituationStrip";
 import { formatValue } from "../format/money";
 import { deriveSellerKpis, deriveTeamKpis } from "../kpis/summary";
@@ -73,6 +73,7 @@ export function GestorStation({
       ) : (
         <HomeView
           rows={rows}
+          parkedValue={snapshot.rollup?.parked_value}
           onSelectAgent={(agente) =>
             navigate({
               station: "gestor",
@@ -89,9 +90,11 @@ export function GestorStation({
 
 function HomeView({
   rows,
+  parkedValue,
   onSelectAgent,
 }: {
   rows: RollupRow[];
+  parkedValue?: number;
   onSelectAgent: (agent: string) => void;
 }) {
   const kpis = deriveTeamKpis(rows);
@@ -108,7 +111,7 @@ function HomeView({
           { label: "Bons esfriando", value: String(kpis.bonsEsfriando) },
         ]}
       />
-      <RollupTable rows={rows} onSelectAgent={onSelectAgent} />
+      <ManagerRollup rows={rows} parkedValue={parkedValue} onSelectAgent={onSelectAgent} />
     </>
   );
 }

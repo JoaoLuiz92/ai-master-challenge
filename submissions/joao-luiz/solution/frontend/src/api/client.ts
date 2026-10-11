@@ -50,6 +50,15 @@ export type RollupRow = {
   expected_value_sum: number;
   cooling_count: number;
   good_deals_cooling: number;
+  trabalhar_count?: number;
+  trabalhar_value?: number;
+  decidir_count?: number;
+  decidir_value?: number;
+};
+
+export type RollupResponse = {
+  rows: RollupRow[];
+  parked_value?: number;
 };
 
 export type AgentOption = {
@@ -116,7 +125,7 @@ export type ViewSnapshot = {
   role: Role;
   filter: ViewFilter;
   queue: QueueResponse;
-  rollup: { rows: RollupRow[] };
+  rollup: RollupResponse;
   agents: AgentsResponse;
 };
 
@@ -141,7 +150,7 @@ export function createViewClient(baseUrl = "") {
   async function refresh(): Promise<ViewSnapshot> {
     const [queue, rollup, agents] = await Promise.all([
       read<QueueResponse>(queuePath(role, filter)),
-      read<{ rows: RollupRow[] }>(rollupPath(filter)),
+      read<RollupResponse>(rollupPath(filter)),
       read<AgentsResponse>("/api/agents"),
     ]);
     snapshot = { role, filter: { ...filter }, queue, rollup, agents };

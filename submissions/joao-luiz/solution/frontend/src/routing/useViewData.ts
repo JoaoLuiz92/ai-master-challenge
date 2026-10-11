@@ -5,13 +5,13 @@ import {
   rollupPath,
   type AgentsResponse,
   type QueueResponse,
-  type RollupRow,
+  type RollupResponse,
 } from "../api/client";
 import type { ViewRoute } from "./route";
 
 export type DataSnapshot = {
   queue: QueueResponse | null;
-  rollup: { rows: RollupRow[] } | null;
+  rollup: RollupResponse | null;
   agents: AgentsResponse;
 };
 
@@ -46,7 +46,7 @@ export function useViewData(route: ViewRoute): {
           read<AgentsResponse>("/api/agents"),
         ]).then(([queue, agents]) => ({ queue, rollup: null, agents }))
       : Promise.all([
-          read<{ rows: RollupRow[] }>(
+          read<RollupResponse>(
             rollupPath({ manager: route.gestor, office: route.escritorio }),
           ),
           read<AgentsResponse>("/api/agents"),
